@@ -1,0 +1,146 @@
+* {
+	eborder: 1px solid black;
+}
+.wrapper {
+	
+	/*border: 1px solid green;*/
+	min-width: 1300px;
+	
+}
+.topbar {
+	/*border: 1px solid red;*/
+	background-color: blue;	
+	margin-bottom: 20px;
+	position: fixed;
+	right: 0px; /* Расстояние от правого края окна браузера */
+    left: 0px;
+	top: 0px; /* Расстояние сверху */
+}
+.cart{
+	/*border: 1px solid white;*/
+	height: 20px;
+	width: 80%;
+	margin: 0 auto;
+	min-width: 1300px;
+	color: white;
+}
+.site_container{
+	overflow: auto;
+	/*border: 1px solid yellow;*/
+	width: 80%;
+	margin: 20px auto 0px;
+	min-width: 1300px;
+}
+
+.header_container{
+	overflow: auto;
+	/*border: 1px solid red;*/
+	
+}
+
+.logo {
+	height: 125px;
+	width: 330px;
+	float: left;
+}
+.menu {
+	/*border: 1px solid black;*/
+	height: 50px;
+	width: 900px;
+	
+	float: right;
+	
+}
+.menu ul{
+	/*border: 1px solid green;*/
+	float: right;
+	margin-right: 50px;
+}
+.menu ul li {
+	/*border: 1px solid cyan;*/
+	display: inline;
+	margin-right: 20px;
+	font-size: 16pt;
+	font-family: Philosopher;
+}
+.clear{
+	clear: both;
+}
+.caption{
+	/*border: 1px solid green;*/
+	margin-top: 50px;
+	height: 50px;
+	width: 100%;
+	min-width: 500px;	
+	font-size: 38px;
+	color: #2d5c88;
+	font-family: Philosopher;
+}
+.content_container{
+	overflow: auto;
+	/*border: 1px solid blue;*/
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+
+.product {
+	overflow: auto;
+	float: left;
+	border: 1px solid gray;
+	margin: 15px;
+	width: 402px;
+	height: 420px;
+}
+.product_thumb {
+	/*border: 1px solid blue;*/	
+}
+.product_header {
+	/*border: 1px solid green;*/
+	margin: 5px auto 0px;
+	height: 50px;
+	text-align: center;
+	font-size: 16pt;
+	font-family: Philosopher;
+	overflow: hidden;
+}
+
+.product_order {
+	overflow: auto;
+	/*border: 1px solid red;*/
+	margin: 10px auto 0px;
+	height: 38px;
+}
+.product_price {
+	/*border: 1px solid yellow;*/
+	width: 70%;
+	display: inline-block;
+	font-size: 19pt;
+	font-family: Philosopher;
+	text-align: center;
+	overflow: hidden;	
+}
+.in_cart {
+	/*border: 1px solid cyan;*/
+	display: inline-block;
+	font-size: 17pt;
+	font-family: Philosopher;
+	overflow: hidden;
+}
+
+
+.footbar {
+
+	background-color: gray;	
+	margin-top: 20px;
+}
+.footer{
+	height: 70px;
+	width: 80%;
+	margin: 0 auto;
+	min-width: 1300px;
+	color: white;
+}
+h1 {
+	color: red;
+}

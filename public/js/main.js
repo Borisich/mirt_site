@@ -20498,6 +20498,86 @@ module.exports = require('./lib/React');
 
 },{"./lib/React":155}],183:[function(require,module,exports){
 var React = require('react');
+var Logo = React.createClass({
+  displayName: "Logo",
+
+  render: function () {
+    return React.createElement(
+      "div",
+      { className: "logo" },
+      React.createElement("img", { src: "images/logo.png" })
+    );
+  }
+});
+
+module.exports = Logo;
+
+},{"react":182}],184:[function(require,module,exports){
+var React = require('react');
+var Logo = require('./Logo.jsx');
+var Menu = require('./Menu.jsx');
+
+var HeaderContainer = React.createClass({
+  displayName: 'HeaderContainer',
+
+  render: function () {
+    return React.createElement(
+      'div',
+      { className: 'header_container' },
+      React.createElement(Logo, null),
+      React.createElement(Menu, null)
+    );
+  }
+});
+
+module.exports = HeaderContainer;
+
+},{"./Logo.jsx":183,"./Menu.jsx":185,"react":182}],185:[function(require,module,exports){
+var React = require('react');
+var Menu = React.createClass({
+  displayName: "Menu",
+
+  render: function () {
+    return React.createElement(
+      "div",
+      { className: "menu" },
+      React.createElement(
+        "ul",
+        null,
+        React.createElement(
+          "li",
+          null,
+          "\u0413\u043B\u0430\u0432\u043D\u0430\u044F"
+        ),
+        React.createElement(
+          "li",
+          null,
+          "\u041E \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438"
+        ),
+        React.createElement(
+          "li",
+          null,
+          "\u041A\u043E\u0440\u0437\u0438\u043D\u0430"
+        ),
+        React.createElement(
+          "li",
+          null,
+          "\u041E\u0444\u043E\u0440\u043C\u043B\u0435\u043D\u0438\u0435 \u0437\u0430\u043A\u0430\u0437\u0430"
+        ),
+        React.createElement(
+          "li",
+          null,
+          "\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B"
+        )
+      )
+    );
+  }
+});
+
+module.exports = Menu;
+
+},{"react":182}],186:[function(require,module,exports){
+var React = require('react');
 var ListItem = require('./ListItem.jsx');
 
 var ingredients = [{
@@ -20528,7 +20608,7 @@ var List = React.createClass({
 
 module.exports = List;
 
-},{"./ListItem.jsx":184,"react":182}],184:[function(require,module,exports){
+},{"./ListItem.jsx":187,"react":182}],187:[function(require,module,exports){
 var React = require('react');
 var ListItem = React.createClass({
   displayName: 'ListItem',
@@ -20544,10 +20624,43 @@ var ListItem = React.createClass({
 
 module.exports = ListItem;
 
-},{"react":182}],185:[function(require,module,exports){
+},{"react":182}],188:[function(require,module,exports){
+var React = require('react');
+var TopBar = React.createClass({
+  displayName: "TopBar",
+
+  render: function () {
+    return React.createElement(
+      "div",
+      { className: "topbar" },
+      React.createElement(
+        "div",
+        { className: "cart" },
+        "\u0412\u0430\u0448\u0430 \u043A\u043E\u0440\u0437\u0438\u043D\u0430 - 0 \u0440\u0443\u0431."
+      )
+    );
+  }
+});
+
+module.exports = TopBar;
+
+},{"react":182}],189:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 var List = require('./components/List.jsx');
-ReactDOM.render(React.createElement(List, null), document.getElementById('ingredients'));
+var TopBar = require('./components/TopBar.jsx');
+var HeaderContainer = require('./components/HeaderContainer/Main.jsx');
 
-},{"./components/List.jsx":183,"react":182,"react-dom":2}]},{},[185]);
+ReactDOM.render(React.createElement(
+  'div',
+  null,
+  React.createElement(TopBar, null),
+  React.createElement(
+    'div',
+    { className: 'site_container' },
+    React.createElement(HeaderContainer, null)
+  )
+), document.getElementById('mirt'));
+//ReactDOM.render(<HeaderContainer />, document.getElementById('mirt') );
+
+},{"./components/HeaderContainer/Main.jsx":184,"./components/List.jsx":186,"./components/TopBar.jsx":188,"react":182,"react-dom":2}]},{},[189]);
