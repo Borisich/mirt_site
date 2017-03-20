@@ -20498,21 +20498,37 @@ module.exports = require('./lib/React');
 
 },{"./lib/React":155}],183:[function(require,module,exports){
 var React = require('react');
-var Logo = React.createClass({
-  displayName: "Logo",
+var Caption = React.createClass({
+  displayName: "Caption",
 
   render: function () {
     return React.createElement(
       "div",
-      { className: "logo" },
-      React.createElement("img", { src: "images/logo.png" })
+      { className: "caption" },
+      "\u0423\u043A\u0440\u0430\u0448\u0435\u043D\u0438\u044F \u0434\u043B\u044F \u0441\u0432\u0430\u0434\u0435\u0431\u043D\u043E\u0433\u043E \u0430\u0432\u0442\u043E\u043C\u043E\u0431\u0438\u043B\u044F:"
     );
   }
 });
 
-module.exports = Logo;
+module.exports = Caption;
 
 },{"react":182}],184:[function(require,module,exports){
+var React = require('react');
+var Footer = React.createClass({
+  displayName: "Footer",
+
+  render: function () {
+    return React.createElement(
+      "div",
+      { className: "footer" },
+      "Mirt 2016-2017"
+    );
+  }
+});
+
+module.exports = Footer;
+
+},{"react":182}],185:[function(require,module,exports){
 var React = require('react');
 var Logo = require('./Logo.jsx');
 var Menu = require('./Menu.jsx');
@@ -20532,7 +20548,23 @@ var HeaderContainer = React.createClass({
 
 module.exports = HeaderContainer;
 
-},{"./Logo.jsx":183,"./Menu.jsx":185,"react":182}],185:[function(require,module,exports){
+},{"./Logo.jsx":186,"./Menu.jsx":187,"react":182}],186:[function(require,module,exports){
+var React = require('react');
+var Logo = React.createClass({
+  displayName: "Logo",
+
+  render: function () {
+    return React.createElement(
+      "div",
+      { className: "logo" },
+      React.createElement("img", { src: "images/logo.png" })
+    );
+  }
+});
+
+module.exports = Logo;
+
+},{"react":182}],187:[function(require,module,exports){
 var React = require('react');
 var Menu = React.createClass({
   displayName: "Menu",
@@ -20576,7 +20608,7 @@ var Menu = React.createClass({
 
 module.exports = Menu;
 
-},{"react":182}],186:[function(require,module,exports){
+},{"react":182}],188:[function(require,module,exports){
 var React = require('react');
 var ListItem = require('./ListItem.jsx');
 
@@ -20608,7 +20640,7 @@ var List = React.createClass({
 
 module.exports = List;
 
-},{"./ListItem.jsx":187,"react":182}],187:[function(require,module,exports){
+},{"./ListItem.jsx":189,"react":182}],189:[function(require,module,exports){
 var React = require('react');
 var ListItem = React.createClass({
   displayName: 'ListItem',
@@ -20624,7 +20656,86 @@ var ListItem = React.createClass({
 
 module.exports = ListItem;
 
-},{"react":182}],188:[function(require,module,exports){
+},{"react":182}],190:[function(require,module,exports){
+var React = require('react');
+var BottomPanel = React.createClass({
+	displayName: "BottomPanel",
+
+	render: function () {
+		return React.createElement(
+			"div",
+			{ className: "product_order" },
+			React.createElement(
+				"div",
+				{ className: "product_price" },
+				"500 \u0440\u0443\u0431."
+			),
+			React.createElement(
+				"div",
+				{ className: "in_cart" },
+				"\u0412 \u043A\u043E\u0440\u0437\u0438\u043D\u0443"
+			)
+		);
+	}
+});
+
+module.exports = BottomPanel;
+
+},{"react":182}],191:[function(require,module,exports){
+var React = require('react');
+var Header = React.createClass({
+  displayName: "Header",
+
+  render: function () {
+    return React.createElement(
+      "div",
+      { className: "product_header" },
+      "Product 1. The best product in the world. And very very good! The best product in the world. And very very good!"
+    );
+  }
+});
+
+module.exports = Header;
+
+},{"react":182}],192:[function(require,module,exports){
+var React = require('react');
+var Picture = React.createClass({
+  displayName: "Picture",
+
+  render: function () {
+    return React.createElement(
+      "div",
+      { className: "product_thumb" },
+      React.createElement("img", { src: "", height: "300", width: "400" })
+    );
+  }
+});
+
+module.exports = Picture;
+
+},{"react":182}],193:[function(require,module,exports){
+var React = require('react');
+var BottomPanel = require('./BottomPanel.jsx');
+var Header = require('./Header.jsx');
+var Picture = require('./Picture.jsx');
+
+var Product = React.createClass({
+  displayName: 'Product',
+
+  render: function () {
+    return React.createElement(
+      'div',
+      { className: 'product' },
+      React.createElement(Picture, null),
+      React.createElement(Header, null),
+      React.createElement(BottomPanel, null)
+    );
+  }
+});
+
+module.exports = Product;
+
+},{"./BottomPanel.jsx":190,"./Header.jsx":191,"./Picture.jsx":192,"react":182}],194:[function(require,module,exports){
 var React = require('react');
 var TopBar = React.createClass({
   displayName: "TopBar",
@@ -20632,35 +20743,55 @@ var TopBar = React.createClass({
   render: function () {
     return React.createElement(
       "div",
-      { className: "topbar" },
-      React.createElement(
-        "div",
-        { className: "cart" },
-        "\u0412\u0430\u0448\u0430 \u043A\u043E\u0440\u0437\u0438\u043D\u0430 - 0 \u0440\u0443\u0431."
-      )
+      { className: "cart" },
+      "\u0412\u0430\u0448\u0430 \u043A\u043E\u0440\u0437\u0438\u043D\u0430 - 0 \u0440\u0443\u0431."
     );
   }
 });
 
 module.exports = TopBar;
 
-},{"react":182}],189:[function(require,module,exports){
+},{"react":182}],195:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 var List = require('./components/List.jsx');
 var TopBar = require('./components/TopBar.jsx');
-var HeaderContainer = require('./components/HeaderContainer/Main.jsx');
+var Caption = require('./components/Caption.jsx');
+var HeaderContainer = require('./components/HeaderContainer/HeaderContainer.jsx');
+var Product = require('./components/Product/Product.jsx');
+var Footer = require('./components/Footer.jsx');
 
 ReactDOM.render(React.createElement(
   'div',
   null,
-  React.createElement(TopBar, null),
+  React.createElement(
+    'div',
+    { className: 'topbar' },
+    React.createElement(TopBar, null)
+  ),
   React.createElement(
     'div',
     { className: 'site_container' },
-    React.createElement(HeaderContainer, null)
+    React.createElement(HeaderContainer, null),
+    React.createElement('div', { className: 'clear' }),
+    React.createElement(Caption, null),
+    React.createElement(
+      'div',
+      { className: 'content_container' },
+      React.createElement(Product, null),
+      React.createElement(Product, null),
+      React.createElement(Product, null),
+      React.createElement(Product, null),
+      React.createElement(Product, null),
+      React.createElement(Product, null)
+    )
+  ),
+  React.createElement('div', { className: 'clear' }),
+  React.createElement(
+    'div',
+    { className: 'footbar' },
+    React.createElement(Footer, null)
   )
 ), document.getElementById('mirt'));
-//ReactDOM.render(<HeaderContainer />, document.getElementById('mirt') );
 
-},{"./components/HeaderContainer/Main.jsx":184,"./components/List.jsx":186,"./components/TopBar.jsx":188,"react":182,"react-dom":2}]},{},[189]);
+},{"./components/Caption.jsx":183,"./components/Footer.jsx":184,"./components/HeaderContainer/HeaderContainer.jsx":185,"./components/List.jsx":188,"./components/Product/Product.jsx":193,"./components/TopBar.jsx":194,"react":182,"react-dom":2}]},{},[195]);
