@@ -9,7 +9,7 @@
 }
 .topbar {
 	/*border: 1px solid red;*/
-	background-color: blue;	
+	background-color: red;	
 	margin-bottom: 20px;
 	position: fixed;
 	right: 0px; /* Расстояние от правого края окна браузера */
