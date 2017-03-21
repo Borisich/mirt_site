@@ -2,7 +2,7 @@
 	eborder: 1px solid black;
 }
 
-/*.slides {
+.slides {
   position: relative;
   .slick-prev, .slick-next {
     position: absolute;
@@ -15,7 +15,7 @@
     right: 5%;
   }
 }
-*/
+
 .wrapper {
 
 	/*border: 1px solid green;*/

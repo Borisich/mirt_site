@@ -22994,7 +22994,17 @@ module.exports = Header;
 },{"react":204}],214:[function(require,module,exports){
 var React = require('react');
 var Slider = require('react-slick');
+var X = React.createClass({
+  displayName: 'X',
 
+  render: function () {
+    return React.createElement(
+      'button',
+      { onClick: this.props.onClick },
+      'Prev'
+    );
+  }
+});
 var Picture = React.createClass({
   displayName: 'Picture',
 
@@ -23006,7 +23016,11 @@ var Picture = React.createClass({
       slidesToShow: 1,
       slidesToScroll: 1,
       adaptiveHeight: true,
-      arrows: false
+      arrows: true,
+      prevArrow: React.createElement(X, null),
+      //swipeToSlide: false,
+      //touchMove: false,
+      draggable: false
 
     };
     //<img src="" height="300" width="400"/>
@@ -23019,27 +23033,27 @@ var Picture = React.createClass({
         React.createElement(
           'div',
           null,
-          React.createElement('img', { src: '', height: '300', width: '400' })
+          React.createElement('img', { src: 'data/white1/img/1.jpg', height: '300', width: '400' })
         ),
         React.createElement(
           'div',
           null,
-          React.createElement('img', { src: '', height: '300', width: '400' })
+          React.createElement('img', { src: 'data/white1/img/2.jpg', height: '300', width: '400' })
         ),
         React.createElement(
           'div',
           null,
-          React.createElement('img', { src: '', height: '300', width: '400' })
+          React.createElement('img', { src: 'data/white1/img/3.jpg', height: '300', width: '400' })
         ),
         React.createElement(
           'div',
           null,
-          React.createElement('img', { src: '', height: '300', width: '400' })
+          React.createElement('img', { src: 'data/white1/img/4.jpg', height: '300', width: '400' })
         ),
         React.createElement(
           'div',
           null,
-          React.createElement('img', { src: '', height: '300', width: '400' })
+          React.createElement('img', { src: 'data/white1/img/5.jpg', height: '300', width: '400' })
         ),
         React.createElement(
           'div',
