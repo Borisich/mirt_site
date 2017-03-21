@@ -1,15 +1,31 @@
 * {
 	eborder: 1px solid black;
 }
+
+/*.slides {
+  position: relative;
+  .slick-prev, .slick-next {
+    position: absolute;
+    top: 50%;
+  }
+  .slick-prev {
+    left: 5%;
+  }
+  .slick-next {
+    right: 5%;
+  }
+}
+*/
 .wrapper {
-	
+
 	/*border: 1px solid green;*/
 	min-width: 1300px;
-	
+	/*background-color: black;*/
+
 }
 .topbar {
 	/*border: 1px solid red;*/
-	background-color: red;	
+	background-color: red;
 	margin-bottom: 20px;
 	position: fixed;
 	right: 0px; /* Расстояние от правого края окна браузера */
@@ -35,7 +51,7 @@
 .header_container{
 	overflow: auto;
 	/*border: 1px solid red;*/
-	
+
 }
 
 .logo {
@@ -47,9 +63,9 @@
 	/*border: 1px solid black;*/
 	height: 50px;
 	width: 900px;
-	
+
 	float: right;
-	
+
 }
 .menu ul{
 	/*border: 1px solid green;*/
@@ -71,7 +87,7 @@
 	margin-top: 50px;
 	height: 50px;
 	width: 100%;
-	min-width: 500px;	
+	min-width: 500px;
 	font-size: 38px;
 	color: #2d5c88;
 	font-family: Philosopher;
@@ -85,15 +101,15 @@
 }
 
 .product {
-	overflow: auto;
+	/*overflow: auto;*/
 	float: left;
 	border: 1px solid gray;
 	margin: 15px;
 	width: 402px;
-	height: 420px;
+	height: 440px;
 }
 .product_thumb {
-	/*border: 1px solid blue;*/	
+	/*border: 1px solid blue;*/
 }
 .product_header {
 	/*border: 1px solid green;*/
@@ -118,7 +134,7 @@
 	font-size: 19pt;
 	font-family: Philosopher;
 	text-align: center;
-	overflow: hidden;	
+	overflow: hidden;
 }
 .in_cart {
 	/*border: 1px solid cyan;*/
@@ -131,7 +147,7 @@
 
 .footbar {
 
-	background-color: gray;	
+	background-color: gray;
 	margin-top: 20px;
 }
 .footer{

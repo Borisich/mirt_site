@@ -7,6 +7,7 @@ var HeaderContainer = require ('./components/HeaderContainer/HeaderContainer.jsx
 var Product = require ('./components/Product/Product.jsx');
 var Footer = require ('./components/Footer.jsx');
 
+
 ReactDOM.render(
   <div>
     <div className="topbar">
