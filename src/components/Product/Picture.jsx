@@ -37,12 +37,12 @@ var Picture = React.createClass({
     return(
       <div className="product_thumb">
           <Slider {...settings}>
-            <div><img src="data/white1/img/1.jpg" height="300" width="400"/></div>
-            <div><img src="data/white1/img/2.jpg" height="300" width="400"/></div>
-            <div><img src="data/white1/img/3.jpg" height="300" width="400"/></div>
-            <div><img src="data/white1/img/4.jpg" height="300" width="400"/></div>
-            <div><img src="data/white1/img/5.jpg" height="300" width="400"/></div>
-            <div><img src="" height="300" width="400"/></div>
+            <div><img src="data/white1/img/1.jpg" height="300" width="402"/></div>
+            <div><img src="data/white1/img/2.jpg" height="300" width="402"/></div>
+            <div><img src="data/white1/img/3.jpg" height="300" width="402"/></div>
+            <div><img src="data/white1/img/4.jpg" height="300" width="402"/></div>
+            <div><img src="data/white1/img/5.jpg" height="300" width="402"/></div>
+            <div><img src="" height="300" width="402"/></div>
           </Slider>
           <br/>
 			</div>

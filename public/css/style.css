@@ -120,8 +120,9 @@
 	margin-right: 5px;
 }
 ul.slick-dots {
-	margin-left: 70px;
-  width: 50%;
+	margin-left: 10%;
+	margin-right: 10%;
+  width: 80%;
 }
 .prevbtn {
 	position: absolute;
