@@ -110,6 +110,24 @@
 }
 .product_thumb {
 	/*border: 1px solid blue;*/
+	/*position: absolute;*/
+	/*float: left;*/
+}
+.nextbtn {
+	/*position: absolute;*/
+	float: right;
+	margin-top: 5px;
+	margin-right: 5px;
+}
+ul.slick-dots {
+	margin-left: 70px;
+  width: 50%;
+}
+.prevbtn {
+	position: absolute;
+	float: left;
+	margin-top: 305px;
+	margin-left: 5px;
 }
 .product_header {
 	/*border: 1px solid green;*/

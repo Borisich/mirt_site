@@ -1,12 +1,21 @@
 var React = require('react');
 var Slider = require('react-slick');
-var X = React.createClass({
+var PrevButton = React.createClass({
   render: function(){
     return(
-      <button onClick={this.props.onClick}>Prev</button>
+      <input className="prevbtn" type="image" src="images/back.png" height="16" width="16" onClick={this.props.onClick}/>
+      //<button className="prevbtn" onClick={this.props.onClick}><img src="images/back.png" height="32" width="32"/></button>
     )
   }
-})
+});
+var NextButton = React.createClass({
+  render: function(){
+    return(
+      <input className="nextbtn" type="image" src="images/forward.png" height="16" width="16" onClick={this.props.onClick}/>
+      //<button className="nextbtn" onClick={this.props.onClick}>Next</button>
+    )
+  }
+});
 var Picture = React.createClass({
   render: function(){
     var settings = {
@@ -17,7 +26,8 @@ var Picture = React.createClass({
       slidesToScroll: 1,
       adaptiveHeight: true,
       arrows: true,
-      prevArrow: <X/>,
+      prevArrow: <PrevButton/>,
+      nextArrow: <NextButton/>,
       //swipeToSlide: false,
       //touchMove: false,
       draggable: false

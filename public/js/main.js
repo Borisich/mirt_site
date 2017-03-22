@@ -22994,15 +22994,22 @@ module.exports = Header;
 },{"react":204}],214:[function(require,module,exports){
 var React = require('react');
 var Slider = require('react-slick');
-var X = React.createClass({
-  displayName: 'X',
+var PrevButton = React.createClass({
+  displayName: 'PrevButton',
 
   render: function () {
-    return React.createElement(
-      'button',
-      { onClick: this.props.onClick },
-      'Prev'
-    );
+    return React.createElement('input', { className: 'prevbtn', type: 'image', src: 'images/back.png', height: '16', width: '16', onClick: this.props.onClick })
+    //<button className="prevbtn" onClick={this.props.onClick}><img src="images/back.png" height="32" width="32"/></button>
+    ;
+  }
+});
+var NextButton = React.createClass({
+  displayName: 'NextButton',
+
+  render: function () {
+    return React.createElement('input', { className: 'nextbtn', type: 'image', src: 'images/forward.png', height: '16', width: '16', onClick: this.props.onClick })
+    //<button className="nextbtn" onClick={this.props.onClick}>Next</button>
+    ;
   }
 });
 var Picture = React.createClass({
@@ -23017,7 +23024,8 @@ var Picture = React.createClass({
       slidesToScroll: 1,
       adaptiveHeight: true,
       arrows: true,
-      prevArrow: React.createElement(X, null),
+      prevArrow: React.createElement(PrevButton, null),
+      nextArrow: React.createElement(NextButton, null),
       //swipeToSlide: false,
       //touchMove: false,
       draggable: false
