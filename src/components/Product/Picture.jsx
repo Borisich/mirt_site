@@ -1,4 +1,5 @@
-var React = require('react');
+//var React = require('react');
+import React from 'react';
 var Slider = require('react-slick');
 var PrevButton = React.createClass({
   render: function(){

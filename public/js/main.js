@@ -22791,11 +22791,13 @@ arguments[4][152][0].apply(exports,arguments)
 module.exports = require('./lib/React');
 
 },{"./lib/React":177}],205:[function(require,module,exports){
+"use strict";
+
 var React = require('react');
 var Caption = React.createClass({
   displayName: "Caption",
 
-  render: function () {
+  render: function render() {
     return React.createElement(
       "div",
       { className: "caption" },
@@ -22807,11 +22809,13 @@ var Caption = React.createClass({
 module.exports = Caption;
 
 },{"react":204}],206:[function(require,module,exports){
+"use strict";
+
 var React = require('react');
 var Footer = React.createClass({
   displayName: "Footer",
 
-  render: function () {
+  render: function render() {
     return React.createElement(
       "div",
       { className: "footer" },
@@ -22823,6 +22827,8 @@ var Footer = React.createClass({
 module.exports = Footer;
 
 },{"react":204}],207:[function(require,module,exports){
+'use strict';
+
 var React = require('react');
 var Logo = require('./Logo.jsx');
 var Menu = require('./Menu.jsx');
@@ -22830,7 +22836,7 @@ var Menu = require('./Menu.jsx');
 var HeaderContainer = React.createClass({
   displayName: 'HeaderContainer',
 
-  render: function () {
+  render: function render() {
     return React.createElement(
       'div',
       { className: 'header_container' },
@@ -22843,11 +22849,13 @@ var HeaderContainer = React.createClass({
 module.exports = HeaderContainer;
 
 },{"./Logo.jsx":208,"./Menu.jsx":209,"react":204}],208:[function(require,module,exports){
+"use strict";
+
 var React = require('react');
 var Logo = React.createClass({
   displayName: "Logo",
 
-  render: function () {
+  render: function render() {
     return React.createElement(
       "div",
       { className: "logo" },
@@ -22859,11 +22867,13 @@ var Logo = React.createClass({
 module.exports = Logo;
 
 },{"react":204}],209:[function(require,module,exports){
+"use strict";
+
 var React = require('react');
 var Menu = React.createClass({
   displayName: "Menu",
 
-  render: function () {
+  render: function render() {
     return React.createElement(
       "div",
       { className: "menu" },
@@ -22903,6 +22913,8 @@ var Menu = React.createClass({
 module.exports = Menu;
 
 },{"react":204}],210:[function(require,module,exports){
+'use strict';
+
 var React = require('react');
 var ListItem = require('./ListItem.jsx');
 
@@ -22920,7 +22932,7 @@ var ingredients = [{
 var List = React.createClass({
   displayName: 'List',
 
-  render: function () {
+  render: function render() {
     var listItems = ingredients.map(function (item) {
       return React.createElement(ListItem, { key: item.id, ingredient: item.text });
     });
@@ -22935,11 +22947,13 @@ var List = React.createClass({
 module.exports = List;
 
 },{"./ListItem.jsx":211,"react":204}],211:[function(require,module,exports){
+'use strict';
+
 var React = require('react');
 var ListItem = React.createClass({
   displayName: 'ListItem',
 
-  render: function () {
+  render: function render() {
     return React.createElement(
       'li',
       null,
@@ -22951,11 +22965,13 @@ var ListItem = React.createClass({
 module.exports = ListItem;
 
 },{"react":204}],212:[function(require,module,exports){
+"use strict";
+
 var React = require('react');
 var BottomPanel = React.createClass({
 	displayName: "BottomPanel",
 
-	render: function () {
+	render: function render() {
 		return React.createElement(
 			"div",
 			{ className: "product_order" },
@@ -22985,11 +23001,13 @@ var BottomPanel = React.createClass({
 module.exports = BottomPanel;
 
 },{"react":204}],213:[function(require,module,exports){
+"use strict";
+
 var React = require('react');
 var Header = React.createClass({
   displayName: "Header",
 
-  render: function () {
+  render: function render() {
     return React.createElement(
       "div",
       { className: "product_header" },
@@ -23001,30 +23019,38 @@ var Header = React.createClass({
 module.exports = Header;
 
 },{"react":204}],214:[function(require,module,exports){
-var React = require('react');
-var Slider = require('react-slick');
-var PrevButton = React.createClass({
+'use strict';
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Slider = require('react-slick'); //var React = require('react');
+
+var PrevButton = _react2.default.createClass({
   displayName: 'PrevButton',
 
-  render: function () {
-    return React.createElement('input', { className: 'prevbtn', type: 'image', src: 'images/back.png', height: '16', width: '16', onClick: this.props.onClick })
+  render: function render() {
+    return _react2.default.createElement('input', { className: 'prevbtn', type: 'image', src: 'images/back.png', height: '16', width: '16', onClick: this.props.onClick })
     //<button className="prevbtn" onClick={this.props.onClick}><img src="images/back.png" height="32" width="32"/></button>
     ;
   }
 });
-var NextButton = React.createClass({
+var NextButton = _react2.default.createClass({
   displayName: 'NextButton',
 
-  render: function () {
-    return React.createElement('input', { className: 'nextbtn', type: 'image', src: 'images/forward.png', height: '16', width: '16', onClick: this.props.onClick })
+  render: function render() {
+    return _react2.default.createElement('input', { className: 'nextbtn', type: 'image', src: 'images/forward.png', height: '16', width: '16', onClick: this.props.onClick })
     //<button className="nextbtn" onClick={this.props.onClick}>Next</button>
     ;
   }
 });
-var Picture = React.createClass({
+var Picture = _react2.default.createClass({
   displayName: 'Picture',
 
-  render: function () {
+  render: function render() {
     var settings = {
       dots: true,
       infinite: true,
@@ -23033,52 +23059,52 @@ var Picture = React.createClass({
       slidesToScroll: 1,
       adaptiveHeight: true,
       arrows: true,
-      prevArrow: React.createElement(PrevButton, null),
-      nextArrow: React.createElement(NextButton, null),
+      prevArrow: _react2.default.createElement(PrevButton, null),
+      nextArrow: _react2.default.createElement(NextButton, null),
       //swipeToSlide: false,
       //touchMove: false,
       draggable: false
 
     };
     //<img src="" height="300" width="400"/>
-    return React.createElement(
+    return _react2.default.createElement(
       'div',
       { className: 'product_thumb' },
-      React.createElement(
+      _react2.default.createElement(
         Slider,
         settings,
-        React.createElement(
+        _react2.default.createElement(
           'div',
           null,
-          React.createElement('img', { src: 'data/white1/img/1.jpg', height: '300', width: '402' })
+          _react2.default.createElement('img', { src: 'data/white1/img/1.jpg', height: '300', width: '402' })
         ),
-        React.createElement(
+        _react2.default.createElement(
           'div',
           null,
-          React.createElement('img', { src: 'data/white1/img/2.jpg', height: '300', width: '402' })
+          _react2.default.createElement('img', { src: 'data/white1/img/2.jpg', height: '300', width: '402' })
         ),
-        React.createElement(
+        _react2.default.createElement(
           'div',
           null,
-          React.createElement('img', { src: 'data/white1/img/3.jpg', height: '300', width: '402' })
+          _react2.default.createElement('img', { src: 'data/white1/img/3.jpg', height: '300', width: '402' })
         ),
-        React.createElement(
+        _react2.default.createElement(
           'div',
           null,
-          React.createElement('img', { src: 'data/white1/img/4.jpg', height: '300', width: '402' })
+          _react2.default.createElement('img', { src: 'data/white1/img/4.jpg', height: '300', width: '402' })
         ),
-        React.createElement(
+        _react2.default.createElement(
           'div',
           null,
-          React.createElement('img', { src: 'data/white1/img/5.jpg', height: '300', width: '402' })
+          _react2.default.createElement('img', { src: 'data/white1/img/5.jpg', height: '300', width: '402' })
         ),
-        React.createElement(
+        _react2.default.createElement(
           'div',
           null,
-          React.createElement('img', { src: '', height: '300', width: '402' })
+          _react2.default.createElement('img', { src: '', height: '300', width: '402' })
         )
       ),
-      React.createElement('br', null)
+      _react2.default.createElement('br', null)
     );
   }
 });
@@ -23086,6 +23112,8 @@ var Picture = React.createClass({
 module.exports = Picture;
 
 },{"react":204,"react-slick":156}],215:[function(require,module,exports){
+'use strict';
+
 var React = require('react');
 var BottomPanel = require('./BottomPanel.jsx');
 var Header = require('./Header.jsx');
@@ -23094,7 +23122,7 @@ var Picture = require('./Picture.jsx');
 var Product = React.createClass({
   displayName: 'Product',
 
-  render: function () {
+  render: function render() {
     return React.createElement(
       'div',
       { className: 'product' },
@@ -23108,11 +23136,13 @@ var Product = React.createClass({
 module.exports = Product;
 
 },{"./BottomPanel.jsx":212,"./Header.jsx":213,"./Picture.jsx":214,"react":204}],216:[function(require,module,exports){
+"use strict";
+
 var React = require('react');
 var TopBar = React.createClass({
   displayName: "TopBar",
 
-  render: function () {
+  render: function render() {
     return React.createElement(
       "div",
       { className: "cart" },
@@ -23124,6 +23154,8 @@ var TopBar = React.createClass({
 module.exports = TopBar;
 
 },{"react":204}],217:[function(require,module,exports){
+'use strict';
+
 var React = require('react');
 var ReactDOM = require('react-dom');
 var List = require('./components/List.jsx');
