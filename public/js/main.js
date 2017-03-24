@@ -22968,6 +22968,15 @@ var BottomPanel = React.createClass({
 				"div",
 				{ className: "in_cart" },
 				"\u0412 \u043A\u043E\u0440\u0437\u0438\u043D\u0443"
+			),
+			React.createElement(
+				"div",
+				{ className: "quick_view_button" },
+				React.createElement(
+					"button",
+					null,
+					"\u041F\u0440\u043E\u0441\u043C\u043E\u0442\u0440"
+				)
 			)
 		);
 	}

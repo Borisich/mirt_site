@@ -9,7 +9,10 @@ var BottomPanel = React.createClass({
 				<div className="in_cart">
 					В корзину
 				</div>
-			</div>
+				<div className="quick_view_button">
+					<button>Просмотр</button>
+				</div>
+	  </div>
     )
   }
 });

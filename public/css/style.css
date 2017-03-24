@@ -148,7 +148,7 @@ ul.slick-dots {
 }
 .product_price {
 	/*border: 1px solid yellow;*/
-	width: 70%;
+	width: 40%;
 	display: inline-block;
 	font-size: 19pt;
 	font-family: Philosopher;
@@ -157,10 +157,19 @@ ul.slick-dots {
 }
 .in_cart {
 	/*border: 1px solid cyan;*/
+	width: 30%;
 	display: inline-block;
 	font-size: 17pt;
 	font-family: Philosopher;
 	overflow: hidden;
+}
+.quick_view_button {
+	/*border: 1px solid cyan;*/
+	width: 30%;
+	display: inline-block;
+	font-size: 17pt;
+	font-family: Philosopher;
+	/*overflow: hidden;*/
 }
 
 
