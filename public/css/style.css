@@ -2,7 +2,7 @@
 	eborder: 1px solid black;
 }
 
-.slides {
+/*.slides {
   position: relative;
   .slick-prev, .slick-next {
     position: absolute;
@@ -14,6 +14,28 @@
   .slick-next {
     right: 5%;
   }
+}*/
+
+.centered {
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+.picdiv {
+	/*height: 300px;
+	width: 402px;*/
+	/*margin-left: 50%;
+	margin-right: 50%;*/
+	margin: auto;
+	/*position: absolute;*/
+	img {
+		display: block;
+    margin: 0 auto;
+	}
+}
+
+.fig {
+    text-align: center; /* Выравнивание по центру */
 }
 
 .wrapper {

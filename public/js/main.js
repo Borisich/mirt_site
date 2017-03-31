@@ -23301,6 +23301,7 @@ var _reactSkylight2 = _interopRequireDefault(_reactSkylight);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var React = require('react');
+var Slider = require('react-slick');
 
 var BottomPanel = React.createClass({
   displayName: 'BottomPanel',
@@ -23308,6 +23309,30 @@ var BottomPanel = React.createClass({
   render: function render() {
     var _this = this;
 
+    var settings = {
+      dots: true,
+      /*infinite: true,*/
+      speed: 500,
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      /*adaptiveHeight: true,*/
+      /*arrows: true,*/
+      className: "centered",
+      centerMode: true,
+      fade: true,
+      //swipeToSlide: false,
+      //touchMove: false,
+      draggable: false
+
+    };
+    var myBigGreenDialog = {
+      backgroundColor: '#00897B',
+      color: '#ffffff',
+      width: '80%',
+      height: '600px',
+      marginTop: '-300px',
+      marginLeft: '-35%'
+    };
     return React.createElement(
       'div',
       { className: 'product_order' },
@@ -23333,7 +23358,41 @@ var BottomPanel = React.createClass({
         ),
         React.createElement(
           _reactSkylight2.default,
-          { hideOnOverlayClicked: true, ref: 'simpleDialog', title: 'Hi, I\'m a simple modal' },
+          { dialogStyles: myBigGreenDialog, hideOnOverlayClicked: true, ref: 'simpleDialog', title: 'Hi, I\'m a simple modal' },
+          React.createElement(
+            Slider,
+            settings,
+            React.createElement(
+              'div',
+              null,
+              React.createElement('img', { src: 'data/white1/img/1.jpg', height: '300', width: '402' })
+            ),
+            React.createElement(
+              'div',
+              null,
+              React.createElement('img', { src: 'data/white1/img/2.jpg', height: '300', width: '402' })
+            ),
+            React.createElement(
+              'div',
+              null,
+              React.createElement('img', { src: 'data/white1/img/3.jpg', height: '300', width: '402' })
+            ),
+            React.createElement(
+              'div',
+              null,
+              React.createElement('img', { src: 'data/white1/img/4.jpg', height: '300', width: '402' })
+            ),
+            React.createElement(
+              'div',
+              null,
+              React.createElement('img', { src: 'data/white1/img/5.jpg', height: '300', width: '402' })
+            ),
+            React.createElement(
+              'div',
+              null,
+              React.createElement('img', { src: '', height: '300', width: '402' })
+            )
+          ),
           React.createElement(
             'h1',
             null,
@@ -23357,7 +23416,7 @@ var BottomPanel = React.createClass({
 
 module.exports = BottomPanel;
 
-},{"react":208,"react-skylight":153}],217:[function(require,module,exports){
+},{"react":208,"react-skylight":153,"react-slick":160}],217:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -23521,6 +23580,23 @@ var Caption = require('./components/Caption.jsx');
 var HeaderContainer = require('./components/HeaderContainer/HeaderContainer.jsx');
 var Product = require('./components/Product/Product.jsx');
 var Footer = require('./components/Footer.jsx');
+var Slider = require('react-slick');
+
+var settings = {
+  dots: true,
+  /*infinite: true,*/
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  /*adaptiveHeight: true,*/
+  /*arrows: true,*/
+  /*className: "centered",*/
+  /*centerMode: true,*/
+  //swipeToSlide: false,
+  //touchMove: false,
+  draggable: false
+
+};
 
 ReactDOM.render(React.createElement(
   'div',
@@ -23536,6 +23612,48 @@ ReactDOM.render(React.createElement(
     React.createElement(HeaderContainer, null),
     React.createElement('div', { className: 'clear' }),
     React.createElement(Caption, null),
+    React.createElement(
+      Slider,
+      settings,
+      React.createElement(
+        'div',
+        null,
+        React.createElement(
+          'div',
+          { className: 'picdiv' },
+          React.createElement('img', { src: 'data/white1/img/1.jpg', height: '300', width: '402' })
+        )
+      ),
+      React.createElement(
+        'div',
+        null,
+        React.createElement(
+          'p',
+          { className: 'fig' },
+          React.createElement('img', { src: 'data/white1/img/2.jpg', height: '300', width: '402' })
+        )
+      ),
+      React.createElement(
+        'div',
+        null,
+        React.createElement('img', { src: 'data/white1/img/3.jpg', height: '300', width: '402' })
+      ),
+      React.createElement(
+        'div',
+        null,
+        React.createElement('img', { src: 'data/white1/img/4.jpg', height: '300', width: '402' })
+      ),
+      React.createElement(
+        'div',
+        null,
+        React.createElement('img', { src: 'data/white1/img/5.jpg', height: '300', width: '402' })
+      ),
+      React.createElement(
+        'div',
+        null,
+        React.createElement('img', { src: '', height: '300', width: '402' })
+      )
+    ),
     React.createElement(
       'div',
       { className: 'content_container' },
@@ -23555,4 +23673,4 @@ ReactDOM.render(React.createElement(
   )
 ), document.getElementById('mirt'));
 
-},{"./components/Caption.jsx":209,"./components/Footer.jsx":210,"./components/HeaderContainer/HeaderContainer.jsx":211,"./components/List.jsx":214,"./components/Product/Product.jsx":219,"./components/TopBar.jsx":220,"react":208,"react-dom":2}]},{},[221]);
+},{"./components/Caption.jsx":209,"./components/Footer.jsx":210,"./components/HeaderContainer/HeaderContainer.jsx":211,"./components/List.jsx":214,"./components/Product/Product.jsx":219,"./components/TopBar.jsx":220,"react":208,"react-dom":2,"react-slick":160}]},{},[221]);
