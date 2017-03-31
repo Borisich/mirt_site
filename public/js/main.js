@@ -23313,13 +23313,13 @@ var BottomPanel = React.createClass({
       dots: true,
       /*infinite: true,*/
       speed: 500,
-      slidesToShow: 2,
+      slidesToShow: 3,
       slidesToScroll: 1,
       /*adaptiveHeight: true,*/
       /*arrows: true,*/
-      className: "centered",
+      /*className: "centered",*/
       centerMode: true,
-      fade: true,
+      /*fade: true,*/
       //swipeToSlide: false,
       //touchMove: false,
       draggable: false
@@ -23365,32 +23365,32 @@ var BottomPanel = React.createClass({
             React.createElement(
               'div',
               null,
-              React.createElement('img', { src: 'data/white1/img/1.jpg', height: '300', width: '402' })
+              React.createElement('img', { className: 'fig', src: 'data/white1/img/1.jpg', height: '300', width: '402' })
             ),
             React.createElement(
               'div',
               null,
-              React.createElement('img', { src: 'data/white1/img/2.jpg', height: '300', width: '402' })
+              React.createElement('img', { className: 'fig', src: 'data/white1/img/2.jpg', height: '300', width: '402' })
             ),
             React.createElement(
               'div',
               null,
-              React.createElement('img', { src: 'data/white1/img/3.jpg', height: '300', width: '402' })
+              React.createElement('img', { className: 'fig', src: 'data/white1/img/3.jpg', height: '300', width: '402' })
             ),
             React.createElement(
               'div',
               null,
-              React.createElement('img', { src: 'data/white1/img/4.jpg', height: '300', width: '402' })
+              React.createElement('img', { className: 'fig', src: 'data/white1/img/4.jpg', height: '300', width: '402' })
             ),
             React.createElement(
               'div',
               null,
-              React.createElement('img', { src: 'data/white1/img/5.jpg', height: '300', width: '402' })
+              React.createElement('img', { className: 'fig', src: 'data/white1/img/5.jpg', height: '300', width: '402' })
             ),
             React.createElement(
               'div',
               null,
-              React.createElement('img', { src: '', height: '300', width: '402' })
+              React.createElement('img', { className: 'fig', src: '', height: '300', width: '402' })
             )
           ),
           React.createElement(
@@ -23582,21 +23582,18 @@ var Product = require('./components/Product/Product.jsx');
 var Footer = require('./components/Footer.jsx');
 var Slider = require('react-slick');
 
-var settings = {
+/*var settings = {
   dots: true,
-  /*infinite: true,*/
+  infinite: true,
   speed: 500,
   slidesToShow: 1,
   slidesToScroll: 1,
-  /*adaptiveHeight: true,*/
-  /*arrows: true,*/
-  /*className: "centered",*/
-  /*centerMode: true,*/
+
   //swipeToSlide: false,
   //touchMove: false,
   draggable: false
 
-};
+};*/
 
 ReactDOM.render(React.createElement(
   'div',
@@ -23612,48 +23609,6 @@ ReactDOM.render(React.createElement(
     React.createElement(HeaderContainer, null),
     React.createElement('div', { className: 'clear' }),
     React.createElement(Caption, null),
-    React.createElement(
-      Slider,
-      settings,
-      React.createElement(
-        'div',
-        null,
-        React.createElement(
-          'div',
-          { className: 'picdiv' },
-          React.createElement('img', { src: 'data/white1/img/1.jpg', height: '300', width: '402' })
-        )
-      ),
-      React.createElement(
-        'div',
-        null,
-        React.createElement(
-          'p',
-          { className: 'fig' },
-          React.createElement('img', { src: 'data/white1/img/2.jpg', height: '300', width: '402' })
-        )
-      ),
-      React.createElement(
-        'div',
-        null,
-        React.createElement('img', { src: 'data/white1/img/3.jpg', height: '300', width: '402' })
-      ),
-      React.createElement(
-        'div',
-        null,
-        React.createElement('img', { src: 'data/white1/img/4.jpg', height: '300', width: '402' })
-      ),
-      React.createElement(
-        'div',
-        null,
-        React.createElement('img', { src: 'data/white1/img/5.jpg', height: '300', width: '402' })
-      ),
-      React.createElement(
-        'div',
-        null,
-        React.createElement('img', { src: '', height: '300', width: '402' })
-      )
-    ),
     React.createElement(
       'div',
       { className: 'content_container' },

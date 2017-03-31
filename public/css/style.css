@@ -16,26 +16,8 @@
   }
 }*/
 
-.centered {
-	margin-left: 10%;
-	margin-right: 10%;
-}
-
-.picdiv {
-	/*height: 300px;
-	width: 402px;*/
-	/*margin-left: 50%;
-	margin-right: 50%;*/
-	margin: auto;
-	/*position: absolute;*/
-	img {
-		display: block;
-    margin: 0 auto;
-	}
-}
-
 .fig {
-    text-align: center; /* Выравнивание по центру */
+		margin: 0 auto;
 }
 
 .wrapper {
