@@ -23313,8 +23313,8 @@ var BottomPanel = React.createClass({
       dots: true,
       /*infinite: true,*/
       speed: 500,
-      slidesToShow: 3,
-      slidesToScroll: 1,
+      slidesToShow: 2,
+      slidesToScroll: 2,
       /*adaptiveHeight: true,*/
       /*arrows: true,*/
       /*className: "centered",*/
@@ -23329,9 +23329,17 @@ var BottomPanel = React.createClass({
       backgroundColor: '#00897B',
       color: '#ffffff',
       width: '80%',
-      height: '600px',
-      marginTop: '-300px',
-      marginLeft: '-35%'
+      height: '700px',
+      marginTop: '-20%',
+      marginLeft: '-40%'
+    };
+
+    var imgDialog = {
+      backgroundColor: '#456778',
+      width: '60%',
+      height: '700px',
+      marginTop: '-20%',
+      marginLeft: '-20%'
     };
     return React.createElement(
       'div',
@@ -23365,43 +23373,43 @@ var BottomPanel = React.createClass({
             React.createElement(
               'div',
               null,
-              React.createElement('img', { className: 'fig', src: 'data/white1/img/1.jpg', height: '300', width: '402' })
+              React.createElement('img', { className: 'fig', src: 'data/white1/img/1.jpg', height: '400' })
             ),
             React.createElement(
               'div',
               null,
-              React.createElement('img', { className: 'fig', src: 'data/white1/img/2.jpg', height: '300', width: '402' })
+              React.createElement('img', { className: 'fig', src: 'data/white1/img/2.jpg', height: '400' })
             ),
             React.createElement(
               'div',
               null,
-              React.createElement('img', { className: 'fig', src: 'data/white1/img/3.jpg', height: '300', width: '402' })
+              React.createElement('img', { className: 'fig', src: 'data/white1/img/3.jpg', height: '400' })
             ),
             React.createElement(
               'div',
               null,
-              React.createElement('img', { className: 'fig', src: 'data/white1/img/4.jpg', height: '300', width: '402' })
+              React.createElement('img', { className: 'fig', src: 'data/white1/img/4.jpg', height: '400' })
             ),
             React.createElement(
               'div',
               null,
-              React.createElement('img', { className: 'fig', src: 'data/white1/img/5.jpg', height: '300', width: '402' })
+              React.createElement('img', { className: 'fig', src: 'data/white1/img/5.jpg', height: '400' })
             ),
             React.createElement(
               'div',
               null,
-              React.createElement('img', { className: 'fig', src: '', height: '300', width: '402' })
+              React.createElement('img', { className: 'fig', src: '', height: '400' })
             )
           ),
           React.createElement(
-            'h1',
+            'h2',
             null,
-            'Hello, I dont have any callback.'
+            '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043D\u0430\u0431\u043E\u0440\u0430'
           ),
           React.createElement(
-            'p',
+            'div',
             null,
-            'Hello1'
+            '\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435 \u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435 \u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435'
           ),
           React.createElement(
             'p',

@@ -18,6 +18,8 @@
 
 .fig {
 		margin: 0 auto;
+		/*cursor: url(images/zoom_in.cur);*/
+		cursor: pointer;
 }
 
 .wrapper {

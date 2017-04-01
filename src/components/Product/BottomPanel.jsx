@@ -8,8 +8,8 @@ var BottomPanel = React.createClass({
       dots: true,
       /*infinite: true,*/
       speed: 500,
-      slidesToShow: 3,
-      slidesToScroll: 1,
+      slidesToShow: 2,
+      slidesToScroll: 2,
       /*adaptiveHeight: true,*/
       /*arrows: true,*/
       /*className: "centered",*/
@@ -24,9 +24,17 @@ var BottomPanel = React.createClass({
       backgroundColor: '#00897B',
       color: '#ffffff',
       width: '80%',
-      height: '600px',
-      marginTop: '-300px',
-      marginLeft: '-35%',
+      height: '700px',
+      marginTop: '-20%',
+      marginLeft: '-40%',
+    };
+
+    var imgDialog = {
+      backgroundColor: '#456778',
+      width: '60%',
+      height: '700px',
+      marginTop: '-20%',
+      marginLeft: '-20%',
     };
     return(
 
@@ -41,15 +49,17 @@ var BottomPanel = React.createClass({
 					<button onClick={() => this.refs.simpleDialog.show()}>Просмотр</button>
           <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref="simpleDialog" title="Hi, I'm a simple modal">
             <Slider {...settings}>
-              <div><img className="fig" src="data/white1/img/1.jpg" height="300" width="402"/></div>
-              <div><img className="fig" src="data/white1/img/2.jpg" height="300" width="402"/></div>
-              <div><img className="fig" src="data/white1/img/3.jpg" height="300" width="402"/></div>
-              <div><img className="fig" src="data/white1/img/4.jpg" height="300" width="402"/></div>
-              <div><img className="fig" src="data/white1/img/5.jpg" height="300" width="402"/></div>
-              <div><img className="fig" src="" height="300" width="402"/></div>
+              <div><img className="fig" src="data/white1/img/1.jpg" height="400" /></div>
+              <div><img className="fig" src="data/white1/img/2.jpg" height="400" /></div>
+              <div><img className="fig" src="data/white1/img/3.jpg" height="400" /></div>
+              <div><img className="fig" src="data/white1/img/4.jpg" height="400" /></div>
+              <div><img className="fig" src="data/white1/img/5.jpg" height="400" /></div>
+              <div><img className="fig" src="" height="400" /></div>
             </Slider>
-            <h1>Hello, I dont have any callback.</h1>
-            <p>Hello1</p>
+            <h2>Название набора</h2>
+            <div>
+              ОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписание ОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписание ОписаниеОписаниеОписаниеОписаниеОписаниеОписание
+            </div>
 
             <p>Hello2</p>
           </SkyLight>
