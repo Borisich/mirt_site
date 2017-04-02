@@ -6,7 +6,7 @@ var Caption = require ('./components/Caption.jsx');
 var HeaderContainer = require ('./components/HeaderContainer/HeaderContainer.jsx');
 var Product = require ('./components/Product/Product.jsx');
 var Footer = require ('./components/Footer.jsx');
-var Slider = require('react-slick');
+/*var Slider = require('react-slick');*/
 
 /*var settings = {
   dots: true,
@@ -20,6 +20,27 @@ var Slider = require('react-slick');
   draggable: false
 
 };*/
+
+var products = [
+  {
+    caption: "Белая штука",
+    description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия",
+    photoPath: "data/white1/img/",
+    imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"],
+    price: 500
+  },
+  {
+    caption: "Красная штука",
+    description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия",
+    photoPath: "data/red1/img/",
+    imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
+    price: 600
+  },
+];
+var testUrls = ["data/white1/img/1.jpg", "data/white1/img/2.jpg", "data/white1/img/3.jpg", "data/white1/img/4.jpg", "data/white1/img/5.jpg"]
+var productsList = products.map(function(product){
+  return <Product caption={product.caption} description={product.description} imageUrls={product.imageFiles.map(function(file){return (product.photoPath+file)})} price={product.price} />
+})
 
 ReactDOM.render(
   <div>
@@ -40,12 +61,11 @@ ReactDOM.render(
       </Slider>
       {*/}
       <div className="content_container">
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
+        {productsList}
+        <Product imageUrls={testUrls} />
+        <Product imageUrls={testUrls} />
+        <Product imageUrls={testUrls} />
+        <Product imageUrls={testUrls} />
       </div>
     </div>
     <div className="clear"></div>

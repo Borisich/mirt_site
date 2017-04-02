@@ -4,13 +4,14 @@ var Header = require('./Header.jsx');
 var Picture = require('./Picture.jsx');
 
 
+
 var Product = React.createClass({
   render: function () {
     return (
       <div className="product">
-				<Picture />
+				<Picture imageUrls={this.props.imageUrls}/>
         <Header />
-        <BottomPanel />
+        <BottomPanel imageUrls={this.props.imageUrls}/>
 			</div>
     )
   }

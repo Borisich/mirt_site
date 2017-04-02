@@ -2,14 +2,16 @@ var React = require('react');
 var Slider = require('react-slick');
 
 import SkyLight from 'react-skylight';
+import ImageZoom from 'react-medium-image-zoom';
+
 var BottomPanel = React.createClass({
   render: function(){
     var settings = {
       dots: true,
       /*infinite: true,*/
       speed: 500,
-      slidesToShow: 2,
-      slidesToScroll: 2,
+      slidesToShow: 3,
+      slidesToScroll: 1,
       /*adaptiveHeight: true,*/
       /*arrows: true,*/
       /*className: "centered",*/
@@ -17,7 +19,8 @@ var BottomPanel = React.createClass({
       /*fade: true,*/
       //swipeToSlide: false,
       //touchMove: false,
-      draggable: false
+      draggable: false,
+      imageHeight: "260px"
 
     };
     var myBigGreenDialog = {
@@ -29,13 +32,20 @@ var BottomPanel = React.createClass({
       marginLeft: '-40%',
     };
 
-    var imgDialog = {
-      backgroundColor: '#456778',
-      width: '60%',
-      height: '700px',
-      marginTop: '-20%',
-      marginLeft: '-20%',
-    };
+    var imageList = this.props.imageUrls.map(function(url){
+      return (
+        <div><ImageZoom
+                image={{
+                  src: url,
+                  alt: 'alt',
+                  className: 'fig',
+                  style: { height: settings.imageHeight }
+                }}
+              />
+        </div>
+      )
+    })
+
     return(
 
       <div className="product_order">
@@ -49,12 +59,7 @@ var BottomPanel = React.createClass({
 					<button onClick={() => this.refs.simpleDialog.show()}>Просмотр</button>
           <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref="simpleDialog" title="Hi, I'm a simple modal">
             <Slider {...settings}>
-              <div><img className="fig" src="data/white1/img/1.jpg" height="400" /></div>
-              <div><img className="fig" src="data/white1/img/2.jpg" height="400" /></div>
-              <div><img className="fig" src="data/white1/img/3.jpg" height="400" /></div>
-              <div><img className="fig" src="data/white1/img/4.jpg" height="400" /></div>
-              <div><img className="fig" src="data/white1/img/5.jpg" height="400" /></div>
-              <div><img className="fig" src="" height="400" /></div>
+              {imageList}
             </Slider>
             <h2>Название набора</h2>
             <div>

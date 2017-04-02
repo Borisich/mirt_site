@@ -17,8 +17,13 @@ var NextButton = React.createClass({
     )
   }
 });
+
+
 var Picture = React.createClass({
   render: function(){
+    var imageList = this.props.imageUrls.map(function(url){
+      return <div><img src={url} height="300" width="402"/></div>
+    });
     var settings = {
       dots: true,
       infinite: true,
@@ -38,12 +43,7 @@ var Picture = React.createClass({
     return(
       <div className="product_thumb">
           <Slider {...settings}>
-            <div><img src="data/white1/img/1.jpg" height="300" width="402"/></div>
-            <div><img src="data/white1/img/2.jpg" height="300" width="402"/></div>
-            <div><img src="data/white1/img/3.jpg" height="300" width="402"/></div>
-            <div><img src="data/white1/img/4.jpg" height="300" width="402"/></div>
-            <div><img src="data/white1/img/5.jpg" height="300" width="402"/></div>
-            <div><img src="" height="300" width="402"/></div>
+            {imageList}
           </Slider>
           <br/>
 			</div>
