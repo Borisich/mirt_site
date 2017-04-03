@@ -5,6 +5,22 @@ import SkyLight from 'react-skylight';
 import ImageZoom from 'react-medium-image-zoom';
 
 var BottomPanel = React.createClass({
+  getInitialState: function(){
+    return {
+      value: 1
+    }
+  },
+  onChange: function(event){
+    this.setState({
+      value: event.target.value
+    })
+  },
+  onSubmit: function(){
+    localStorage["mirt.cart"] = this.state.value;
+    this.setState({
+      value: 1
+    })
+  },
   render: function(){
     var settings = {
       dots: true,
@@ -45,28 +61,40 @@ var BottomPanel = React.createClass({
         </div>
       )
     })
-
+    var OrderPanel = React.createClass({
+      render: function(){
+        return (
+          <div className="in_cart_button_container">
+            <input className="num_input" value={this.props.value} autoComplete="off" type="number" name="quantity" min="1" max="5" onChange={this.props.onChange}/>
+            <div className="mid"></div>
+  					<button className="buttons" onClick={this.props.onSubmit}>В корзину</button>
+  				</div>
+        )
+      }
+    });
     return(
-
       <div className="product_order">
 				<div className="product_price">
 					500 руб.
 				</div>
-				<div className="in_cart">
-					В корзину
-				</div>
-				<div className="quick_view_button">
-					<button onClick={() => this.refs.simpleDialog.show()}>Просмотр</button>
-          <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref="simpleDialog" title="Hi, I'm a simple modal">
+        <OrderPanel value={this.state.value} onChange={this.onChange} onSubmit={this.onSubmit}/>
+				<div className="quick_view_button_container">
+					<button className="buttons" onClick={() => this.refs.simpleDialog.show()}>Просмотр</button>
+          <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref="simpleDialog" title="">
             <Slider {...settings}>
               {imageList}
             </Slider>
-            <h2>Название набора</h2>
-            <div>
-              ОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписание ОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписание ОписаниеОписаниеОписаниеОписаниеОписаниеОписание
+            <h2>{this.props.caption}</h2>
+            <div className="description">
+              {this.props.description}
             </div>
-
-            <p>Hello2</p>
+            <br/>
+            <div className="order_panel">
+              <div className="product_price">
+      					500 руб.
+      				</div>
+              <OrderPanel value={this.state.value} onChange={this.onChange} onSubmit={this.onSubmit}/>
+            </div>
           </SkyLight>
 				</div>
 	  </div>

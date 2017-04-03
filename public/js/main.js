@@ -23898,6 +23898,22 @@ var Slider = require('react-slick');
 var BottomPanel = React.createClass({
   displayName: 'BottomPanel',
 
+  getInitialState: function getInitialState() {
+    return {
+      value: 1
+    };
+  },
+  onChange: function onChange(event) {
+    this.setState({
+      value: event.target.value
+    });
+  },
+  onSubmit: function onSubmit() {
+    localStorage["mirt.cart"] = this.state.value;
+    this.setState({
+      value: 1
+    });
+  },
   render: function render() {
     var _this = this;
 
@@ -23941,7 +23957,23 @@ var BottomPanel = React.createClass({
         })
       );
     });
+    var OrderPanel = React.createClass({
+      displayName: 'OrderPanel',
 
+      render: function render() {
+        return React.createElement(
+          'div',
+          { className: 'in_cart_button_container' },
+          React.createElement('input', { className: 'num_input', value: this.props.value, autoComplete: 'off', type: 'number', name: 'quantity', min: '1', max: '5', onChange: this.props.onChange }),
+          React.createElement('div', { className: 'mid' }),
+          React.createElement(
+            'button',
+            { className: 'buttons', onClick: this.props.onSubmit },
+            '\u0412 \u043A\u043E\u0440\u0437\u0438\u043D\u0443'
+          )
+        );
+      }
+    });
     return React.createElement(
       'div',
       { className: 'product_order' },
@@ -23950,24 +23982,20 @@ var BottomPanel = React.createClass({
         { className: 'product_price' },
         '500 \u0440\u0443\u0431.'
       ),
+      React.createElement(OrderPanel, { value: this.state.value, onChange: this.onChange, onSubmit: this.onSubmit }),
       React.createElement(
         'div',
-        { className: 'in_cart' },
-        '\u0412 \u043A\u043E\u0440\u0437\u0438\u043D\u0443'
-      ),
-      React.createElement(
-        'div',
-        { className: 'quick_view_button' },
+        { className: 'quick_view_button_container' },
         React.createElement(
           'button',
-          { onClick: function onClick() {
+          { className: 'buttons', onClick: function onClick() {
               return _this.refs.simpleDialog.show();
             } },
           '\u041F\u0440\u043E\u0441\u043C\u043E\u0442\u0440'
         ),
         React.createElement(
           _reactSkylight2.default,
-          { dialogStyles: myBigGreenDialog, hideOnOverlayClicked: true, ref: 'simpleDialog', title: 'Hi, I\'m a simple modal' },
+          { dialogStyles: myBigGreenDialog, hideOnOverlayClicked: true, ref: 'simpleDialog', title: '' },
           React.createElement(
             Slider,
             settings,
@@ -23976,17 +24004,23 @@ var BottomPanel = React.createClass({
           React.createElement(
             'h2',
             null,
-            '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043D\u0430\u0431\u043E\u0440\u0430'
+            this.props.caption
           ),
           React.createElement(
             'div',
-            null,
-            '\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435 \u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435 \u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435'
+            { className: 'description' },
+            this.props.description
           ),
+          React.createElement('br', null),
           React.createElement(
-            'p',
-            null,
-            'Hello2'
+            'div',
+            { className: 'order_panel' },
+            React.createElement(
+              'div',
+              { className: 'product_price' },
+              '500 \u0440\u0443\u0431.'
+            ),
+            React.createElement(OrderPanel, { value: this.state.value, onChange: this.onChange, onSubmit: this.onSubmit })
           )
         )
       )
@@ -24007,7 +24041,7 @@ var Header = React.createClass({
     return React.createElement(
       "div",
       { className: "product_header" },
-      "Product 1. The best"
+      this.props.caption
     );
   }
 });
@@ -24102,8 +24136,8 @@ var Product = React.createClass({
       'div',
       { className: 'product' },
       React.createElement(Picture, { imageUrls: this.props.imageUrls }),
-      React.createElement(Header, null),
-      React.createElement(BottomPanel, { imageUrls: this.props.imageUrls })
+      React.createElement(Header, { caption: this.props.caption }),
+      React.createElement(BottomPanel, { imageUrls: this.props.imageUrls, description: this.props.description, caption: this.props.caption })
     );
   }
 });
@@ -24118,10 +24152,15 @@ var TopBar = React.createClass({
   displayName: "TopBar",
 
   render: function render() {
+    if (!localStorage["mirt.cart"]) {
+      localStorage["mirt.cart"] = 0;
+    }
     return React.createElement(
       "div",
       { className: "cart" },
-      "\u0412\u0430\u0448\u0430 \u043A\u043E\u0440\u0437\u0438\u043D\u0430 - 0 \u0440\u0443\u0431."
+      "\u0412\u0430\u0448\u0430 \u043A\u043E\u0440\u0437\u0438\u043D\u0430 - ",
+      localStorage["mirt.cart"],
+      " \u0448\u0442."
     );
   }
 });
@@ -24156,18 +24195,20 @@ var Footer = require('./components/Footer.jsx');
 
 var products = [{
   caption: "Белая штука",
-  description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия",
+  description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия" + "AAAAAAAAAAAAAAA" + "BBBBBBBB" + "CCCCCCCCCC" + "DDDDDDDDDD",
   photoPath: "data/white1/img/",
   imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"],
   price: 500
 }, {
   caption: "Красная штука",
-  description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия",
+  description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия" + "AAAAAAAAAAAAAAA" + "BBBBBBBB" + "CCCCCCCCCC" + "DDDDDDDDDD",
   photoPath: "data/red1/img/",
   imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
   price: 600
 }];
 var testUrls = ["data/white1/img/1.jpg", "data/white1/img/2.jpg", "data/white1/img/3.jpg", "data/white1/img/4.jpg", "data/white1/img/5.jpg"];
+var testDesc = "FUUUUUUUUUUUUUUUU!";
+var testCaption = "Test Caption";
 var productsList = products.map(function (product) {
   return React.createElement(Product, { caption: product.caption, description: product.description, imageUrls: product.imageFiles.map(function (file) {
       return product.photoPath + file;
@@ -24192,10 +24233,10 @@ ReactDOM.render(React.createElement(
       'div',
       { className: 'content_container' },
       productsList,
-      React.createElement(Product, { imageUrls: testUrls }),
-      React.createElement(Product, { imageUrls: testUrls }),
-      React.createElement(Product, { imageUrls: testUrls }),
-      React.createElement(Product, { imageUrls: testUrls })
+      React.createElement(Product, { imageUrls: testUrls, description: testDesc, caption: testCaption }),
+      React.createElement(Product, { imageUrls: testUrls, description: testDesc, caption: testCaption }),
+      React.createElement(Product, { imageUrls: testUrls, description: testDesc, caption: testCaption }),
+      React.createElement(Product, { imageUrls: testUrls, description: testDesc, caption: testCaption })
     )
   ),
   React.createElement('div', { className: 'clear' }),

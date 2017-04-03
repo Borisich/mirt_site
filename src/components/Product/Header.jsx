@@ -3,7 +3,7 @@ var Header = React.createClass({
   render: function(){
     return(
       <div className="product_header">
-				Product 1. The best 
+				{this.props.caption}
 			</div>
     )
   }

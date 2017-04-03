@@ -37,6 +37,7 @@
 	right: 0px; /* Расстояние от правого края окна браузера */
     left: 0px;
 	top: 0px; /* Расстояние сверху */
+	z-index: 10;
 }
 .cart{
 	/*border: 1px solid white;*/
@@ -154,30 +155,65 @@ ul.slick-dots {
 }
 .product_price {
 	/*border: 1px solid yellow;*/
-	width: 40%;
+	width: 30%;
 	display: inline-block;
 	font-size: 19pt;
 	font-family: Philosopher;
 	text-align: center;
 	overflow: hidden;
 }
-.in_cart {
+.in_cart_button_container {
+	/*border: 1px solid cyan;*/
+	width: 40%;
+	display: inline-block;
+	font-size: 17pt;
+	font-family: Philosopher;
+	overflow: hidden;
+	text-align: center;
+}
+.quick_view_button_container {
 	/*border: 1px solid cyan;*/
 	width: 30%;
 	display: inline-block;
 	font-size: 17pt;
 	font-family: Philosopher;
 	overflow: hidden;
-}
-.quick_view_button {
-	/*border: 1px solid cyan;*/
-	width: 30%;
-	display: inline-block;
-	font-size: 17pt;
-	font-family: Philosopher;
-	/*overflow: hidden;*/
+	text-align: center;
 }
 
+.buttons {
+	background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+.mid {
+	border: none;
+	width: 5px;
+	display: inline-block;
+}
+.num_input {
+	/*background-color: ;*/ /* Green */
+  border: 1px solid #4CAF50;
+	outline-width: 0;
+  color: #4CAF50;
+  padding: 4px 0px;
+  text-decoration: none;
+	text-align: center;
+  display: inline-block;
+	width: 40px;
+}
+
+.description {
+	text-align: left;
+}
+.order_panel {
+	text-align: left;
+	width: 40%;
+}
 
 .footbar {
 

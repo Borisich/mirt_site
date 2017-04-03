@@ -24,20 +24,30 @@ var Footer = require ('./components/Footer.jsx');
 var products = [
   {
     caption: "Белая штука",
-    description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия",
+    description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия"+
+      "AAAAAAAAAAAAAAA"+
+      "BBBBBBBB"+
+      "CCCCCCCCCC"+
+      "DDDDDDDDDD",
     photoPath: "data/white1/img/",
     imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"],
     price: 500
   },
   {
     caption: "Красная штука",
-    description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия",
+    description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия"+
+      "AAAAAAAAAAAAAAA"+
+      "BBBBBBBB"+
+      "CCCCCCCCCC"+
+      "DDDDDDDDDD",
     photoPath: "data/red1/img/",
     imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
     price: 600
   },
 ];
 var testUrls = ["data/white1/img/1.jpg", "data/white1/img/2.jpg", "data/white1/img/3.jpg", "data/white1/img/4.jpg", "data/white1/img/5.jpg"]
+var testDesc = "FUUUUUUUUUUUUUUUU!";
+var testCaption = "Test Caption";
 var productsList = products.map(function(product){
   return <Product caption={product.caption} description={product.description} imageUrls={product.imageFiles.map(function(file){return (product.photoPath+file)})} price={product.price} />
 })
@@ -62,10 +72,10 @@ ReactDOM.render(
       {*/}
       <div className="content_container">
         {productsList}
-        <Product imageUrls={testUrls} />
-        <Product imageUrls={testUrls} />
-        <Product imageUrls={testUrls} />
-        <Product imageUrls={testUrls} />
+        <Product imageUrls={testUrls} description={testDesc} caption={testCaption}/>
+        <Product imageUrls={testUrls} description={testDesc} caption={testCaption}/>
+        <Product imageUrls={testUrls} description={testDesc} caption={testCaption}/>
+        <Product imageUrls={testUrls} description={testDesc} caption={testCaption}/>
       </div>
     </div>
     <div className="clear"></div>

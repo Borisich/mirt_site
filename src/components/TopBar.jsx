@@ -1,9 +1,12 @@
 var React = require('react');
 var TopBar = React.createClass({
   render: function(){
+    if (!localStorage["mirt.cart"]){
+      localStorage["mirt.cart"] = 0;
+    }
     return(
       <div className="cart">
-				 Ваша корзина - 0 руб.
+				 Ваша корзина - {localStorage["mirt.cart"]} шт.
 			</div>
     )
   }
