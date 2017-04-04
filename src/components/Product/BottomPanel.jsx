@@ -16,7 +16,7 @@ var BottomPanel = React.createClass({
     })
   },
   onSubmit: function(){
-    localStorage["mirt.cart"] = this.state.value;
+    this.props.addToCart(Number(this.state.value));
     this.setState({
       value: 1
     })

@@ -23909,7 +23909,7 @@ var BottomPanel = React.createClass({
     });
   },
   onSubmit: function onSubmit() {
-    localStorage["mirt.cart"] = this.state.value;
+    this.props.addToCart(Number(this.state.value));
     this.setState({
       value: 1
     });
@@ -24137,7 +24137,7 @@ var Product = React.createClass({
       { className: 'product' },
       React.createElement(Picture, { imageUrls: this.props.imageUrls }),
       React.createElement(Header, { caption: this.props.caption }),
-      React.createElement(BottomPanel, { imageUrls: this.props.imageUrls, description: this.props.description, caption: this.props.caption })
+      React.createElement(BottomPanel, { imageUrls: this.props.imageUrls, description: this.props.description, caption: this.props.caption, addToCart: this.props.addToCart })
     );
   }
 });
@@ -24152,14 +24152,11 @@ var TopBar = React.createClass({
   displayName: "TopBar",
 
   render: function render() {
-    if (!localStorage["mirt.cart"]) {
-      localStorage["mirt.cart"] = 0;
-    }
     return React.createElement(
       "div",
       { className: "cart" },
       "\u0412\u0430\u0448\u0430 \u043A\u043E\u0440\u0437\u0438\u043D\u0430 - ",
-      localStorage["mirt.cart"],
+      this.props.cart,
       " \u0448\u0442."
     );
   }
@@ -24193,58 +24190,79 @@ var Footer = require('./components/Footer.jsx');
 
 };*/
 
-var products = [{
-  caption: "Белая штука",
-  description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия" + "AAAAAAAAAAAAAAA" + "BBBBBBBB" + "CCCCCCCCCC" + "DDDDDDDDDD",
-  photoPath: "data/white1/img/",
-  imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"],
-  price: 500
-}, {
-  caption: "Красная штука",
-  description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия" + "AAAAAAAAAAAAAAA" + "BBBBBBBB" + "CCCCCCCCCC" + "DDDDDDDDDD",
-  photoPath: "data/red1/img/",
-  imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
-  price: 600
-}];
-var testUrls = ["data/white1/img/1.jpg", "data/white1/img/2.jpg", "data/white1/img/3.jpg", "data/white1/img/4.jpg", "data/white1/img/5.jpg"];
-var testDesc = "FUUUUUUUUUUUUUUUU!";
-var testCaption = "Test Caption";
-var productsList = products.map(function (product) {
-  return React.createElement(Product, { caption: product.caption, description: product.description, imageUrls: product.imageFiles.map(function (file) {
-      return product.photoPath + file;
-    }), price: product.price });
+var Main = React.createClass({
+  displayName: 'Main',
+
+  getInitialState: function getInitialState() {
+    var val = localStorage["mirt.cart"] ? Number(localStorage["mirt.cart"]) : 0;
+    return {
+      cart: val
+    };
+  },
+  addToCart: function addToCart(value) {
+    localStorage["mirt.cart"] = this.state.cart + value;
+    this.setState({
+      cart: this.state.cart + value
+    });
+  },
+  render: function render() {
+    var self = this;
+    var products = [{
+      caption: "Белая штука",
+      description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия" + "AAAAAAAAAAAAAAA" + "BBBBBBBB" + "CCCCCCCCCC" + "DDDDDDDDDD",
+      photoPath: "data/white1/img/",
+      imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"],
+      price: 500
+    }, {
+      caption: "Красная штука",
+      description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия" + "AAAAAAAAAAAAAAA" + "BBBBBBBB" + "CCCCCCCCCC" + "DDDDDDDDDD",
+      photoPath: "data/red1/img/",
+      imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
+      price: 600
+    }];
+    var testUrls = ["data/white1/img/1.jpg", "data/white1/img/2.jpg", "data/white1/img/3.jpg", "data/white1/img/4.jpg", "data/white1/img/5.jpg"];
+    var testDesc = "FUUUUUUUUUUUUUUUU!";
+    var testCaption = "Test Caption";
+    var productsList = products.map(function (product) {
+      return React.createElement(Product, { caption: product.caption, description: product.description, imageUrls: product.imageFiles.map(function (file) {
+          return product.photoPath + file;
+        }), price: product.price, addToCart: self.addToCart });
+    });
+
+    return React.createElement(
+      'div',
+      null,
+      React.createElement(
+        'div',
+        { className: 'topbar' },
+        React.createElement(TopBar, { cart: this.state.cart })
+      ),
+      React.createElement(
+        'div',
+        { className: 'site_container' },
+        React.createElement(HeaderContainer, null),
+        React.createElement('div', { className: 'clear' }),
+        React.createElement(Caption, null),
+        React.createElement(
+          'div',
+          { className: 'content_container' },
+          productsList,
+          React.createElement(Product, { imageUrls: testUrls, description: testDesc, caption: testCaption, addToCart: this.addToCart }),
+          React.createElement(Product, { imageUrls: testUrls, description: testDesc, caption: testCaption, addToCart: this.addToCart }),
+          React.createElement(Product, { imageUrls: testUrls, description: testDesc, caption: testCaption, addToCart: this.addToCart }),
+          React.createElement(Product, { imageUrls: testUrls, description: testDesc, caption: testCaption, addToCart: this.addToCart })
+        )
+      ),
+      React.createElement('div', { className: 'clear' }),
+      React.createElement(
+        'div',
+        { className: 'footbar' },
+        React.createElement(Footer, null)
+      )
+    );
+  }
 });
 
-ReactDOM.render(React.createElement(
-  'div',
-  null,
-  React.createElement(
-    'div',
-    { className: 'topbar' },
-    React.createElement(TopBar, null)
-  ),
-  React.createElement(
-    'div',
-    { className: 'site_container' },
-    React.createElement(HeaderContainer, null),
-    React.createElement('div', { className: 'clear' }),
-    React.createElement(Caption, null),
-    React.createElement(
-      'div',
-      { className: 'content_container' },
-      productsList,
-      React.createElement(Product, { imageUrls: testUrls, description: testDesc, caption: testCaption }),
-      React.createElement(Product, { imageUrls: testUrls, description: testDesc, caption: testCaption }),
-      React.createElement(Product, { imageUrls: testUrls, description: testDesc, caption: testCaption }),
-      React.createElement(Product, { imageUrls: testUrls, description: testDesc, caption: testCaption })
-    )
-  ),
-  React.createElement('div', { className: 'clear' }),
-  React.createElement(
-    'div',
-    { className: 'footbar' },
-    React.createElement(Footer, null)
-  )
-), document.getElementById('mirt'));
+ReactDOM.render(React.createElement(Main, null), document.getElementById('mirt'));
 
 },{"./components/Caption.jsx":210,"./components/Footer.jsx":211,"./components/HeaderContainer/HeaderContainer.jsx":212,"./components/List.jsx":215,"./components/Product/Product.jsx":220,"./components/TopBar.jsx":221,"react":209,"react-dom":2}]},{},[222]);
