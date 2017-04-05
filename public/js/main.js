@@ -24152,13 +24152,56 @@ var TopBar = React.createClass({
   displayName: "TopBar",
 
   render: function render() {
-    return React.createElement(
-      "div",
-      { className: "cart" },
-      "\u0412\u0430\u0448\u0430 \u043A\u043E\u0440\u0437\u0438\u043D\u0430 - ",
-      this.props.cart,
-      " \u0448\u0442."
-    );
+    var tovarWord = function tovarWord(number) {
+      if (number > 10 && number < 20) {
+        return "товаров";
+      }
+      if (number == 0) {
+        return "";
+      }
+      var evNumber = number % 10;
+      switch (evNumber) {
+        case 1:
+          return "товар";
+        case 2:
+        case 3:
+        case 4:
+          return "товара";
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+        case 0:
+          return "товаров";
+        default:
+          return "товаров";
+      }
+    };
+    var info = "";
+    if (this.props.cart != 0) {
+      info = React.createElement(
+        "div",
+        { className: "cart" },
+        "\u0412\u0430\u0448\u0430 \u043A\u043E\u0440\u0437\u0438\u043D\u0430 - ",
+        this.props.cart,
+        " ",
+        tovarWord(this.props.cart),
+        " \u043D\u0430 \u0441\u0443\u043C\u043C\u0443 x \u0440\u0443\u0431. \xA0 \xA0 \xA0  ",
+        React.createElement(
+          "span",
+          { className: "resetLink", onClick: this.props.onReset },
+          "\u041E\u0447\u0438\u0441\u0442\u0438\u0442\u044C"
+        )
+      );
+    } else {
+      info = React.createElement(
+        "div",
+        { className: "cart" },
+        "\u0412\u0430\u0448\u0430 \u043A\u043E\u0440\u0437\u0438\u043D\u0430 \u043F\u0443\u0441\u0442\u0430"
+      );
+    }
+    return info;
   }
 });
 
@@ -24196,7 +24239,9 @@ var Main = React.createClass({
   getInitialState: function getInitialState() {
     var val = localStorage["mirt.cart"] ? Number(localStorage["mirt.cart"]) : 0;
     return {
-      cart: val
+      cart: val,
+      cartStyle: "cartStyleUsual",
+      cartBgStyle: "red"
     };
   },
   addToCart: function addToCart(value) {
@@ -24204,6 +24249,23 @@ var Main = React.createClass({
     this.setState({
       cart: this.state.cart + value
     });
+    this.highlightCart();
+  },
+  highlightCart: function highlightCart() {
+    var self = this;
+    this.setState({ cartStyle: "cartStyleHighlight" });
+    this.setState({ cartBgStyle: "yellow" });
+    setTimeout(function () {
+      self.setState({ cartStyle: "cartStyleUsual" });
+      self.setState({ cartBgStyle: "red" });
+    }, 200);
+  },
+  resetCart: function resetCart() {
+    localStorage["mirt.cart"] = 0;
+    this.setState({
+      cart: 0
+    });
+    this.highlightCart();
   },
   render: function render() {
     var self = this;
@@ -24229,13 +24291,14 @@ var Main = React.createClass({
         }), price: product.price, addToCart: self.addToCart });
     });
 
+    var cN = "topbar " + this.state.cartStyle;
     return React.createElement(
       'div',
       null,
       React.createElement(
         'div',
-        { className: 'topbar' },
-        React.createElement(TopBar, { cart: this.state.cart })
+        { className: cN, style: { backgroundColor: this.state.cartBgStyle } },
+        React.createElement(TopBar, { cart: this.state.cart, onReset: this.resetCart })
       ),
       React.createElement(
         'div',

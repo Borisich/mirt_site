@@ -27,14 +27,35 @@ var Main = React.createClass({
   getInitialState: function(){
     var val = localStorage["mirt.cart"] ? Number(localStorage["mirt.cart"]) : 0
     return {
-      cart: val
+      cart: val,
+      cartStyle: "cartStyleUsual",
+      cartBgStyle: "red"
     }
   },
   addToCart: function(value){
     localStorage["mirt.cart"] = this.state.cart + value;
     this.setState({
-      cart: this.state.cart+value
+      cart: this.state.cart+value,
     });
+    this.highlightCart();
+  },
+  highlightCart: function(){
+    var self=this;
+    this.setState({cartStyle: "cartStyleHighlight"});
+    this.setState({cartBgStyle: "yellow"});
+    setTimeout(function(){
+      self.setState({cartStyle: "cartStyleUsual"});
+      self.setState({cartBgStyle: "red"});
+    },
+    200)
+
+  },
+  resetCart: function(){
+    localStorage["mirt.cart"] = 0;
+    this.setState({
+      cart: 0
+    });
+    this.highlightCart();
   },
   render: function() {
     var self = this;
@@ -69,11 +90,11 @@ var Main = React.createClass({
       return <Product caption={product.caption} description={product.description} imageUrls={product.imageFiles.map(function(file){return (product.photoPath+file)})} price={product.price} addToCart={self.addToCart} />
     });
 
-
+    var cN = "topbar "+this.state.cartStyle;
     return (
       <div>
-        <div className="topbar">
-          <TopBar cart={this.state.cart}/>
+        <div className={cN} style={{backgroundColor: this.state.cartBgStyle}}>
+          <TopBar cart={this.state.cart} onReset={this.resetCart} />
         </div>
         <div className="site_container">
           <HeaderContainer />
