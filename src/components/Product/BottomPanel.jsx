@@ -16,7 +16,7 @@ var BottomPanel = React.createClass({
     })
   },
   onSubmit: function(){
-    this.props.addToCart(Number(this.state.value));
+    this.props.addToCart(Number(this.state.value),Number(this.props.id));
     this.setState({
       value: 1
     })
@@ -75,7 +75,7 @@ var BottomPanel = React.createClass({
     return(
       <div className="product_order">
 				<div className="product_price">
-					500 руб.
+					{this.props.price} руб.
 				</div>
         <OrderPanel value={this.state.value} onChange={this.onChange} onSubmit={this.onSubmit}/>
 				<div className="quick_view_button_container">
@@ -91,7 +91,7 @@ var BottomPanel = React.createClass({
             <br/>
             <div className="order_panel">
               <div className="product_price">
-      					500 руб.
+      					{this.props.price} руб.
       				</div>
               <OrderPanel value={this.state.value} onChange={this.onChange} onSubmit={this.onSubmit}/>
             </div>

@@ -23708,6 +23708,55 @@ module.exports = require('./lib/React');
 },{"./lib/React":182}],210:[function(require,module,exports){
 "use strict";
 
+var ProductsDB = [{
+  id: 1,
+  caption: "Белая штука",
+  description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия" + "AAAAAAAAAAAAAAA" + "BBBBBBBB" + "CCCCCCCCCC" + "DDDDDDDDDD",
+  photoPath: "data/white1/img/",
+  imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"],
+  price: 500
+}, {
+  id: 2,
+  caption: "Красная штука",
+  description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия" + "AAAAAAAAAAAAAAA" + "BBBBBBBB" + "CCCCCCCCCC" + "DDDDDDDDDD",
+  photoPath: "data/red1/img/",
+  imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
+  price: 600
+}, {
+  id: 3,
+  caption: "Красная штука",
+  description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия" + "AAAAAAAAAAAAAAA" + "BBBBBBBB" + "CCCCCCCCCC" + "DDDDDDDDDD",
+  photoPath: "data/red1/img/",
+  imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
+  price: 2000
+}, {
+  id: 4,
+  caption: "Красная штука",
+  description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия" + "AAAAAAAAAAAAAAA" + "BBBBBBBB" + "CCCCCCCCCC" + "DDDDDDDDDD",
+  photoPath: "data/red1/img/",
+  imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
+  price: 700
+}, {
+  id: 5,
+  caption: "Красная штука",
+  description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия" + "AAAAAAAAAAAAAAA" + "BBBBBBBB" + "CCCCCCCCCC" + "DDDDDDDDDD",
+  photoPath: "data/red1/img/",
+  imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
+  price: 800
+}, {
+  id: 6,
+  caption: "Красная штука",
+  description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия" + "AAAAAAAAAAAAAAA" + "BBBBBBBB" + "CCCCCCCCCC" + "DDDDDDDDDD",
+  photoPath: "data/red1/img/",
+  imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
+  price: 3000
+}];
+
+module.exports = ProductsDB;
+
+},{}],211:[function(require,module,exports){
+"use strict";
+
 var React = require('react');
 var Caption = React.createClass({
   displayName: "Caption",
@@ -23723,7 +23772,7 @@ var Caption = React.createClass({
 
 module.exports = Caption;
 
-},{"react":209}],211:[function(require,module,exports){
+},{"react":209}],212:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -23741,7 +23790,7 @@ var Footer = React.createClass({
 
 module.exports = Footer;
 
-},{"react":209}],212:[function(require,module,exports){
+},{"react":209}],213:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -23763,7 +23812,7 @@ var HeaderContainer = React.createClass({
 
 module.exports = HeaderContainer;
 
-},{"./Logo.jsx":213,"./Menu.jsx":214,"react":209}],213:[function(require,module,exports){
+},{"./Logo.jsx":214,"./Menu.jsx":215,"react":209}],214:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -23781,7 +23830,7 @@ var Logo = React.createClass({
 
 module.exports = Logo;
 
-},{"react":209}],214:[function(require,module,exports){
+},{"react":209}],215:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -23827,7 +23876,7 @@ var Menu = React.createClass({
 
 module.exports = Menu;
 
-},{"react":209}],215:[function(require,module,exports){
+},{"react":209}],216:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -23861,7 +23910,7 @@ var List = React.createClass({
 
 module.exports = List;
 
-},{"./ListItem.jsx":216,"react":209}],216:[function(require,module,exports){
+},{"./ListItem.jsx":217,"react":209}],217:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -23879,7 +23928,7 @@ var ListItem = React.createClass({
 
 module.exports = ListItem;
 
-},{"react":209}],217:[function(require,module,exports){
+},{"react":209}],218:[function(require,module,exports){
 'use strict';
 
 var _reactSkylight = require('react-skylight');
@@ -23909,7 +23958,7 @@ var BottomPanel = React.createClass({
     });
   },
   onSubmit: function onSubmit() {
-    this.props.addToCart(Number(this.state.value));
+    this.props.addToCart(Number(this.state.value), Number(this.props.id));
     this.setState({
       value: 1
     });
@@ -23980,7 +24029,8 @@ var BottomPanel = React.createClass({
       React.createElement(
         'div',
         { className: 'product_price' },
-        '500 \u0440\u0443\u0431.'
+        this.props.price,
+        ' \u0440\u0443\u0431.'
       ),
       React.createElement(OrderPanel, { value: this.state.value, onChange: this.onChange, onSubmit: this.onSubmit }),
       React.createElement(
@@ -24018,7 +24068,8 @@ var BottomPanel = React.createClass({
             React.createElement(
               'div',
               { className: 'product_price' },
-              '500 \u0440\u0443\u0431.'
+              this.props.price,
+              ' \u0440\u0443\u0431.'
             ),
             React.createElement(OrderPanel, { value: this.state.value, onChange: this.onChange, onSubmit: this.onSubmit })
           )
@@ -24030,7 +24081,7 @@ var BottomPanel = React.createClass({
 
 module.exports = BottomPanel;
 
-},{"react":209,"react-medium-image-zoom":153,"react-skylight":154,"react-slick":161}],218:[function(require,module,exports){
+},{"react":209,"react-medium-image-zoom":153,"react-skylight":154,"react-slick":161}],219:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -24048,7 +24099,7 @@ var Header = React.createClass({
 
 module.exports = Header;
 
-},{"react":209}],219:[function(require,module,exports){
+},{"react":209}],220:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -24120,7 +24171,7 @@ var Picture = _react2.default.createClass({
 
 module.exports = Picture;
 
-},{"react":209,"react-slick":161}],220:[function(require,module,exports){
+},{"react":209,"react-slick":161}],221:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -24137,14 +24188,14 @@ var Product = React.createClass({
       { className: 'product' },
       React.createElement(Picture, { imageUrls: this.props.imageUrls }),
       React.createElement(Header, { caption: this.props.caption }),
-      React.createElement(BottomPanel, { imageUrls: this.props.imageUrls, description: this.props.description, caption: this.props.caption, addToCart: this.props.addToCart })
+      React.createElement(BottomPanel, { id: this.props.id, price: this.props.price, imageUrls: this.props.imageUrls, description: this.props.description, caption: this.props.caption, addToCart: this.props.addToCart })
     );
   }
 });
 
 module.exports = Product;
 
-},{"./BottomPanel.jsx":217,"./Header.jsx":218,"./Picture.jsx":219,"react":209}],221:[function(require,module,exports){
+},{"./BottomPanel.jsx":218,"./Header.jsx":219,"./Picture.jsx":220,"react":209}],222:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -24152,6 +24203,7 @@ var TopBar = React.createClass({
   displayName: "TopBar",
 
   render: function render() {
+    var self = this;
     var tovarWord = function tovarWord(number) {
       if (number > 10 && number < 20) {
         return "товаров";
@@ -24179,15 +24231,17 @@ var TopBar = React.createClass({
       }
     };
     var info = "";
-    if (this.props.cart != 0) {
+    if (this.props.cartTotalItems != 0) {
       info = React.createElement(
         "div",
         { className: "cart" },
         "\u0412\u0430\u0448\u0430 \u043A\u043E\u0440\u0437\u0438\u043D\u0430 - ",
-        this.props.cart,
+        this.props.cartTotalItems,
         " ",
-        tovarWord(this.props.cart),
-        " \u043D\u0430 \u0441\u0443\u043C\u043C\u0443 x \u0440\u0443\u0431. \xA0 \xA0 \xA0  ",
+        tovarWord(this.props.cartTotalItems),
+        " \u043D\u0430 \u0441\u0443\u043C\u043C\u0443 ",
+        this.props.cartTotalPrice,
+        " \u0440\u0443\u0431. \xA0 \xA0 \xA0  ",
         React.createElement(
           "span",
           { className: "resetLink", onClick: this.props.onReset },
@@ -24207,7 +24261,7 @@ var TopBar = React.createClass({
 
 module.exports = TopBar;
 
-},{"react":209}],222:[function(require,module,exports){
+},{"react":209}],223:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -24218,6 +24272,7 @@ var Caption = require('./components/Caption.jsx');
 var HeaderContainer = require('./components/HeaderContainer/HeaderContainer.jsx');
 var Product = require('./components/Product/Product.jsx');
 var Footer = require('./components/Footer.jsx');
+var ProductsDB = require('../public/data/ProductsDB.jsx');
 /*var Slider = require('react-slick');*/
 
 /*var settings = {
@@ -24237,17 +24292,24 @@ var Main = React.createClass({
   displayName: 'Main',
 
   getInitialState: function getInitialState() {
-    var val = localStorage["mirt.cart"] ? Number(localStorage["mirt.cart"]) : 0;
+    //localStorage["mirt.cart"] = [];
+    var val = localStorage["mirt.cart"] ? JSON.parse(localStorage["mirt.cart"]) : [];
+    //var val = [];
     return {
       cart: val,
       cartStyle: "cartStyleUsual",
       cartBgStyle: "red"
     };
   },
-  addToCart: function addToCart(value) {
-    localStorage["mirt.cart"] = this.state.cart + value;
+  addToCart: function addToCart(value, id) {
+    var newCart = this.state.cart;
+    newCart.push({
+      id: id,
+      count: value
+    });
+    localStorage["mirt.cart"] = JSON.stringify(newCart);
     this.setState({
-      cart: this.state.cart + value
+      cart: newCart
     });
     this.highlightCart();
   },
@@ -24261,32 +24323,41 @@ var Main = React.createClass({
     }, 200);
   },
   resetCart: function resetCart() {
-    localStorage["mirt.cart"] = 0;
+    localStorage["mirt.cart"] = [];
     this.setState({
-      cart: 0
+      cart: []
     });
     this.highlightCart();
   },
+  cartTotalItems: function cartTotalItems() {
+    var totalItems = 0;
+    for (var i = 0; i < this.state.cart.length; i++) {
+      for (var j = 0; j < ProductsDB.length; j++) {
+        if (this.state.cart[i].id == ProductsDB[j].id) {
+          totalItems += this.state.cart[i].count;
+        }
+      }
+    }
+    return totalItems;
+  },
+  cartTotalPrice: function cartTotalPrice() {
+    var totalPrice = 0;
+    for (var i = 0; i < this.state.cart.length; i++) {
+      for (var j = 0; j < ProductsDB.length; j++) {
+        if (this.state.cart[i].id == ProductsDB[j].id) {
+          totalPrice += ProductsDB[j].price * this.state.cart[i].count;
+        }
+      }
+    }
+    return totalPrice;
+  },
   render: function render() {
     var self = this;
-    var products = [{
-      caption: "Белая штука",
-      description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия" + "AAAAAAAAAAAAAAA" + "BBBBBBBB" + "CCCCCCCCCC" + "DDDDDDDDDD",
-      photoPath: "data/white1/img/",
-      imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"],
-      price: 500
-    }, {
-      caption: "Красная штука",
-      description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия" + "AAAAAAAAAAAAAAA" + "BBBBBBBB" + "CCCCCCCCCC" + "DDDDDDDDDD",
-      photoPath: "data/red1/img/",
-      imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
-      price: 600
-    }];
     var testUrls = ["data/white1/img/1.jpg", "data/white1/img/2.jpg", "data/white1/img/3.jpg", "data/white1/img/4.jpg", "data/white1/img/5.jpg"];
     var testDesc = "FUUUUUUUUUUUUUUUU!";
     var testCaption = "Test Caption";
-    var productsList = products.map(function (product) {
-      return React.createElement(Product, { caption: product.caption, description: product.description, imageUrls: product.imageFiles.map(function (file) {
+    var productsList = ProductsDB.map(function (product) {
+      return React.createElement(Product, { id: product.id, caption: product.caption, description: product.description, imageUrls: product.imageFiles.map(function (file) {
           return product.photoPath + file;
         }), price: product.price, addToCart: self.addToCart });
     });
@@ -24298,7 +24369,7 @@ var Main = React.createClass({
       React.createElement(
         'div',
         { className: cN, style: { backgroundColor: this.state.cartBgStyle } },
-        React.createElement(TopBar, { cart: this.state.cart, onReset: this.resetCart })
+        React.createElement(TopBar, { cartTotalItems: this.cartTotalItems(), cartTotalPrice: this.cartTotalPrice(), onReset: this.resetCart })
       ),
       React.createElement(
         'div',
@@ -24309,11 +24380,7 @@ var Main = React.createClass({
         React.createElement(
           'div',
           { className: 'content_container' },
-          productsList,
-          React.createElement(Product, { imageUrls: testUrls, description: testDesc, caption: testCaption, addToCart: this.addToCart }),
-          React.createElement(Product, { imageUrls: testUrls, description: testDesc, caption: testCaption, addToCart: this.addToCart }),
-          React.createElement(Product, { imageUrls: testUrls, description: testDesc, caption: testCaption, addToCart: this.addToCart }),
-          React.createElement(Product, { imageUrls: testUrls, description: testDesc, caption: testCaption, addToCart: this.addToCart })
+          productsList
         )
       ),
       React.createElement('div', { className: 'clear' }),
@@ -24328,4 +24395,4 @@ var Main = React.createClass({
 
 ReactDOM.render(React.createElement(Main, null), document.getElementById('mirt'));
 
-},{"./components/Caption.jsx":210,"./components/Footer.jsx":211,"./components/HeaderContainer/HeaderContainer.jsx":212,"./components/List.jsx":215,"./components/Product/Product.jsx":220,"./components/TopBar.jsx":221,"react":209,"react-dom":2}]},{},[222]);
+},{"../public/data/ProductsDB.jsx":210,"./components/Caption.jsx":211,"./components/Footer.jsx":212,"./components/HeaderContainer/HeaderContainer.jsx":213,"./components/List.jsx":216,"./components/Product/Product.jsx":221,"./components/TopBar.jsx":222,"react":209,"react-dom":2}]},{},[223]);

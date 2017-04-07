@@ -1,6 +1,7 @@
 var React = require('react');
 var TopBar = React.createClass({
   render: function(){
+    var self = this;
     var tovarWord = function(number){
       if ((number > 10) && (number < 20)){
         return "товаров";
@@ -28,10 +29,10 @@ var TopBar = React.createClass({
       }
     };
     var info = "";
-    if (this.props.cart != 0){
+    if (this.props.cartTotalItems != 0){
       info =
         <div className="cart">
-            Ваша корзина - {this.props.cart} {tovarWord(this.props.cart)} на сумму x руб. &nbsp; &nbsp; &nbsp;  <span className="resetLink" onClick={this.props.onReset}>Очистить</span>
+            Ваша корзина - {this.props.cartTotalItems} {tovarWord(this.props.cartTotalItems)} на сумму {this.props.cartTotalPrice} руб. &nbsp; &nbsp; &nbsp;  <span className="resetLink" onClick={this.props.onReset}>Очистить</span>
         </div>
     }
     else {

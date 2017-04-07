@@ -6,6 +6,7 @@ var Caption = require ('./components/Caption.jsx');
 var HeaderContainer = require ('./components/HeaderContainer/HeaderContainer.jsx');
 var Product = require ('./components/Product/Product.jsx');
 var Footer = require ('./components/Footer.jsx');
+var ProductsDB = require('../public/data/ProductsDB.jsx');
 /*var Slider = require('react-slick');*/
 
 /*var settings = {
@@ -25,17 +26,24 @@ var Footer = require ('./components/Footer.jsx');
 
 var Main = React.createClass({
   getInitialState: function(){
-    var val = localStorage["mirt.cart"] ? Number(localStorage["mirt.cart"]) : 0
+    //localStorage["mirt.cart"] = [];
+    var val = localStorage["mirt.cart"] ? JSON.parse(localStorage["mirt.cart"]) : []
+    //var val = [];
     return {
       cart: val,
       cartStyle: "cartStyleUsual",
       cartBgStyle: "red"
     }
   },
-  addToCart: function(value){
-    localStorage["mirt.cart"] = this.state.cart + value;
+  addToCart: function(value, id){
+    var newCart = this.state.cart;
+    newCart.push({
+      id: id,
+      count: value
+    });
+    localStorage["mirt.cart"] = JSON.stringify(newCart);
     this.setState({
-      cart: this.state.cart+value,
+      cart: newCart,
     });
     this.highlightCart();
   },
@@ -51,50 +59,48 @@ var Main = React.createClass({
 
   },
   resetCart: function(){
-    localStorage["mirt.cart"] = 0;
+    localStorage["mirt.cart"] = [];
     this.setState({
-      cart: 0
+      cart: []
     });
     this.highlightCart();
   },
+  cartTotalItems: function(){
+    var totalItems = 0;
+    for(var i=0; i<this.state.cart.length; i++){
+      for(var j=0; j<ProductsDB.length; j++){
+        if (this.state.cart[i].id == ProductsDB[j].id){
+          totalItems += this.state.cart[i].count;
+        }
+      }
+    }
+    return totalItems;
+  },
+  cartTotalPrice: function(){
+    var totalPrice = 0;
+    for(var i=0; i<this.state.cart.length; i++){
+      for(var j=0; j<ProductsDB.length; j++){
+        if (this.state.cart[i].id == ProductsDB[j].id){
+          totalPrice += ProductsDB[j].price*this.state.cart[i].count;
+        }
+      }
+    }
+    return totalPrice;
+  },
   render: function() {
     var self = this;
-    var products = [
-      {
-        caption: "Белая штука",
-        description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия"+
-          "AAAAAAAAAAAAAAA"+
-          "BBBBBBBB"+
-          "CCCCCCCCCC"+
-          "DDDDDDDDDD",
-        photoPath: "data/white1/img/",
-        imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"],
-        price: 500
-      },
-      {
-        caption: "Красная штука",
-        description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия"+
-          "AAAAAAAAAAAAAAA"+
-          "BBBBBBBB"+
-          "CCCCCCCCCC"+
-          "DDDDDDDDDD",
-        photoPath: "data/red1/img/",
-        imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
-        price: 600
-      },
-    ];
     var testUrls = ["data/white1/img/1.jpg", "data/white1/img/2.jpg", "data/white1/img/3.jpg", "data/white1/img/4.jpg", "data/white1/img/5.jpg"]
     var testDesc = "FUUUUUUUUUUUUUUUU!";
     var testCaption = "Test Caption";
-    var productsList = products.map(function(product){
-      return <Product caption={product.caption} description={product.description} imageUrls={product.imageFiles.map(function(file){return (product.photoPath+file)})} price={product.price} addToCart={self.addToCart} />
+    var productsList = ProductsDB.map(function(product){
+      return <Product id={product.id} caption={product.caption} description={product.description} imageUrls={product.imageFiles.map(function(file){return (product.photoPath+file)})} price={product.price} addToCart={self.addToCart} />
     });
 
     var cN = "topbar "+this.state.cartStyle;
     return (
       <div>
         <div className={cN} style={{backgroundColor: this.state.cartBgStyle}}>
-          <TopBar cart={this.state.cart} onReset={this.resetCart} />
+          <TopBar cartTotalItems={this.cartTotalItems()} cartTotalPrice={this.cartTotalPrice()} onReset={this.resetCart} />
         </div>
         <div className="site_container">
           <HeaderContainer />
@@ -111,10 +117,6 @@ var Main = React.createClass({
           {*/}
           <div className="content_container">
             {productsList}
-            <Product imageUrls={testUrls} description={testDesc} caption={testCaption} addToCart={this.addToCart}/>
-            <Product imageUrls={testUrls} description={testDesc} caption={testCaption} addToCart={this.addToCart}/>
-            <Product imageUrls={testUrls} description={testDesc} caption={testCaption} addToCart={this.addToCart}/>
-            <Product imageUrls={testUrls} description={testDesc} caption={testCaption} addToCart={this.addToCart}/>
           </div>
         </div>
         <div className="clear"></div>
