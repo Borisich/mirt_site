@@ -7,6 +7,9 @@ var HeaderContainer = require ('./components/HeaderContainer/HeaderContainer.jsx
 var Product = require ('./components/Product/Product.jsx');
 var Footer = require ('./components/Footer.jsx');
 var ProductsDB = require('../public/data/ProductsDB.jsx');
+import { Router, Route, Switch, HashRouter} from 'react-router-dom';
+
+
 /*var Slider = require('react-slick');*/
 
 /*var settings = {
@@ -89,45 +92,96 @@ var Main = React.createClass({
   },
   render: function() {
     var self = this;
-    var testUrls = ["data/white1/img/1.jpg", "data/white1/img/2.jpg", "data/white1/img/3.jpg", "data/white1/img/4.jpg", "data/white1/img/5.jpg"]
-    var testDesc = "FUUUUUUUUUUUUUUUU!";
-    var testCaption = "Test Caption";
     var productsList = ProductsDB.map(function(product){
       return <Product id={product.id} caption={product.caption} description={product.description} imageUrls={product.imageFiles.map(function(file){return (product.photoPath+file)})} price={product.price} addToCart={self.addToCart} />
     });
-
     var cN = "topbar "+this.state.cartStyle;
-    return (
+    var CTopBar = (
+      <div className={cN} style={{backgroundColor: this.state.cartBgStyle}}>
+        <TopBar cartTotalItems={this.cartTotalItems()} cartTotalPrice={this.cartTotalPrice()} onReset={this.resetCart} />
+      </div>
+    );
+    var CSiteContainer = (
+      <div className="site_container"></div>
+    );
+    var CHeaderContainer = (
+      <HeaderContainer />
+
+    );
+    var Clear = <div className="clear"></div>;
+    var CCaption = (
+      <Caption />
+    );
+    var CContentContainer = (
+      <div className="content_container">
+        {productsList}
+      </div>
+    );
+    var CFooter = (
+      <div className="footbar">
+        <Footer />
+      </div>
+    );
+    var CMain = (
       <div>
-        <div className={cN} style={{backgroundColor: this.state.cartBgStyle}}>
-          <TopBar cartTotalItems={this.cartTotalItems()} cartTotalPrice={this.cartTotalPrice()} onReset={this.resetCart} />
-        </div>
-        <div className="site_container">
-          <HeaderContainer />
-          <div className="clear"></div>
-          <Caption />
-          {/*}<Slider {...settings}>
-            <div><div className="picdiv"><img src="data/white1/img/1.jpg" height="300" width="402"/></div></div>
-            <div><p className="fig"><img src="data/white1/img/2.jpg" height="300" width="402"/></p></div>
-            <div><img className="fig" src="data/white1/img/3.jpg" height="300" width="402"/></div>
-            <div><img src="data/white1/img/4.jpg" height="300" width="402"/></div>
-            <div><img src="data/white1/img/5.jpg" height="300" width="402"/></div>
-            <div><img src="" height="300" width="402"/></div>
-          </Slider>
-          {*/}
-          <div className="content_container">
-            {productsList}
-          </div>
-        </div>
-        <div className="clear"></div>
-        <div className="footbar">
-          <Footer />
-        </div>
+        {CTopBar}
+        {CSiteContainer}
+        {CHeaderContainer}
       </div>
     )
+    return (
+
+        <div>
+          <div className={cN} style={{backgroundColor: this.state.cartBgStyle}}>
+            <TopBar cartTotalItems={this.cartTotalItems()} cartTotalPrice={this.cartTotalPrice()} onReset={this.resetCart} />
+          </div>
+          <div className="site_container">
+            <HeaderContainer />
+            <div className="clear"></div>
+            <Caption />
+            <div className="content_container">
+              {productsList}
+            </div>
+          </div>
+          <div className="clear"></div>
+          <div className="footbar">
+            <Footer />
+          </div>
+        </div>
+
+    )
+  /*return (
+
+      <HashRouter>
+
+        <Route path="/" component={CSiteContainer}>
+          <Route component={CHeaderContainer}></Route>
+          <Route component={Clear}></Route>
+          <Route component={CCaption}></Route>
+          <Route component={CContentContainer}></Route>
+          <Route component={Clear}></Route>
+        </Route>
+
+      </HashRouter>
+    )*/
   }
 });
 
 ReactDOM.render(
   <Main />
   , document.getElementById('mirt') );
+
+
+  /*var CSiteContainer = React.createClass({
+    render: function(){
+      return <div className="site_container"></div>
+    }
+  });
+  ReactDOM.render(
+    <HashRouter>
+      <Route path="/" component={CSiteContainer}>
+
+      </Route>
+    </HashRouter>
+    , document.getElementById('mirt') );
+*/
