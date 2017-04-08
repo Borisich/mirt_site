@@ -27637,7 +27637,15 @@ module.exports = TopBar;
 },{"react":249}],266:[function(require,module,exports){
 'use strict';
 
+var _reactRouter = require('react-router');
+
 var _reactRouterDom = require('react-router-dom');
+
+var _createBrowserHistory = require('history/createBrowserHistory');
+
+var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -27648,7 +27656,6 @@ var HeaderContainer = require('./components/HeaderContainer/HeaderContainer.jsx'
 var Product = require('./components/Product/Product.jsx');
 var Footer = require('./components/Footer.jsx');
 var ProductsDB = require('../public/data/ProductsDB.jsx');
-
 
 /*var Slider = require('react-slick');*/
 
@@ -27803,19 +27810,66 @@ var Main = React.createClass({
   }
 });
 
-ReactDOM.render(React.createElement(Main, null), document.getElementById('mirt'));
-
-/*var CSiteContainer = React.createClass({
-  render: function(){
-    return <div className="site_container"></div>
-  }
-});
-ReactDOM.render(
-  <HashRouter>
-    <Route path="/" component={CSiteContainer}>
-      </Route>
-  </HashRouter>
+/*ReactDOM.render(
+  <Main />
   , document.getElementById('mirt') );
 */
 
-},{"../public/data/ProductsDB.jsx":253,"./components/Caption.jsx":254,"./components/Footer.jsx":255,"./components/HeaderContainer/HeaderContainer.jsx":256,"./components/List.jsx":259,"./components/Product/Product.jsx":264,"./components/TopBar.jsx":265,"react":249,"react-dom":12,"react-router-dom":177}]},{},[266]);
+//ROUTER TESTING
+//*******************************************************************************************
+//import { Router, Route, hashHistory, Switch} from 'react-router';
+
+
+var history = (0, _createBrowserHistory2.default)();
+
+var Comp1 = React.createClass({
+  displayName: 'Comp1',
+
+  render: function render() {
+    return React.createElement(
+      'h1',
+      null,
+      'Welcome to the Home Page'
+    );
+  }
+});
+var Comp2 = React.createClass({
+  displayName: 'Comp2',
+
+  render: function render() {
+    return React.createElement(
+      'h1',
+      null,
+      'COMP2'
+    );
+  }
+});
+var Comp3 = React.createClass({
+  displayName: 'Comp3',
+
+  render: function render() {
+    return React.createElement(
+      'div',
+      null,
+      React.createElement(
+        _reactRouterDom.Link,
+        { to: "/a" },
+        'To comp1'
+      )
+    );
+    //return <p>To comp1</p>
+  }
+});
+ReactDOM.render(React.createElement(
+  _reactRouterDom.BrowserRouter,
+  null,
+  React.createElement(
+    _reactRouter.Switch,
+    null,
+    React.createElement(_reactRouterDom.Route, { path: '/', component: Comp3 }),
+    React.createElement(_reactRouterDom.Route, { path: '/a', component: Comp1 }),
+    React.createElement(_reactRouterDom.Route, { path: '/about', component: Comp2 })
+  )
+), document.getElementById('mirt'));
+
+},{"../public/data/ProductsDB.jsx":253,"./components/Caption.jsx":254,"./components/Footer.jsx":255,"./components/HeaderContainer/HeaderContainer.jsx":256,"./components/List.jsx":259,"./components/Product/Product.jsx":264,"./components/TopBar.jsx":265,"history/createBrowserHistory":5,"react":249,"react-dom":12,"react-router":187,"react-router-dom":177}]},{},[266]);

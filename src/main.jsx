@@ -7,7 +7,7 @@ var HeaderContainer = require ('./components/HeaderContainer/HeaderContainer.jsx
 var Product = require ('./components/Product/Product.jsx');
 var Footer = require ('./components/Footer.jsx');
 var ProductsDB = require('../public/data/ProductsDB.jsx');
-import { Router, Route, Switch, HashRouter} from 'react-router-dom';
+
 
 
 /*var Slider = require('react-slick');*/
@@ -130,7 +130,6 @@ var Main = React.createClass({
       </div>
     )
     return (
-
         <div>
           <div className={cN} style={{backgroundColor: this.state.cartBgStyle}}>
             <TopBar cartTotalItems={this.cartTotalItems()} cartTotalPrice={this.cartTotalPrice()} onReset={this.resetCart} />
@@ -148,7 +147,6 @@ var Main = React.createClass({
             <Footer />
           </div>
         </div>
-
     )
   /*return (
 
@@ -167,21 +165,43 @@ var Main = React.createClass({
   }
 });
 
-ReactDOM.render(
+/*ReactDOM.render(
   <Main />
   , document.getElementById('mirt') );
-
-
-  /*var CSiteContainer = React.createClass({
-    render: function(){
-      return <div className="site_container"></div>
-    }
-  });
-  ReactDOM.render(
-    <HashRouter>
-      <Route path="/" component={CSiteContainer}>
-
-      </Route>
-    </HashRouter>
-    , document.getElementById('mirt') );
 */
+
+
+//ROUTER TESTING
+//*******************************************************************************************
+//import { Router, Route, hashHistory, Switch} from 'react-router';
+import { Switch} from 'react-router';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import createBrowserHistory from 'history/createBrowserHistory'
+
+const history = createBrowserHistory()
+
+var Comp1 = React.createClass({
+  render: function(){
+    return (<h1>Welcome to the Home Page</h1>)
+  }
+});
+var Comp2 = React.createClass({
+  render: function(){
+    return (<h1>COMP2</h1>)
+  }
+});
+var Comp3 = React.createClass({
+  render: function(){
+    return <div><Link to={"/a"}>To comp1</Link></div>
+    //return <p>To comp1</p>
+  }
+});
+ReactDOM.render(
+  <Router >
+    <Switch>
+      <Route path="/" component={Comp3} />
+      <Route path="/a" component={Comp1} />
+      <Route path="/about" component={Comp2} />
+    </Switch>
+  </Router>
+  , document.getElementById('mirt') );

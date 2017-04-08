@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "watchify src/main.jsx -v -t [babelify --presets [ es2015 react ] ] -o public/js/main.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start1": "watchify src/main.jsx -v -t [babelify --presets [ es2015 react ] ] -o public/js/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "budo public/js/main.js --port 3000 --dir public/ --verbose --live --open"
   },
   "repository": {
     "type": "git",
