@@ -148,7 +148,7 @@ var Main = React.createClass({
           </div>
         </div>
     )
-  /*return (
+  return (
 
       <HashRouter>
 
@@ -161,47 +161,10 @@ var Main = React.createClass({
         </Route>
 
       </HashRouter>
-    )*/
+    )
   }
 });
 
-/*ReactDOM.render(
-  <Main />
-  , document.getElementById('mirt') );
-*/
-
-
-//ROUTER TESTING
-//*******************************************************************************************
-//import { Router, Route, hashHistory, Switch} from 'react-router';
-import { Switch} from 'react-router';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
-import createBrowserHistory from 'history/createBrowserHistory'
-
-const history = createBrowserHistory()
-
-var Comp1 = React.createClass({
-  render: function(){
-    return (<h1>Welcome to the Home Page</h1>)
-  }
-});
-var Comp2 = React.createClass({
-  render: function(){
-    return (<h1>COMP2</h1>)
-  }
-});
-var Comp3 = React.createClass({
-  render: function(){
-    return <div><Link to={"/a"}>To comp1</Link></div>
-    //return <p>To comp1</p>
-  }
-});
 ReactDOM.render(
-  <Router >
-    <Switch>
-      <Route path="/" component={Comp3} />
-      <Route path="/a" component={Comp1} />
-      <Route path="/about" component={Comp2} />
-    </Switch>
-  </Router>
+  <Main />
   , document.getElementById('mirt') );
