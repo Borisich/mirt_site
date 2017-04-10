@@ -1,7 +1,9 @@
 * {
 	eborder: 1px solid black;
 }
-
+html {
+  overflow-y: scroll;
+}
 /*.slides {
   position: relative;
   .slick-prev, .slick-next {
@@ -55,7 +57,10 @@
 	min-width: 1300px;
 	color: white;
 }
-
+.cart_img{
+	height: 30px;
+	width: 40px;
+}
 .cartStyleUsual {
 	transition-property: background-color;
   transition-duration: 3s;
@@ -103,6 +108,10 @@
 	margin-right: 20px;
 	font-size: 16pt;
 	font-family: Philosopher;
+}
+.menu ul li:hover {
+	text-decoration: underline;
+	cursor: pointer;
 }
 .clear{
 	clear: both;

@@ -50,7 +50,7 @@ var BottomPanel = React.createClass({
 
     var imageList = this.props.imageUrls.map(function(url){
       return (
-        <div><ImageZoom
+        <div key={url}><ImageZoom 
                 image={{
                   src: url,
                   alt: 'alt',

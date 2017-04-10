@@ -4,9 +4,9 @@ var Menu = React.createClass({
     return(
       <div className="menu">
         <ul>
-					<li>Главная</li>
+					<li onClick={() => this.props.setNavigation('main')}>Главная</li>
 					<li>О компании</li>
-					<li>Корзина</li>
+					<li onClick={() => this.props.setNavigation('cart')}>Корзина</li>
 					<li>Оформление заказа</li>
 					<li>Контакты</li>
 				</ul>

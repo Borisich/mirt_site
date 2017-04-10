@@ -22,7 +22,7 @@ var NextButton = React.createClass({
 var Picture = React.createClass({
   render: function(){
     var imageList = this.props.imageUrls.map(function(url){
-      return <div><img src={url} height="300" width="402"/></div>
+      return <div key={url}><img src={url} height="300" width="402"/></div>
     });
     var settings = {
       dots: true,

@@ -8,7 +8,7 @@ var HeaderContainer = React.createClass({
     return (
       <div className="header_container">
         <Logo/>
-        <Menu/>
+        <Menu setNavigation={this.props.setNavigation}/>
       </div>
     )
   }

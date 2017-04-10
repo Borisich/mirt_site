@@ -1,11 +1,11 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var List = require ('./components/List.jsx');
 var TopBar = require ('./components/TopBar.jsx');
 var Caption = require ('./components/Caption.jsx');
 var HeaderContainer = require ('./components/HeaderContainer/HeaderContainer.jsx');
 var Product = require ('./components/Product/Product.jsx');
 var Footer = require ('./components/Footer.jsx');
+var Cart = require ('./components/Cart.jsx');
 var ProductsDB = require('../public/data/ProductsDB.jsx');
 
 
@@ -35,15 +35,54 @@ var Main = React.createClass({
     return {
       cart: val,
       cartStyle: "cartStyleUsual",
-      cartBgStyle: "red"
+      cartBgStyle: "red",
+      navigator: {
+        productsShow: 0,
+        cartShow: 1
+      }
+    }
+  },
+  setNavigation: function(location){
+    //alert('CLICK!');
+    switch (location) {
+      case 'main':
+        this.setState({navigator:{
+          productsShow: 1,
+          cartShow: 0
+        }});
+        //alert('MAIN');
+        break;
+      case 'cart':
+        this.setState({navigator:{
+          productsShow: 0,
+          cartShow: 1
+        }});
+        //alert('CART');
+        break;
+      default:
+        this.setState({navigator:{
+          productsShow: 1,
+          cartShow: 0
+        }});
     }
   },
   addToCart: function(value, id){
     var newCart = this.state.cart;
-    newCart.push({
-      id: id,
-      count: value
-    });
+    var found = 0;
+    for (var i=0; i<newCart.length; i++){
+      if (newCart[i].id == id){
+        newCart[i].count += value;
+        found = 1;
+        break;
+      }
+    }
+    if (!found){
+      newCart.push({
+        id: id,
+        count: value
+      });
+    }
+
     localStorage["mirt.cart"] = JSON.stringify(newCart);
     this.setState({
       cart: newCart,
@@ -93,7 +132,7 @@ var Main = React.createClass({
   render: function() {
     var self = this;
     var productsList = ProductsDB.map(function(product){
-      return <Product id={product.id} caption={product.caption} description={product.description} imageUrls={product.imageFiles.map(function(file){return (product.photoPath+file)})} price={product.price} addToCart={self.addToCart} />
+      return <Product key={product.id} id={product.id} caption={product.caption} description={product.description} imageUrls={product.imageFiles.map(function(file){return (product.photoPath+file)})} price={product.price} addToCart={self.addToCart} />
     });
     var cN = "topbar "+this.state.cartStyle;
     var CTopBar = (
@@ -135,11 +174,12 @@ var Main = React.createClass({
             <TopBar cartTotalItems={this.cartTotalItems()} cartTotalPrice={this.cartTotalPrice()} onReset={this.resetCart} />
           </div>
           <div className="site_container">
-            <HeaderContainer />
+            <HeaderContainer setNavigation={this.setNavigation}/>
             <div className="clear"></div>
             <Caption />
             <div className="content_container">
-              {productsList}
+              {this.state.navigator.productsShow ? productsList : null}
+              {this.state.navigator.cartShow ? (<Cart DB={ProductsDB} />) : null}
             </div>
           </div>
           <div className="clear"></div>
@@ -147,20 +187,6 @@ var Main = React.createClass({
             <Footer />
           </div>
         </div>
-    )
-  return (
-
-      <HashRouter>
-
-        <Route path="/" component={CSiteContainer}>
-          <Route component={CHeaderContainer}></Route>
-          <Route component={Clear}></Route>
-          <Route component={CCaption}></Route>
-          <Route component={CContentContainer}></Route>
-          <Route component={Clear}></Route>
-        </Route>
-
-      </HashRouter>
     )
   }
 });

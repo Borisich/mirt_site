@@ -24041,6 +24041,55 @@ module.exports = Caption;
 },{"react":215}],218:[function(require,module,exports){
 "use strict";
 
+//var ProductsDB = require('../../public/data/ProductsDB.jsx');
+var React = require('react');
+var Cart = React.createClass({
+  displayName: "Cart",
+
+  searchProduct: function searchProduct(id) {
+    for (var i = 0; i < this.props.DB.length; i++) {
+      if (this.props.DB[i].id == id) {
+        return this.props.DB[i];
+        break;
+      }
+    }
+    return null;
+  },
+  render: function render() {
+    var self = this;
+    var cart = localStorage["mirt.cart"] ? JSON.parse(localStorage["mirt.cart"]) : [];
+    console.log(cart);
+    var cartList = cart.map(function (product) {
+      var sProduct = self.searchProduct(product.id);
+      return React.createElement(
+        "li",
+        { key: product.id },
+        " ",
+        React.createElement("img", { className: "cart_img", src: sProduct.photoPath + sProduct.imageFiles[0] }),
+        " ID: ",
+        product.id,
+        "; Caption: ",
+        sProduct.caption,
+        "; Price: ",
+        sProduct.price,
+        ";  ",
+        product.count,
+        " \u0448\u0442."
+      );
+    });
+    return React.createElement(
+      "div",
+      { className: "cartContent" },
+      cartList
+    );
+  }
+});
+
+module.exports = Cart;
+
+},{"react":215}],219:[function(require,module,exports){
+"use strict";
+
 var React = require('react');
 var Footer = React.createClass({
   displayName: "Footer",
@@ -24056,7 +24105,7 @@ var Footer = React.createClass({
 
 module.exports = Footer;
 
-},{"react":215}],219:[function(require,module,exports){
+},{"react":215}],220:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -24071,14 +24120,14 @@ var HeaderContainer = React.createClass({
       'div',
       { className: 'header_container' },
       React.createElement(Logo, null),
-      React.createElement(Menu, null)
+      React.createElement(Menu, { setNavigation: this.props.setNavigation })
     );
   }
 });
 
 module.exports = HeaderContainer;
 
-},{"./Logo.jsx":220,"./Menu.jsx":221,"react":215}],220:[function(require,module,exports){
+},{"./Logo.jsx":221,"./Menu.jsx":222,"react":215}],221:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -24096,44 +24145,50 @@ var Logo = React.createClass({
 
 module.exports = Logo;
 
-},{"react":215}],221:[function(require,module,exports){
-"use strict";
+},{"react":215}],222:[function(require,module,exports){
+'use strict';
 
 var React = require('react');
 var Menu = React.createClass({
-  displayName: "Menu",
+  displayName: 'Menu',
 
   render: function render() {
+    var _this = this;
+
     return React.createElement(
-      "div",
-      { className: "menu" },
+      'div',
+      { className: 'menu' },
       React.createElement(
-        "ul",
+        'ul',
         null,
         React.createElement(
-          "li",
-          null,
-          "\u0413\u043B\u0430\u0432\u043D\u0430\u044F"
+          'li',
+          { onClick: function onClick() {
+              return _this.props.setNavigation('main');
+            } },
+          '\u0413\u043B\u0430\u0432\u043D\u0430\u044F'
         ),
         React.createElement(
-          "li",
+          'li',
           null,
-          "\u041E \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438"
+          '\u041E \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438'
         ),
         React.createElement(
-          "li",
-          null,
-          "\u041A\u043E\u0440\u0437\u0438\u043D\u0430"
+          'li',
+          { onClick: function onClick() {
+              return _this.props.setNavigation('cart');
+            } },
+          '\u041A\u043E\u0440\u0437\u0438\u043D\u0430'
         ),
         React.createElement(
-          "li",
+          'li',
           null,
-          "\u041E\u0444\u043E\u0440\u043C\u043B\u0435\u043D\u0438\u0435 \u0437\u0430\u043A\u0430\u0437\u0430"
+          '\u041E\u0444\u043E\u0440\u043C\u043B\u0435\u043D\u0438\u0435 \u0437\u0430\u043A\u0430\u0437\u0430'
         ),
         React.createElement(
-          "li",
+          'li',
           null,
-          "\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B"
+          '\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B'
         )
       )
     );
@@ -24142,59 +24197,7 @@ var Menu = React.createClass({
 
 module.exports = Menu;
 
-},{"react":215}],222:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var ListItem = require('./ListItem.jsx');
-
-var ingredients = [{
-  "id": 1,
-  "text": "LI1"
-}, {
-  "id": 2,
-  "text": "LI2"
-}, {
-  "id": 3,
-  "text": "LI3"
-}];
-
-var List = React.createClass({
-  displayName: 'List',
-
-  render: function render() {
-    var listItems = ingredients.map(function (item) {
-      return React.createElement(ListItem, { key: item.id, ingredient: item.text });
-    });
-    return React.createElement(
-      'ul',
-      null,
-      listItems
-    );
-  }
-});
-
-module.exports = List;
-
-},{"./ListItem.jsx":223,"react":215}],223:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var ListItem = React.createClass({
-  displayName: 'ListItem',
-
-  render: function render() {
-    return React.createElement(
-      'li',
-      null,
-      this.props.ingredient
-    );
-  }
-});
-
-module.exports = ListItem;
-
-},{"react":215}],224:[function(require,module,exports){
+},{"react":215}],223:[function(require,module,exports){
 'use strict';
 
 var _reactSkylight = require('react-skylight');
@@ -24261,7 +24264,7 @@ var BottomPanel = React.createClass({
     var imageList = this.props.imageUrls.map(function (url) {
       return React.createElement(
         'div',
-        null,
+        { key: url },
         React.createElement(_reactMediumImageZoom2.default, {
           image: {
             src: url,
@@ -24347,7 +24350,7 @@ var BottomPanel = React.createClass({
 
 module.exports = BottomPanel;
 
-},{"react":215,"react-medium-image-zoom":155,"react-skylight":156,"react-slick":163}],225:[function(require,module,exports){
+},{"react":215,"react-medium-image-zoom":155,"react-skylight":156,"react-slick":163}],224:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -24365,7 +24368,7 @@ var Header = React.createClass({
 
 module.exports = Header;
 
-},{"react":215}],226:[function(require,module,exports){
+},{"react":215}],225:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -24402,7 +24405,7 @@ var Picture = _react2.default.createClass({
     var imageList = this.props.imageUrls.map(function (url) {
       return _react2.default.createElement(
         'div',
-        null,
+        { key: url },
         _react2.default.createElement('img', { src: url, height: '300', width: '402' })
       );
     });
@@ -24437,7 +24440,7 @@ var Picture = _react2.default.createClass({
 
 module.exports = Picture;
 
-},{"react":215,"react-slick":163}],227:[function(require,module,exports){
+},{"react":215,"react-slick":163}],226:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -24461,7 +24464,7 @@ var Product = React.createClass({
 
 module.exports = Product;
 
-},{"./BottomPanel.jsx":224,"./Header.jsx":225,"./Picture.jsx":226,"react":215}],228:[function(require,module,exports){
+},{"./BottomPanel.jsx":223,"./Header.jsx":224,"./Picture.jsx":225,"react":215}],227:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -24527,17 +24530,17 @@ var TopBar = React.createClass({
 
 module.exports = TopBar;
 
-},{"react":215}],229:[function(require,module,exports){
+},{"react":215}],228:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-var List = require('./components/List.jsx');
 var TopBar = require('./components/TopBar.jsx');
 var Caption = require('./components/Caption.jsx');
 var HeaderContainer = require('./components/HeaderContainer/HeaderContainer.jsx');
 var Product = require('./components/Product/Product.jsx');
 var Footer = require('./components/Footer.jsx');
+var Cart = require('./components/Cart.jsx');
 var ProductsDB = require('../public/data/ProductsDB.jsx');
 
 /*var Slider = require('react-slick');*/
@@ -24565,15 +24568,54 @@ var Main = React.createClass({
     return {
       cart: val,
       cartStyle: "cartStyleUsual",
-      cartBgStyle: "red"
+      cartBgStyle: "red",
+      navigator: {
+        productsShow: 0,
+        cartShow: 1
+      }
     };
+  },
+  setNavigation: function setNavigation(location) {
+    //alert('CLICK!');
+    switch (location) {
+      case 'main':
+        this.setState({ navigator: {
+            productsShow: 1,
+            cartShow: 0
+          } });
+        //alert('MAIN');
+        break;
+      case 'cart':
+        this.setState({ navigator: {
+            productsShow: 0,
+            cartShow: 1
+          } });
+        //alert('CART');
+        break;
+      default:
+        this.setState({ navigator: {
+            productsShow: 1,
+            cartShow: 0
+          } });
+    }
   },
   addToCart: function addToCart(value, id) {
     var newCart = this.state.cart;
-    newCart.push({
-      id: id,
-      count: value
-    });
+    var found = 0;
+    for (var i = 0; i < newCart.length; i++) {
+      if (newCart[i].id == id) {
+        newCart[i].count += value;
+        found = 1;
+        break;
+      }
+    }
+    if (!found) {
+      newCart.push({
+        id: id,
+        count: value
+      });
+    }
+
     localStorage["mirt.cart"] = JSON.stringify(newCart);
     this.setState({
       cart: newCart
@@ -24621,7 +24663,7 @@ var Main = React.createClass({
   render: function render() {
     var self = this;
     var productsList = ProductsDB.map(function (product) {
-      return React.createElement(Product, { id: product.id, caption: product.caption, description: product.description, imageUrls: product.imageFiles.map(function (file) {
+      return React.createElement(Product, { key: product.id, id: product.id, caption: product.caption, description: product.description, imageUrls: product.imageFiles.map(function (file) {
           return product.photoPath + file;
         }), price: product.price, addToCart: self.addToCart });
     });
@@ -24663,13 +24705,14 @@ var Main = React.createClass({
       React.createElement(
         'div',
         { className: 'site_container' },
-        React.createElement(HeaderContainer, null),
+        React.createElement(HeaderContainer, { setNavigation: this.setNavigation }),
         React.createElement('div', { className: 'clear' }),
         React.createElement(Caption, null),
         React.createElement(
           'div',
           { className: 'content_container' },
-          productsList
+          this.state.navigator.productsShow ? productsList : null,
+          this.state.navigator.cartShow ? React.createElement(Cart, { DB: ProductsDB }) : null
         )
       ),
       React.createElement('div', { className: 'clear' }),
@@ -24679,22 +24722,9 @@ var Main = React.createClass({
         React.createElement(Footer, null)
       )
     );
-    return React.createElement(
-      HashRouter,
-      null,
-      React.createElement(
-        Route,
-        { path: '/', component: CSiteContainer },
-        React.createElement(Route, { component: CHeaderContainer }),
-        React.createElement(Route, { component: Clear }),
-        React.createElement(Route, { component: CCaption }),
-        React.createElement(Route, { component: CContentContainer }),
-        React.createElement(Route, { component: Clear })
-      )
-    );
   }
 });
 
 ReactDOM.render(React.createElement(Main, null), document.getElementById('mirt'));
 
-},{"../public/data/ProductsDB.jsx":216,"./components/Caption.jsx":217,"./components/Footer.jsx":218,"./components/HeaderContainer/HeaderContainer.jsx":219,"./components/List.jsx":222,"./components/Product/Product.jsx":227,"./components/TopBar.jsx":228,"react":215,"react-dom":2}]},{},[229]);
+},{"../public/data/ProductsDB.jsx":216,"./components/Caption.jsx":217,"./components/Cart.jsx":218,"./components/Footer.jsx":219,"./components/HeaderContainer/HeaderContainer.jsx":220,"./components/Product/Product.jsx":226,"./components/TopBar.jsx":227,"react":215,"react-dom":2}]},{},[228]);
