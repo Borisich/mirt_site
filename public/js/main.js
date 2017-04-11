@@ -24039,12 +24039,12 @@ var Caption = React.createClass({
 module.exports = Caption;
 
 },{"react":215}],218:[function(require,module,exports){
-"use strict";
+'use strict';
 
 //var ProductsDB = require('../../public/data/ProductsDB.jsx');
 var React = require('react');
 var Cart = React.createClass({
-  displayName: "Cart",
+  displayName: 'Cart',
 
   searchProduct: function searchProduct(id) {
     for (var i = 0; i < this.props.DB.length; i++) {
@@ -24055,31 +24055,39 @@ var Cart = React.createClass({
     }
     return null;
   },
+  onChange: function onChange(event) {
+    //alert(event.target.getAttribute('data-pid'));
+    //() => this.props.setNavigation('main');
+    if (event.target.value < 0) return;
+    this.props.changeCart(Number(event.target.value), Number(event.target.getAttribute('data-pid')));
+    console.log("ID: " + Number(event.target.getAttribute('data-pid')));
+    console.log("New value: " + Number(event.target.value));
+  },
   render: function render() {
     var self = this;
-    var cart = localStorage["mirt.cart"] ? JSON.parse(localStorage["mirt.cart"]) : [];
-    console.log(cart);
+    var cart = this.props.cart;
+    //console.log(cart);
     var cartList = cart.map(function (product) {
       var sProduct = self.searchProduct(product.id);
       return React.createElement(
-        "li",
+        'li',
         { key: product.id },
-        " ",
-        React.createElement("img", { className: "cart_img", src: sProduct.photoPath + sProduct.imageFiles[0] }),
-        " ID: ",
+        React.createElement('img', { className: 'cart_img', src: sProduct.photoPath + sProduct.imageFiles[0] }),
+        'ID: ',
         product.id,
-        "; Caption: ",
+        '; Caption: ',
         sProduct.caption,
-        "; Price: ",
+        '; Price: ',
         sProduct.price,
-        ";  ",
+        ';  ',
         product.count,
-        " \u0448\u0442."
+        ' \u0448\u0442.',
+        React.createElement('input', { className: 'num_input', value: product.count, autoComplete: 'off', type: 'number', name: 'quantity', 'data-pid': product.id, onChange: self.onChange })
       );
     });
     return React.createElement(
-      "div",
-      { className: "cartContent" },
+      'div',
+      { className: 'cartContent' },
       cartList
     );
   }
@@ -24212,6 +24220,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var React = require('react');
 var Slider = require('react-slick');
+var Popup = require('./Popup.jsx');
 
 var BottomPanel = React.createClass({
   displayName: 'BottomPanel',
@@ -24308,41 +24317,11 @@ var BottomPanel = React.createClass({
         React.createElement(
           'button',
           { className: 'buttons', onClick: function onClick() {
-              return _this.refs.simpleDialog.show();
+              return _this.refs[_this.props.id].show();
             } },
           '\u041F\u0440\u043E\u0441\u043C\u043E\u0442\u0440'
         ),
-        React.createElement(
-          _reactSkylight2.default,
-          { dialogStyles: myBigGreenDialog, hideOnOverlayClicked: true, ref: 'simpleDialog', title: '' },
-          React.createElement(
-            Slider,
-            settings,
-            imageList
-          ),
-          React.createElement(
-            'h2',
-            null,
-            this.props.caption
-          ),
-          React.createElement(
-            'div',
-            { className: 'description' },
-            this.props.description
-          ),
-          React.createElement('br', null),
-          React.createElement(
-            'div',
-            { className: 'order_panel' },
-            React.createElement(
-              'div',
-              { className: 'product_price' },
-              this.props.price,
-              ' \u0440\u0443\u0431.'
-            ),
-            React.createElement(OrderPanel, { value: this.state.value, onChange: this.onChange, onSubmit: this.onSubmit })
-          )
-        )
+        React.createElement(Popup, { addToCart: this.props.addToCart, id: this.props.id, flag: '1' })
       )
     );
   }
@@ -24350,7 +24329,7 @@ var BottomPanel = React.createClass({
 
 module.exports = BottomPanel;
 
-},{"react":215,"react-medium-image-zoom":155,"react-skylight":156,"react-slick":163}],224:[function(require,module,exports){
+},{"./Popup.jsx":226,"react":215,"react-medium-image-zoom":155,"react-skylight":156,"react-slick":163}],224:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -24443,6 +24422,163 @@ module.exports = Picture;
 },{"react":215,"react-slick":163}],226:[function(require,module,exports){
 'use strict';
 
+var _reactSkylight = require('react-skylight');
+
+var _reactSkylight2 = _interopRequireDefault(_reactSkylight);
+
+var _reactMediumImageZoom = require('react-medium-image-zoom');
+
+var _reactMediumImageZoom2 = _interopRequireDefault(_reactMediumImageZoom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var React = require('react');
+var Slider = require('react-slick');
+var DB = require('../../../public/data/ProductsDB.jsx');
+
+var Popup = React.createClass({
+  displayName: 'Popup',
+
+  getInitialState: function getInitialState() {
+    return {
+      value: 1
+    };
+  },
+  searchProduct: function searchProduct(id) {
+    for (var i = 0; i < DB.length; i++) {
+      if (DB[i].id == id) {
+        return DB[i];
+        break;
+      }
+    }
+    return null;
+  },
+  onChange: function onChange(event) {
+    this.setState({
+      value: event.target.value
+    });
+  },
+  onSubmit: function onSubmit() {
+    this.props.addToCart(Number(this.state.value), Number(this.props.id));
+    this.setState({
+      value: 1
+    });
+  },
+  render: function render() {
+    var _this = this;
+
+    var settings = {
+      dots: true,
+      /*infinite: true,*/
+      speed: 500,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      /*adaptiveHeight: true,*/
+      /*arrows: true,*/
+      /*className: "centered",*/
+      centerMode: true,
+      /*fade: true,*/
+      //swipeToSlide: false,
+      //touchMove: false,
+      draggable: false,
+      imageHeight: "260px"
+
+    };
+    var myBigGreenDialog = {
+      backgroundColor: '#00897B',
+      color: '#ffffff',
+      width: '80%',
+      height: '700px',
+      marginTop: '-20%',
+      marginLeft: '-40%'
+    };
+    var product = this.searchProduct(this.props.id);
+    var imageList = product.imageFiles.map(function (url) {
+      return React.createElement(
+        'div',
+        { key: url },
+        React.createElement(_reactMediumImageZoom2.default, {
+          image: {
+            src: product.photoPath + url,
+            alt: 'alt',
+            className: 'fig',
+            style: { height: settings.imageHeight }
+          }
+        })
+      );
+    });
+    var OrderPanelPopup = React.createClass({
+      displayName: 'OrderPanelPopup',
+
+      render: function render() {
+        return React.createElement(
+          'div',
+          { className: 'in_cart_button_container' },
+          React.createElement('input', { className: 'num_input', value: this.props.value, autoComplete: 'off', type: 'number', name: 'quantity', min: '1', max: '5', onChange: this.props.onChange }),
+          React.createElement('div', { className: 'mid' }),
+          React.createElement(
+            'button',
+            { className: 'buttons', onClick: this.props.onSubmit },
+            '\u0412 \u043A\u043E\u0440\u0437\u0438\u043D\u0443'
+          )
+        );
+      }
+    });
+    //if (this.props.flag) {() => this.refs[this.props.id].show()};
+    console.log(this.refs);
+    this.refs[product.id].show();
+    return React.createElement(
+      'div',
+      null,
+      ' ref=',
+      product.id,
+      React.createElement(
+        'button',
+        { className: 'buttons', onClick: function onClick() {
+            return _this.refs[_this.props.id].show();
+          } },
+        '\u041F\u0440\u043E\u0441\u043C\u043E\u0442\u0440'
+      ),
+      React.createElement(
+        _reactSkylight2.default,
+        { dialogStyles: myBigGreenDialog, hideOnOverlayClicked: true, ref: product.id, title: '' },
+        React.createElement(
+          Slider,
+          settings,
+          imageList
+        ),
+        React.createElement(
+          'h2',
+          null,
+          this.props.caption
+        ),
+        React.createElement(
+          'div',
+          { className: 'description' },
+          this.props.description
+        ),
+        React.createElement('br', null),
+        React.createElement(
+          'div',
+          { className: 'order_panel' },
+          React.createElement(
+            'div',
+            { className: 'product_price' },
+            this.props.price,
+            ' \u0440\u0443\u0431.'
+          ),
+          React.createElement(OrderPanelPopup, { value: this.state.value, onChange: this.onChange, onSubmit: this.onSubmit })
+        )
+      )
+    );
+  }
+});
+
+module.exports = Popup;
+
+},{"../../../public/data/ProductsDB.jsx":216,"react":215,"react-medium-image-zoom":155,"react-skylight":156,"react-slick":163}],227:[function(require,module,exports){
+'use strict';
+
 var React = require('react');
 var BottomPanel = require('./BottomPanel.jsx');
 var Header = require('./Header.jsx');
@@ -24464,7 +24600,7 @@ var Product = React.createClass({
 
 module.exports = Product;
 
-},{"./BottomPanel.jsx":223,"./Header.jsx":224,"./Picture.jsx":225,"react":215}],227:[function(require,module,exports){
+},{"./BottomPanel.jsx":223,"./Header.jsx":224,"./Picture.jsx":225,"react":215}],228:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -24530,7 +24666,7 @@ var TopBar = React.createClass({
 
 module.exports = TopBar;
 
-},{"react":215}],228:[function(require,module,exports){
+},{"react":215}],229:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -24599,6 +24735,20 @@ var Main = React.createClass({
           } });
     }
   },
+  changeCart: function changeCart(value, id) {
+    var newCart = this.state.cart;
+    for (var i = 0; i < newCart.length; i++) {
+      if (newCart[i].id == id) {
+        newCart[i].count = value;
+        break;
+      }
+    }
+    localStorage["mirt.cart"] = JSON.stringify(newCart);
+    this.setState({
+      cart: newCart
+    });
+    this.highlightCart();
+  },
   addToCart: function addToCart(value, id) {
     var newCart = this.state.cart;
     var found = 0;
@@ -24643,7 +24793,7 @@ var Main = React.createClass({
     for (var i = 0; i < this.state.cart.length; i++) {
       for (var j = 0; j < ProductsDB.length; j++) {
         if (this.state.cart[i].id == ProductsDB[j].id) {
-          totalItems += this.state.cart[i].count;
+          totalItems += Number(this.state.cart[i].count);
         }
       }
     }
@@ -24712,7 +24862,7 @@ var Main = React.createClass({
           'div',
           { className: 'content_container' },
           this.state.navigator.productsShow ? productsList : null,
-          this.state.navigator.cartShow ? React.createElement(Cart, { DB: ProductsDB }) : null
+          this.state.navigator.cartShow ? React.createElement(Cart, { changeCart: this.changeCart, cart: this.state.cart, DB: ProductsDB }) : null
         )
       ),
       React.createElement('div', { className: 'clear' }),
@@ -24727,4 +24877,4 @@ var Main = React.createClass({
 
 ReactDOM.render(React.createElement(Main, null), document.getElementById('mirt'));
 
-},{"../public/data/ProductsDB.jsx":216,"./components/Caption.jsx":217,"./components/Cart.jsx":218,"./components/Footer.jsx":219,"./components/HeaderContainer/HeaderContainer.jsx":220,"./components/Product/Product.jsx":226,"./components/TopBar.jsx":227,"react":215,"react-dom":2}]},{},[228]);
+},{"../public/data/ProductsDB.jsx":216,"./components/Caption.jsx":217,"./components/Cart.jsx":218,"./components/Footer.jsx":219,"./components/HeaderContainer/HeaderContainer.jsx":220,"./components/Product/Product.jsx":227,"./components/TopBar.jsx":228,"react":215,"react-dom":2}]},{},[229]);

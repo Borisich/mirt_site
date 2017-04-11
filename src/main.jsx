@@ -66,6 +66,20 @@ var Main = React.createClass({
         }});
     }
   },
+  changeCart: function(value, id){
+    var newCart = this.state.cart;
+    for (var i=0; i<newCart.length; i++){
+      if (newCart[i].id == id){
+        newCart[i].count = value;
+        break;
+      }
+    }
+    localStorage["mirt.cart"] = JSON.stringify(newCart);
+    this.setState({
+      cart: newCart,
+    });
+    this.highlightCart();
+  },
   addToCart: function(value, id){
     var newCart = this.state.cart;
     var found = 0;
@@ -112,7 +126,7 @@ var Main = React.createClass({
     for(var i=0; i<this.state.cart.length; i++){
       for(var j=0; j<ProductsDB.length; j++){
         if (this.state.cart[i].id == ProductsDB[j].id){
-          totalItems += this.state.cart[i].count;
+          totalItems += Number(this.state.cart[i].count);
         }
       }
     }
@@ -179,7 +193,7 @@ var Main = React.createClass({
             <Caption />
             <div className="content_container">
               {this.state.navigator.productsShow ? productsList : null}
-              {this.state.navigator.cartShow ? (<Cart DB={ProductsDB} />) : null}
+              {this.state.navigator.cartShow ? (<Cart changeCart={this.changeCart} cart={this.state.cart} DB={ProductsDB} />) : null}
             </div>
           </div>
           <div className="clear"></div>

@@ -1,15 +1,24 @@
 var React = require('react');
 var Slider = require('react-slick');
-var Popup = require('./Popup.jsx');
+var DB = require('../../../public/data/ProductsDB.jsx');
 
 import SkyLight from 'react-skylight';
 import ImageZoom from 'react-medium-image-zoom';
 
-var BottomPanel = React.createClass({
+var Popup = React.createClass({
   getInitialState: function(){
     return {
       value: 1
     }
+  },
+  searchProduct: function(id){
+    for (var i=0; i<DB.length; i++){
+      if (DB[i].id == id) {
+        return DB[i]
+        break;
+      }
+    }
+    return null;
   },
   onChange: function(event){
     this.setState({
@@ -48,12 +57,12 @@ var BottomPanel = React.createClass({
       marginTop: '-20%',
       marginLeft: '-40%',
     };
-
-    var imageList = this.props.imageUrls.map(function(url){
+    var product=this.searchProduct(this.props.id);
+    var imageList = product.imageFiles.map(function(url){
       return (
         <div key={url}><ImageZoom
                 image={{
-                  src: url,
+                  src: product.photoPath+url,
                   alt: 'alt',
                   className: 'fig',
                   style: { height: settings.imageHeight }
@@ -62,7 +71,7 @@ var BottomPanel = React.createClass({
         </div>
       )
     })
-    var OrderPanel = React.createClass({
+    var OrderPanelPopup = React.createClass({
       render: function(){
         return (
           <div className="in_cart_button_container">
@@ -73,39 +82,32 @@ var BottomPanel = React.createClass({
         )
       }
     });
+    //if (this.props.flag) {() => this.refs[this.props.id].show()};
+    console.log(this.refs);
+    this.refs[product.id].show();
     return(
-      <div className="product_order">
-				<div className="product_price">
-					{this.props.price} руб.
-				</div>
-        <OrderPanel value={this.state.value} onChange={this.onChange} onSubmit={this.onSubmit}/>
-				<div className="quick_view_button_container">
-          <button className="buttons" onClick={() => this.refs[this.props.id].show()}>Просмотр</button>
-          <Popup addToCart={this.props.addToCart} id={this.props.id} flag='1'/>
+      <div> ref={product.id}
 
-          {/*}
-          <button className="buttons" onClick={() => this.refs.simpleDialog.show()}>Просмотр</button>
-          <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref="simpleDialog" title="">
-            <Slider {...settings}>
-              {imageList}
-            </Slider>
-            <h2>{this.props.caption}</h2>
-            <div className="description">
-              {this.props.description}
-            </div>
-            <br/>
-            <div className="order_panel">
-              <div className="product_price">
-      					{this.props.price} руб.
-      				</div>
-              <OrderPanel value={this.state.value} onChange={this.onChange} onSubmit={this.onSubmit}/>
-            </div>
-          </SkyLight>
-          {*/}
-				</div>
-	  </div>
+        <button className="buttons" onClick={() => this.refs[this.props.id].show()}>Просмотр</button>
+        <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref={product.id} title="">
+          <Slider {...settings}>
+            {imageList}
+          </Slider>
+          <h2>{this.props.caption}</h2>
+          <div className="description">
+            {this.props.description}
+          </div>
+          <br/>
+          <div className="order_panel">
+            <div className="product_price">
+    					{this.props.price} руб.
+    				</div>
+            <OrderPanelPopup value={this.state.value} onChange={this.onChange} onSubmit={this.onSubmit}/>
+          </div>
+        </SkyLight>
+      </div>
     )
   }
 });
 
-module.exports = BottomPanel;
+module.exports = Popup;
