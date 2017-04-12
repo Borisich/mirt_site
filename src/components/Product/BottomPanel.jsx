@@ -23,45 +23,6 @@ var BottomPanel = React.createClass({
     })
   },
   render: function(){
-    var settings = {
-      dots: true,
-      /*infinite: true,*/
-      speed: 500,
-      slidesToShow: 3,
-      slidesToScroll: 1,
-      /*adaptiveHeight: true,*/
-      /*arrows: true,*/
-      /*className: "centered",*/
-      centerMode: true,
-      /*fade: true,*/
-      //swipeToSlide: false,
-      //touchMove: false,
-      draggable: false,
-      imageHeight: "260px"
-
-    };
-    var myBigGreenDialog = {
-      backgroundColor: '#00897B',
-      color: '#ffffff',
-      width: '80%',
-      height: '700px',
-      marginTop: '-20%',
-      marginLeft: '-40%',
-    };
-
-    var imageList = this.props.imageUrls.map(function(url){
-      return (
-        <div key={url}><ImageZoom
-                image={{
-                  src: url,
-                  alt: 'alt',
-                  className: 'fig',
-                  style: { height: settings.imageHeight }
-                }}
-              />
-        </div>
-      )
-    })
     var OrderPanel = React.createClass({
       render: function(){
         return (
@@ -73,6 +34,7 @@ var BottomPanel = React.createClass({
         )
       }
     });
+
     return(
       <div className="product_order">
 				<div className="product_price">
@@ -80,28 +42,8 @@ var BottomPanel = React.createClass({
 				</div>
         <OrderPanel value={this.state.value} onChange={this.onChange} onSubmit={this.onSubmit}/>
 				<div className="quick_view_button_container">
-          <button className="buttons" onClick={() => this.refs[this.props.id].show()}>Просмотр</button>
-          <Popup addToCart={this.props.addToCart} id={this.props.id} flag='1'/>
-
-          {/*}
-          <button className="buttons" onClick={() => this.refs.simpleDialog.show()}>Просмотр</button>
-          <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref="simpleDialog" title="">
-            <Slider {...settings}>
-              {imageList}
-            </Slider>
-            <h2>{this.props.caption}</h2>
-            <div className="description">
-              {this.props.description}
-            </div>
-            <br/>
-            <div className="order_panel">
-              <div className="product_price">
-      					{this.props.price} руб.
-      				</div>
-              <OrderPanel value={this.state.value} onChange={this.onChange} onSubmit={this.onSubmit}/>
-            </div>
-          </SkyLight>
-          {*/}
+          <button className="buttons" onClick={() => this.refs.pop.showPopup()}>Просмотр</button>
+          <Popup ref="pop" addToCart={this.props.addToCart} id={this.props.id} flag='1'/>
 				</div>
 	  </div>
     )

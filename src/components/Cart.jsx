@@ -1,4 +1,6 @@
 //var ProductsDB = require('../../public/data/ProductsDB.jsx');
+var Popup = require('./Product/Popup.jsx');
+
 var React = require('react');
 var Cart = React.createClass({
   searchProduct: function(id){
@@ -26,15 +28,19 @@ var Cart = React.createClass({
       var sProduct=self.searchProduct(product.id);
       return (
         <li key={product.id}>
-          <img className="cart_img" src={sProduct.photoPath+sProduct.imageFiles[0]} />
+          <img className="cart_img" src={sProduct.photoPath+sProduct.imageFiles[0]} onClick={() => self.refs[product.id].showPopup()}/>
           ID: {product.id}; Caption: {sProduct.caption}; Price: {sProduct.price};  {product.count} шт.
           <input className="num_input" value={product.count} autoComplete="off" type="number" name="quantity" data-pid={product.id} onChange={self.onChange}/>
+          <button className="buttons" onClick={() => self.props.delFromCart(product.id)}>Удалить</button>
+          <Popup ref={product.id} addToCart={self.props.addToCart} id={product.id} flag='1'/>
+
         </li>
       )
     });
     return(
       <div className="cartContent">
         {cartList}
+        Сумма: {this.props.summ} руб.
       </div>
     )
   }

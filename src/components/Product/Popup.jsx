@@ -31,6 +31,9 @@ var Popup = React.createClass({
       value: 1
     })
   },
+  showPopup: function(){
+    this.refs.simpleDialog.show();
+  },
   render: function(){
     var settings = {
       dots: true,
@@ -82,30 +85,24 @@ var Popup = React.createClass({
         )
       }
     });
-    //if (this.props.flag) {() => this.refs[this.props.id].show()};
-    console.log(this.refs);
-    this.refs[product.id].show();
-    return(
-      <div> ref={product.id}
 
-        <button className="buttons" onClick={() => this.refs[this.props.id].show()}>Просмотр</button>
-        <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref={product.id} title="">
-          <Slider {...settings}>
-            {imageList}
-          </Slider>
-          <h2>{this.props.caption}</h2>
-          <div className="description">
-            {this.props.description}
-          </div>
-          <br/>
-          <div className="order_panel">
-            <div className="product_price">
-    					{this.props.price} руб.
-    				</div>
-            <OrderPanelPopup value={this.state.value} onChange={this.onChange} onSubmit={this.onSubmit}/>
-          </div>
-        </SkyLight>
-      </div>
+    return(
+      <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref="simpleDialog" title="">
+        <Slider {...settings}>
+          {imageList}
+        </Slider>
+        <h2>{this.props.caption}</h2>
+        <div className="description">
+          {product.description}
+        </div>
+        <br/>
+        <div className="order_panel">
+          <div className="product_price">
+  					{product.price} руб.
+  				</div>
+          <OrderPanelPopup value={this.state.value} onChange={this.onChange} onSubmit={this.onSubmit}/>
+        </div>
+      </SkyLight>
     )
   }
 });

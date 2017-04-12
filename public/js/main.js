@@ -24042,6 +24042,8 @@ module.exports = Caption;
 'use strict';
 
 //var ProductsDB = require('../../public/data/ProductsDB.jsx');
+var Popup = require('./Product/Popup.jsx');
+
 var React = require('react');
 var Cart = React.createClass({
   displayName: 'Cart',
@@ -24072,7 +24074,9 @@ var Cart = React.createClass({
       return React.createElement(
         'li',
         { key: product.id },
-        React.createElement('img', { className: 'cart_img', src: sProduct.photoPath + sProduct.imageFiles[0] }),
+        React.createElement('img', { className: 'cart_img', src: sProduct.photoPath + sProduct.imageFiles[0], onClick: function onClick() {
+            return self.refs[product.id].showPopup();
+          } }),
         'ID: ',
         product.id,
         '; Caption: ',
@@ -24082,20 +24086,31 @@ var Cart = React.createClass({
         ';  ',
         product.count,
         ' \u0448\u0442.',
-        React.createElement('input', { className: 'num_input', value: product.count, autoComplete: 'off', type: 'number', name: 'quantity', 'data-pid': product.id, onChange: self.onChange })
+        React.createElement('input', { className: 'num_input', value: product.count, autoComplete: 'off', type: 'number', name: 'quantity', 'data-pid': product.id, onChange: self.onChange }),
+        React.createElement(
+          'button',
+          { className: 'buttons', onClick: function onClick() {
+              return self.props.delFromCart(product.id);
+            } },
+          '\u0423\u0434\u0430\u043B\u0438\u0442\u044C'
+        ),
+        React.createElement(Popup, { ref: product.id, addToCart: self.props.addToCart, id: product.id, flag: '1' })
       );
     });
     return React.createElement(
       'div',
       { className: 'cartContent' },
-      cartList
+      cartList,
+      '\u0421\u0443\u043C\u043C\u0430: ',
+      this.props.summ,
+      ' \u0440\u0443\u0431.'
     );
   }
 });
 
 module.exports = Cart;
 
-},{"react":215}],219:[function(require,module,exports){
+},{"./Product/Popup.jsx":226,"react":215}],219:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -24244,46 +24259,6 @@ var BottomPanel = React.createClass({
   render: function render() {
     var _this = this;
 
-    var settings = {
-      dots: true,
-      /*infinite: true,*/
-      speed: 500,
-      slidesToShow: 3,
-      slidesToScroll: 1,
-      /*adaptiveHeight: true,*/
-      /*arrows: true,*/
-      /*className: "centered",*/
-      centerMode: true,
-      /*fade: true,*/
-      //swipeToSlide: false,
-      //touchMove: false,
-      draggable: false,
-      imageHeight: "260px"
-
-    };
-    var myBigGreenDialog = {
-      backgroundColor: '#00897B',
-      color: '#ffffff',
-      width: '80%',
-      height: '700px',
-      marginTop: '-20%',
-      marginLeft: '-40%'
-    };
-
-    var imageList = this.props.imageUrls.map(function (url) {
-      return React.createElement(
-        'div',
-        { key: url },
-        React.createElement(_reactMediumImageZoom2.default, {
-          image: {
-            src: url,
-            alt: 'alt',
-            className: 'fig',
-            style: { height: settings.imageHeight }
-          }
-        })
-      );
-    });
     var OrderPanel = React.createClass({
       displayName: 'OrderPanel',
 
@@ -24301,6 +24276,7 @@ var BottomPanel = React.createClass({
         );
       }
     });
+
     return React.createElement(
       'div',
       { className: 'product_order' },
@@ -24317,11 +24293,11 @@ var BottomPanel = React.createClass({
         React.createElement(
           'button',
           { className: 'buttons', onClick: function onClick() {
-              return _this.refs[_this.props.id].show();
+              return _this.refs.pop.showPopup();
             } },
           '\u041F\u0440\u043E\u0441\u043C\u043E\u0442\u0440'
         ),
-        React.createElement(Popup, { addToCart: this.props.addToCart, id: this.props.id, flag: '1' })
+        React.createElement(Popup, { ref: 'pop', addToCart: this.props.addToCart, id: this.props.id, flag: '1' })
       )
     );
   }
@@ -24464,9 +24440,10 @@ var Popup = React.createClass({
       value: 1
     });
   },
+  showPopup: function showPopup() {
+    this.refs.simpleDialog.show();
+  },
   render: function render() {
-    var _this = this;
-
     var settings = {
       dots: true,
       /*infinite: true,*/
@@ -24524,51 +24501,36 @@ var Popup = React.createClass({
         );
       }
     });
-    //if (this.props.flag) {() => this.refs[this.props.id].show()};
-    console.log(this.refs);
-    this.refs[product.id].show();
+
     return React.createElement(
-      'div',
-      null,
-      ' ref=',
-      product.id,
+      _reactSkylight2.default,
+      { dialogStyles: myBigGreenDialog, hideOnOverlayClicked: true, ref: 'simpleDialog', title: '' },
       React.createElement(
-        'button',
-        { className: 'buttons', onClick: function onClick() {
-            return _this.refs[_this.props.id].show();
-          } },
-        '\u041F\u0440\u043E\u0441\u043C\u043E\u0442\u0440'
+        Slider,
+        settings,
+        imageList
       ),
       React.createElement(
-        _reactSkylight2.default,
-        { dialogStyles: myBigGreenDialog, hideOnOverlayClicked: true, ref: product.id, title: '' },
-        React.createElement(
-          Slider,
-          settings,
-          imageList
-        ),
-        React.createElement(
-          'h2',
-          null,
-          this.props.caption
-        ),
-        React.createElement(
-          'div',
-          { className: 'description' },
-          this.props.description
-        ),
-        React.createElement('br', null),
+        'h2',
+        null,
+        this.props.caption
+      ),
+      React.createElement(
+        'div',
+        { className: 'description' },
+        product.description
+      ),
+      React.createElement('br', null),
+      React.createElement(
+        'div',
+        { className: 'order_panel' },
         React.createElement(
           'div',
-          { className: 'order_panel' },
-          React.createElement(
-            'div',
-            { className: 'product_price' },
-            this.props.price,
-            ' \u0440\u0443\u0431.'
-          ),
-          React.createElement(OrderPanelPopup, { value: this.state.value, onChange: this.onChange, onSubmit: this.onSubmit })
-        )
+          { className: 'product_price' },
+          product.price,
+          ' \u0440\u0443\u0431.'
+        ),
+        React.createElement(OrderPanelPopup, { value: this.state.value, onChange: this.onChange, onSubmit: this.onSubmit })
       )
     );
   }
@@ -24593,7 +24555,7 @@ var Product = React.createClass({
       { className: 'product' },
       React.createElement(Picture, { imageUrls: this.props.imageUrls }),
       React.createElement(Header, { caption: this.props.caption }),
-      React.createElement(BottomPanel, { id: this.props.id, price: this.props.price, imageUrls: this.props.imageUrls, description: this.props.description, caption: this.props.caption, addToCart: this.props.addToCart })
+      React.createElement(BottomPanel, { id: this.props.id, price: this.props.price, caption: this.props.caption, addToCart: this.props.addToCart })
     );
   }
 });
@@ -24706,8 +24668,8 @@ var Main = React.createClass({
       cartStyle: "cartStyleUsual",
       cartBgStyle: "red",
       navigator: {
-        productsShow: 0,
-        cartShow: 1
+        productsShow: 1,
+        cartShow: 0
       }
     };
   },
@@ -24772,6 +24734,20 @@ var Main = React.createClass({
     });
     this.highlightCart();
   },
+  delFromCart: function delFromCart(id) {
+    var newCart = this.state.cart;
+    for (var i = 0; i < newCart.length; i++) {
+      if (newCart[i].id == id) {
+        newCart.splice(i, 1);
+        break;
+      }
+    }
+    localStorage["mirt.cart"] = JSON.stringify(newCart);
+    this.setState({
+      cart: newCart
+    });
+    this.highlightCart();
+  },
   highlightCart: function highlightCart() {
     var self = this;
     this.setState({ cartStyle: "cartStyleHighlight" });
@@ -24813,7 +24789,7 @@ var Main = React.createClass({
   render: function render() {
     var self = this;
     var productsList = ProductsDB.map(function (product) {
-      return React.createElement(Product, { key: product.id, id: product.id, caption: product.caption, description: product.description, imageUrls: product.imageFiles.map(function (file) {
+      return React.createElement(Product, { key: product.id, id: product.id, caption: product.caption, imageUrls: product.imageFiles.map(function (file) {
           return product.photoPath + file;
         }), price: product.price, addToCart: self.addToCart });
     });
@@ -24862,7 +24838,7 @@ var Main = React.createClass({
           'div',
           { className: 'content_container' },
           this.state.navigator.productsShow ? productsList : null,
-          this.state.navigator.cartShow ? React.createElement(Cart, { changeCart: this.changeCart, cart: this.state.cart, DB: ProductsDB }) : null
+          this.state.navigator.cartShow ? React.createElement(Cart, { delFromCart: this.delFromCart, summ: this.cartTotalPrice(), changeCart: this.changeCart, addToCart: this.addToCart, cart: this.state.cart, DB: ProductsDB }) : null
         )
       ),
       React.createElement('div', { className: 'clear' }),

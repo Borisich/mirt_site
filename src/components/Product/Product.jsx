@@ -11,7 +11,7 @@ var Product = React.createClass({
       <div className="product">
 				<Picture imageUrls={this.props.imageUrls}/>
         <Header caption={this.props.caption}/>
-        <BottomPanel id={this.props.id} price={this.props.price} imageUrls={this.props.imageUrls} description={this.props.description} caption={this.props.caption} addToCart={this.props.addToCart}/>
+        <BottomPanel id={this.props.id} price={this.props.price} caption={this.props.caption} addToCart={this.props.addToCart}/>
 			</div>
     )
   }

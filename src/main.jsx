@@ -37,8 +37,8 @@ var Main = React.createClass({
       cartStyle: "cartStyleUsual",
       cartBgStyle: "red",
       navigator: {
-        productsShow: 0,
-        cartShow: 1
+        productsShow: 1,
+        cartShow: 0
       }
     }
   },
@@ -103,6 +103,20 @@ var Main = React.createClass({
     });
     this.highlightCart();
   },
+  delFromCart: function(id){
+    var newCart = this.state.cart;
+    for (var i=0; i<newCart.length; i++){
+      if (newCart[i].id == id){
+        newCart.splice(i,1);
+        break;
+      }
+    }
+    localStorage["mirt.cart"] = JSON.stringify(newCart);
+    this.setState({
+      cart: newCart,
+    });
+    this.highlightCart();
+  },
   highlightCart: function(){
     var self=this;
     this.setState({cartStyle: "cartStyleHighlight"});
@@ -146,7 +160,7 @@ var Main = React.createClass({
   render: function() {
     var self = this;
     var productsList = ProductsDB.map(function(product){
-      return <Product key={product.id} id={product.id} caption={product.caption} description={product.description} imageUrls={product.imageFiles.map(function(file){return (product.photoPath+file)})} price={product.price} addToCart={self.addToCart} />
+      return <Product key={product.id} id={product.id} caption={product.caption} imageUrls={product.imageFiles.map(function(file){return (product.photoPath+file)})} price={product.price} addToCart={self.addToCart} />
     });
     var cN = "topbar "+this.state.cartStyle;
     var CTopBar = (
@@ -193,7 +207,7 @@ var Main = React.createClass({
             <Caption />
             <div className="content_container">
               {this.state.navigator.productsShow ? productsList : null}
-              {this.state.navigator.cartShow ? (<Cart changeCart={this.changeCart} cart={this.state.cart} DB={ProductsDB} />) : null}
+              {this.state.navigator.cartShow ? (<Cart delFromCart={this.delFromCart} summ={this.cartTotalPrice()} changeCart={this.changeCart} addToCart={this.addToCart} cart={this.state.cart} DB={ProductsDB} />) : null}
             </div>
           </div>
           <div className="clear"></div>
