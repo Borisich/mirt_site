@@ -3,7 +3,7 @@ var Caption = React.createClass({
   render: function(){
     return(
       <div className="caption">
-					Украшения для свадебного автомобиля:
+					Some abstract caption:
 			</div>
     )
   }

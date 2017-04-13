@@ -37,8 +37,8 @@ var Main = React.createClass({
       cartStyle: "cartStyleUsual",
       cartBgStyle: "red",
       navigator: {
-        productsShow: 1,
-        cartShow: 0
+        main: 1,
+        cart: 0
       }
     }
   },
@@ -47,22 +47,22 @@ var Main = React.createClass({
     switch (location) {
       case 'main':
         this.setState({navigator:{
-          productsShow: 1,
-          cartShow: 0
+          main: 1,
+          cart: 0
         }});
         //alert('MAIN');
         break;
       case 'cart':
         this.setState({navigator:{
-          productsShow: 0,
-          cartShow: 1
+          main: 0,
+          cart: 1
         }});
         //alert('CART');
         break;
       default:
         this.setState({navigator:{
-          productsShow: 1,
-          cartShow: 0
+          main: 1,
+          cart: 0
         }});
     }
   },
@@ -202,12 +202,12 @@ var Main = React.createClass({
             <TopBar cartTotalItems={this.cartTotalItems()} cartTotalPrice={this.cartTotalPrice()} onReset={this.resetCart} />
           </div>
           <div className="site_container">
-            <HeaderContainer setNavigation={this.setNavigation}/>
+            <HeaderContainer setNavigation={this.setNavigation} navigator={this.state.navigator}/>
             <div className="clear"></div>
             <Caption />
             <div className="content_container">
-              {this.state.navigator.productsShow ? productsList : null}
-              {this.state.navigator.cartShow ? (<Cart delFromCart={this.delFromCart} summ={this.cartTotalPrice()} changeCart={this.changeCart} addToCart={this.addToCart} cart={this.state.cart} DB={ProductsDB} />) : null}
+              {this.state.navigator.main ? productsList : null}
+              {this.state.navigator.cart ? (<Cart delFromCart={this.delFromCart} summ={this.cartTotalPrice()} changeCart={this.changeCart} addToCart={this.addToCart} cart={this.state.cart} DB={ProductsDB} />) : null}
             </div>
           </div>
           <div className="clear"></div>

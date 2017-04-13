@@ -33,14 +33,22 @@ var Cart = React.createClass({
           <input className="num_input" value={product.count} autoComplete="off" type="number" name="quantity" data-pid={product.id} onChange={self.onChange}/>
           <button className="buttons" onClick={() => self.props.delFromCart(product.id)}>Удалить</button>
           <Popup ref={product.id} addToCart={self.props.addToCart} id={product.id} flag='1'/>
-
         </li>
       )
     });
     return(
-      <div className="cartContent">
-        {cartList}
-        Сумма: {this.props.summ} руб.
+      <div className="cartPage">
+        <div className="cartContent">
+          {cartList}
+          Сумма: {this.props.summ} руб.
+        </div>
+        <div className="orderForm">
+          <input className="oInputs" type="text" placeholder="ваше имя" /><br/>
+          <input className="oInputs" type="email" placeholder="почта" /><br/>
+          <input className="oInputs" type="tel" placeholder="телефон" /><br/>
+          <textarea cols='25' rows='4' placeholder="коммент"/><br/>
+          <button className="oInputs buttons">Отправить</button>
+        </div>
       </div>
     )
   }

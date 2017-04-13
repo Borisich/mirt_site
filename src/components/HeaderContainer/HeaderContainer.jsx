@@ -1,6 +1,6 @@
 var React = require('react');
 var Logo = require('./Logo.jsx');
-var Menu = require('./Menu.jsx');
+var Menu = require('./Menu/Menu.jsx');
 
 
 var HeaderContainer = React.createClass({
@@ -8,7 +8,7 @@ var HeaderContainer = React.createClass({
     return (
       <div className="header_container">
         <Logo/>
-        <Menu setNavigation={this.props.setNavigation}/>
+        <Menu setNavigation={this.props.setNavigation} navigator={this.props.navigator}/>
       </div>
     )
   }
