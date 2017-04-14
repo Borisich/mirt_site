@@ -2,6 +2,11 @@
 var Popup = require('./Product/Popup.jsx');
 
 var React = require('react');
+
+
+//********************************ДИЧЬ*************************************************************
+//********************************КОНЕЦ ДИЧИ*************************************************************
+
 var Cart = React.createClass({
   searchProduct: function(id){
     for (var i=0; i<this.props.DB.length; i++){
@@ -24,23 +29,58 @@ var Cart = React.createClass({
     var self = this;
     var cart = this.props.cart;
     //console.log(cart);
-    var cartList = cart.map(function(product){
-      var sProduct=self.searchProduct(product.id);
+    var cartRows = cart.map(function(cartElem){
+      var Product=self.searchProduct(cartElem.id);
       return (
-        <li key={product.id}>
-          <img className="cart_img" src={sProduct.photoPath+sProduct.imageFiles[0]} onClick={() => self.refs[product.id].showPopup()}/>
-          ID: {product.id}; Caption: {sProduct.caption}; Price: {sProduct.price};  {product.count} шт.
-          <input className="num_input" value={product.count} autoComplete="off" type="number" name="quantity" data-pid={product.id} onChange={self.onChange}/>
-          <button className="buttons" onClick={() => self.props.delFromCart(product.id)}>Удалить</button>
-          <Popup ref={product.id} addToCart={self.props.addToCart} id={product.id} flag='1'/>
-        </li>
+        <tr key={cartElem.id}>
+          <td>
+            <img className="cart_img" src={Product.photoPath+Product.imageFiles[0]} onClick={() => self.refs[cartElem.id].showPopup()}/>
+          </td>
+          <td>
+            {Product.caption}
+          </td>
+          <td>
+            {Product.price}
+          </td>
+          <td>
+            <input className="num_input" value={cartElem.count} autoComplete="off" type="number" name="quantity" data-pid={cartElem.id} onChange={self.onChange}/>
+          </td>
+          <td>
+            <button className="buttons" onClick={() => self.props.delFromCart(cartElem.id)}>Удалить</button>
+            <Popup ref={cartElem.id} addToCart={self.props.addToCart} id={cartElem.id} flag='1'/>
+          </td>
+        </tr>
       )
     });
     return(
       <div className="cartPage">
         <div className="cartContent">
-          {cartList}
-          Сумма: {this.props.summ} руб.
+          <table className="cartTable">
+            <thead>
+              <tr>
+                <th>
+
+                </th>
+                <th>
+                  Название
+                </th>
+                <th>
+                  Цена
+                </th>
+                <th>
+                  Количество
+                </th>
+                <th>
+
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {cartRows}
+            </tbody>
+          </table>
+          <br/>
+          <span className="totalCart"> Сумма: {this.props.summ} руб.</span>
         </div>
         <div className="orderForm">
           <input className="oInputs" type="text" placeholder="ваше имя" /><br/>

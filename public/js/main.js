@@ -24045,6 +24045,10 @@ module.exports = Caption;
 var Popup = require('./Product/Popup.jsx');
 
 var React = require('react');
+
+//********************************ДИЧЬ*************************************************************
+//********************************КОНЕЦ ДИЧИ*************************************************************
+
 var Cart = React.createClass({
   displayName: 'Cart',
 
@@ -24069,32 +24073,45 @@ var Cart = React.createClass({
     var self = this;
     var cart = this.props.cart;
     //console.log(cart);
-    var cartList = cart.map(function (product) {
-      var sProduct = self.searchProduct(product.id);
+    var cartRows = cart.map(function (cartElem) {
+      var Product = self.searchProduct(cartElem.id);
       return React.createElement(
-        'li',
-        { key: product.id },
-        React.createElement('img', { className: 'cart_img', src: sProduct.photoPath + sProduct.imageFiles[0], onClick: function onClick() {
-            return self.refs[product.id].showPopup();
-          } }),
-        'ID: ',
-        product.id,
-        '; Caption: ',
-        sProduct.caption,
-        '; Price: ',
-        sProduct.price,
-        ';  ',
-        product.count,
-        ' \u0448\u0442.',
-        React.createElement('input', { className: 'num_input', value: product.count, autoComplete: 'off', type: 'number', name: 'quantity', 'data-pid': product.id, onChange: self.onChange }),
+        'tr',
+        { key: cartElem.id },
         React.createElement(
-          'button',
-          { className: 'buttons', onClick: function onClick() {
-              return self.props.delFromCart(product.id);
-            } },
-          '\u0423\u0434\u0430\u043B\u0438\u0442\u044C'
+          'td',
+          null,
+          React.createElement('img', { className: 'cart_img', src: Product.photoPath + Product.imageFiles[0], onClick: function onClick() {
+              return self.refs[cartElem.id].showPopup();
+            } })
         ),
-        React.createElement(Popup, { ref: product.id, addToCart: self.props.addToCart, id: product.id, flag: '1' })
+        React.createElement(
+          'td',
+          null,
+          Product.caption
+        ),
+        React.createElement(
+          'td',
+          null,
+          Product.price
+        ),
+        React.createElement(
+          'td',
+          null,
+          React.createElement('input', { className: 'num_input', value: cartElem.count, autoComplete: 'off', type: 'number', name: 'quantity', 'data-pid': cartElem.id, onChange: self.onChange })
+        ),
+        React.createElement(
+          'td',
+          null,
+          React.createElement(
+            'button',
+            { className: 'buttons', onClick: function onClick() {
+                return self.props.delFromCart(cartElem.id);
+              } },
+            '\u0423\u0434\u0430\u043B\u0438\u0442\u044C'
+          ),
+          React.createElement(Popup, { ref: cartElem.id, addToCart: self.props.addToCart, id: cartElem.id, flag: '1' })
+        )
       );
     });
     return React.createElement(
@@ -24103,10 +24120,48 @@ var Cart = React.createClass({
       React.createElement(
         'div',
         { className: 'cartContent' },
-        cartList,
-        '\u0421\u0443\u043C\u043C\u0430: ',
-        this.props.summ,
-        ' \u0440\u0443\u0431.'
+        React.createElement(
+          'table',
+          { className: 'cartTable' },
+          React.createElement(
+            'thead',
+            null,
+            React.createElement(
+              'tr',
+              null,
+              React.createElement('th', null),
+              React.createElement(
+                'th',
+                null,
+                '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435'
+              ),
+              React.createElement(
+                'th',
+                null,
+                '\u0426\u0435\u043D\u0430'
+              ),
+              React.createElement(
+                'th',
+                null,
+                '\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E'
+              ),
+              React.createElement('th', null)
+            )
+          ),
+          React.createElement(
+            'tbody',
+            null,
+            cartRows
+          )
+        ),
+        React.createElement('br', null),
+        React.createElement(
+          'span',
+          { className: 'totalCart' },
+          ' \u0421\u0443\u043C\u043C\u0430: ',
+          this.props.summ,
+          ' \u0440\u0443\u0431.'
+        )
       ),
       React.createElement(
         'div',

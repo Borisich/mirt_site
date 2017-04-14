@@ -295,6 +295,17 @@ h1 {
 	width: 60%;
 	vertical-align: top;
 }
+
+.cartTable {
+	border-bottom: 2px solid gray;
+}
+
+.totalCart {
+	text-align: left;
+	font-size: 17pt;
+	font-family: Philosopher;
+}
+
 .oInputs {
 	display: block;
 	height: 30px;
