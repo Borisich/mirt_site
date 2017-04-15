@@ -49,21 +49,7 @@ html {
 .resetLink:hover {
 	text-decoration: underline;
 }
-.cart{
-	/*border: 1px solid white;*/
-	height: 20px;
-	width: 80%;
-	margin: 0 auto;
-	min-width: 1300px;
-	color: white;
-}
-.cart_img{
-	height: 30px;
-	width: 40px;
-}
-.cart_img:hover{
-	cursor: pointer;
-}
+
 .cartStyleUsual {
 	transition-property: background-color;
   transition-duration: 3s;
@@ -242,6 +228,9 @@ ul.slick-dots {
   text-decoration: none;
   display: inline-block;
 }
+.buttons:disabled {
+	background-color: #b3ffcb; /* Green */
+}
 .mid {
 	border: none;
 	width: 5px;
@@ -276,10 +265,12 @@ ul.slick-dots {
 }
 .footer{
 	height: 70px;
+	line-height: 70px;
 	width: 80%;
 	margin: 0 auto;
 	min-width: 1300px;
 	color: white;
+	text-align: center;
 }
 h1 {
 	color: red;
@@ -288,7 +279,22 @@ h1 {
 .cartPage {
 	/*border: 1px solid black;*/
 }
-
+.cart{
+	/*border: 1px solid white;*/
+	height: 20px;
+	width: 80%;
+	margin: 0 auto;
+	min-width: 1300px;
+	color: white;
+}
+.cart_img{
+	margin-top: 5px;
+	height: 90px;
+	width: 120px;
+}
+.cart_img:hover{
+	cursor: pointer;
+}
 .cartContent {
 	/*border: 1px solid green;*/
 	display: inline-block;
@@ -298,6 +304,20 @@ h1 {
 
 .cartTable {
 	border-bottom: 2px solid gray;
+	width: 100%;
+	border-spacing: 0px;
+}
+.cartTable th {
+	text-align: left;
+	font-size: 17pt;
+	font-family: Philosopher;
+	border-bottom: 2px solid gray;
+}
+.cartTable td {
+	text-align: left;
+	font-size: 17pt;
+	font-family: Philosopher;
+	border-bottom: 1px solid gray;
 }
 
 .totalCart {
@@ -318,4 +338,5 @@ textarea {
 	width: 30%;
 	vertical-align: top;
 	float: right;
+
 }

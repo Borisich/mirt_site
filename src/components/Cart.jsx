@@ -40,7 +40,7 @@ var Cart = React.createClass({
             {Product.caption}
           </td>
           <td>
-            {Product.price}
+            {Product.price+" руб."}
           </td>
           <td>
             <input className="num_input" value={cartElem.count} autoComplete="off" type="number" name="quantity" data-pid={cartElem.id} onChange={self.onChange}/>
@@ -55,39 +55,48 @@ var Cart = React.createClass({
     return(
       <div className="cartPage">
         <div className="cartContent">
-          <table className="cartTable">
-            <thead>
-              <tr>
-                <th>
+          {this.props.cartTotalItems > 0 &&
+            <div>
+            <table className="cartTable">
+              <thead>
+                <tr>
+                  <th width="20%">
 
-                </th>
-                <th>
-                  Название
-                </th>
-                <th>
-                  Цена
-                </th>
-                <th>
-                  Количество
-                </th>
-                <th>
+                  </th>
+                  <th width="40%">
+                    Название
+                  </th>
+                  <th width="15%">
+                    Цена
+                  </th>
+                  <th width="10%">
+                    Кол-во
+                  </th>
+                  <th>
 
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {cartRows}
-            </tbody>
-          </table>
-          <br/>
-          <span className="totalCart"> Сумма: {this.props.summ} руб.</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {cartRows}
+              </tbody>
+            </table>
+            <br/>
+            <span className="totalCart"> Сумма: {this.props.summ} руб.</span>
+          </div>
+        }
+        {this.props.cartTotalItems == 0 &&
+          <div>
+            Ваша корзина пуста!
+          </div>
+        }
         </div>
         <div className="orderForm">
           <input className="oInputs" type="text" placeholder="ваше имя" /><br/>
           <input className="oInputs" type="email" placeholder="почта" /><br/>
           <input className="oInputs" type="tel" placeholder="телефон" /><br/>
           <textarea cols='25' rows='4' placeholder="коммент"/><br/>
-          <button className="oInputs buttons">Отправить</button>
+          <button className="oInputs buttons" disabled={(this.props.cartTotalItems == 0)}>Отправить заказ</button>
         </div>
       </div>
     )

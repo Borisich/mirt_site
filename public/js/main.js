@@ -24093,7 +24093,7 @@ var Cart = React.createClass({
         React.createElement(
           'td',
           null,
-          Product.price
+          Product.price + " руб."
         ),
         React.createElement(
           'td',
@@ -24120,47 +24120,56 @@ var Cart = React.createClass({
       React.createElement(
         'div',
         { className: 'cartContent' },
-        React.createElement(
-          'table',
-          { className: 'cartTable' },
+        this.props.cartTotalItems > 0 && React.createElement(
+          'div',
+          null,
           React.createElement(
-            'thead',
-            null,
+            'table',
+            { className: 'cartTable' },
             React.createElement(
-              'tr',
+              'thead',
               null,
-              React.createElement('th', null),
               React.createElement(
-                'th',
+                'tr',
                 null,
-                '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435'
-              ),
-              React.createElement(
-                'th',
-                null,
-                '\u0426\u0435\u043D\u0430'
-              ),
-              React.createElement(
-                'th',
-                null,
-                '\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E'
-              ),
-              React.createElement('th', null)
+                React.createElement('th', { width: '20%' }),
+                React.createElement(
+                  'th',
+                  { width: '40%' },
+                  '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435'
+                ),
+                React.createElement(
+                  'th',
+                  { width: '15%' },
+                  '\u0426\u0435\u043D\u0430'
+                ),
+                React.createElement(
+                  'th',
+                  { width: '10%' },
+                  '\u041A\u043E\u043B-\u0432\u043E'
+                ),
+                React.createElement('th', null)
+              )
+            ),
+            React.createElement(
+              'tbody',
+              null,
+              cartRows
             )
           ),
+          React.createElement('br', null),
           React.createElement(
-            'tbody',
-            null,
-            cartRows
+            'span',
+            { className: 'totalCart' },
+            ' \u0421\u0443\u043C\u043C\u0430: ',
+            this.props.summ,
+            ' \u0440\u0443\u0431.'
           )
         ),
-        React.createElement('br', null),
-        React.createElement(
-          'span',
-          { className: 'totalCart' },
-          ' \u0421\u0443\u043C\u043C\u0430: ',
-          this.props.summ,
-          ' \u0440\u0443\u0431.'
+        this.props.cartTotalItems == 0 && React.createElement(
+          'div',
+          null,
+          '\u0412\u0430\u0448\u0430 \u043A\u043E\u0440\u0437\u0438\u043D\u0430 \u043F\u0443\u0441\u0442\u0430!'
         )
       ),
       React.createElement(
@@ -24176,8 +24185,8 @@ var Cart = React.createClass({
         React.createElement('br', null),
         React.createElement(
           'button',
-          { className: 'oInputs buttons' },
-          '\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C'
+          { className: 'oInputs buttons', disabled: this.props.cartTotalItems == 0 },
+          '\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
         )
       )
     );
@@ -24921,7 +24930,7 @@ var Main = React.createClass({
           'div',
           { className: 'content_container' },
           this.state.navigator.main ? productsList : null,
-          this.state.navigator.cart ? React.createElement(Cart, { delFromCart: this.delFromCart, summ: this.cartTotalPrice(), changeCart: this.changeCart, addToCart: this.addToCart, cart: this.state.cart, DB: ProductsDB }) : null
+          this.state.navigator.cart ? React.createElement(Cart, { delFromCart: this.delFromCart, summ: this.cartTotalPrice(), changeCart: this.changeCart, cartTotalItems: this.cartTotalItems(), addToCart: this.addToCart, cart: this.state.cart, DB: ProductsDB }) : null
         )
       ),
       React.createElement('div', { className: 'clear' }),

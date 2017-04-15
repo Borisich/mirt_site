@@ -207,7 +207,7 @@ var Main = React.createClass({
             <Caption />
             <div className="content_container">
               {this.state.navigator.main ? productsList : null}
-              {this.state.navigator.cart ? (<Cart delFromCart={this.delFromCart} summ={this.cartTotalPrice()} changeCart={this.changeCart} addToCart={this.addToCart} cart={this.state.cart} DB={ProductsDB} />) : null}
+              {this.state.navigator.cart ? (<Cart delFromCart={this.delFromCart} summ={this.cartTotalPrice()} changeCart={this.changeCart} cartTotalItems={this.cartTotalItems()} addToCart={this.addToCart} cart={this.state.cart} DB={ProductsDB} />) : null}
             </div>
           </div>
           <div className="clear"></div>
