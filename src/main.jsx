@@ -204,10 +204,10 @@ var Main = React.createClass({
           <div className="site_container">
             <HeaderContainer setNavigation={this.setNavigation} navigator={this.state.navigator}/>
             <div className="clear"></div>
-            <Caption />
+            <Caption navigator={this.state.navigator}/>
             <div className="content_container">
               {this.state.navigator.main ? productsList : null}
-              {this.state.navigator.cart ? (<Cart delFromCart={this.delFromCart} summ={this.cartTotalPrice()} changeCart={this.changeCart} cartTotalItems={this.cartTotalItems()} addToCart={this.addToCart} cart={this.state.cart} DB={ProductsDB} />) : null}
+              {this.state.navigator.cart ? (<Cart delFromCart={this.delFromCart} summ={this.cartTotalPrice()} changeCart={this.changeCart} cartTotalItems={this.cartTotalItems()} addToCart={this.addToCart} cart={this.state.cart} DB={ProductsDB} onReset={this.resetCart}/>) : null}
             </div>
           </div>
           <div className="clear"></div>

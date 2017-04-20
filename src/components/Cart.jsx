@@ -3,6 +3,8 @@ var Popup = require('./Product/Popup.jsx');
 
 var React = require('react');
 
+import jQuery from 'jquery';
+
 
 //********************************ДИЧЬ*************************************************************
 //********************************КОНЕЦ ДИЧИ*************************************************************
@@ -24,6 +26,21 @@ var Cart = React.createClass({
     this.props.changeCart(Number(event.target.value), Number(event.target.getAttribute('data-pid')));
     console.log("ID: "+Number(event.target.getAttribute('data-pid')));
     console.log("New value: "+Number(event.target.value));
+  },
+  sendMail: function(){
+    var self = this;
+    jQuery.ajax({
+      url:     'http://mirt.spb.ru/sendMail.php', //url страницы (action_ajax_form.php)
+      type:     "POST", //метод отправки
+      dataType: "html", //формат данных
+      data: jQuery("#orderForm").serialize(),  // Сеарилизуем объект
+      success: function(response) { //Данные отправлены успешно
+      	self.props.onReset();
+  	  },
+    	error: function(response) { // Данные не отправлены
+    		alert('ERR');
+    	}
+	  });
   },
   render: function(){
     var self = this;
@@ -92,11 +109,14 @@ var Cart = React.createClass({
         }
         </div>
         <div className="orderForm">
-          <input className="oInputs" type="text" placeholder="ваше имя" /><br/>
-          <input className="oInputs" type="email" placeholder="почта" /><br/>
-          <input className="oInputs" type="tel" placeholder="телефон" /><br/>
-          <textarea cols='25' rows='4' placeholder="коммент"/><br/>
-          <button className="oInputs buttons" disabled={(this.props.cartTotalItems == 0)}>Отправить заказ</button>
+          <form id="orderForm" action="" method="post">
+            <input className="oInputs" type="text" placeholder="ваше имя" name="name"/><br/>
+            <input className="oInputs" type="email" placeholder="почта" name="email"/><br/>
+            <input className="oInputs" type="tel" placeholder="телефон" name="phone"/><br/>
+            <textarea cols='25' rows='4' placeholder="коммент" name="comment"/><br/>
+            <input type="hidden" name="productsList" value={"Список товаров: "+JSON.stringify(cart)}/>
+            <button type="button" onClick={this.sendMail} className="oInputs buttons" disabled={(this.props.cartTotalItems == 0)}>Отправить заказ</button>
+          </form>
         </div>
       </div>
     )
