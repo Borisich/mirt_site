@@ -34282,19 +34282,25 @@ var React = require('react');
 var Caption = React.createClass({
   displayName: "Caption",
 
-  getCaption: function getCaption(navigator) {
+  getCaption: function getCaption(navigator, customHeader) {
+    if (customHeader) {
+      return customHeader;
+    };
     if (navigator.cart) {
       return "Корзина: ";
     };
     if (navigator.main) {
       return "Украшения: ";
     };
+    if (navigator.lastOrder) {
+      return "Ваш последний заказ: ";
+    };
   },
   render: function render() {
     return React.createElement(
       "div",
       { className: "caption" },
-      this.getCaption(this.props.navigator)
+      this.getCaption(this.props.navigator, this.props.customHeader)
     );
   }
 });
@@ -34321,6 +34327,11 @@ var React = require('react');
 var Cart = React.createClass({
   displayName: 'Cart',
 
+  getInitialState: function getInitialState() {
+    return {
+      orderJustDone: false
+    };
+  },
   searchProduct: function searchProduct(id) {
     for (var i = 0; i < this.props.DB.length; i++) {
       if (this.props.DB[i].id == id) {
@@ -34347,7 +34358,10 @@ var Cart = React.createClass({
       data: (0, _jquery2.default)("#orderForm").serialize(), // Сеарилизуем объект
       success: function success(response) {
         //Данные отправлены успешно
+        self.setState({ orderJustDone: true });
+        self.props.updateLastOrder(self.props.cart);
         self.props.onReset();
+        self.props.setCustomHeader("Спасибо за заказ!");
       },
       error: function error(response) {
         // Данные не отправлены
@@ -34452,10 +34466,15 @@ var Cart = React.createClass({
             ' \u0440\u0443\u0431.'
           )
         ),
-        this.props.cartTotalItems == 0 && React.createElement(
+        this.props.cartTotalItems == 0 && !this.state.orderJustDone && React.createElement(
           'div',
           null,
           '\u0412\u0430\u0448\u0430 \u043A\u043E\u0440\u0437\u0438\u043D\u0430 \u043F\u0443\u0441\u0442\u0430!'
+        ),
+        this.props.cartTotalItems == 0 && this.state.orderJustDone && React.createElement(
+          'div',
+          null,
+          '\u041C\u044B \u0441\u0432\u044F\u0436\u0435\u043C\u0441\u044F \u0432 \u0412\u0430\u043C\u0438 \u0432 \u0431\u043B\u0438\u0436\u0430\u0439\u0448\u0435\u0435 \u0432\u0440\u0435\u043C\u044F. \u0418\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F \u043E \u0432\u0430\u0448\u0435\u043C \u043F\u043E\u0441\u043B\u0435\u0434\u043D\u0435\u043C \u0437\u0430\u043A\u0430\u0437\u0435 \u0434\u043E\u0441\u0442\u0443\u043F\u043D\u0430 \u0432 \u043C\u0435\u043D\u044E.'
         )
       ),
       React.createElement(
@@ -34464,15 +34483,21 @@ var Cart = React.createClass({
         React.createElement(
           'form',
           { id: 'orderForm', action: '', method: 'post' },
-          React.createElement('input', { className: 'oInputs', type: 'text', placeholder: '\u0432\u0430\u0448\u0435 \u0438\u043C\u044F', name: 'name' }),
+          '\u0412\u0430\u0448\u0435 \u0438\u043C\u044F:',
+          React.createElement('input', { className: 'oInputs', type: 'text', placeholder: '\u0412\u0430\u0448\u0435 \u0438\u043C\u044F', name: 'name' }),
           React.createElement('br', null),
-          React.createElement('input', { className: 'oInputs', type: 'email', placeholder: '\u043F\u043E\u0447\u0442\u0430', name: 'email' }),
+          'E-mail:',
+          React.createElement('input', { className: 'oInputs', type: 'email', placeholder: 'ivan.ivanov@gmail.com', name: 'email' }),
           React.createElement('br', null),
-          React.createElement('input', { className: 'oInputs', type: 'tel', placeholder: '\u0442\u0435\u043B\u0435\u0444\u043E\u043D', name: 'phone' }),
+          '\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u043D\u044B\u0439 \u0442\u0435\u043B\u0435\u0444\u043E\u043D:',
+          React.createElement('input', { className: 'oInputs', type: 'tel', placeholder: '+7 xxx-xxx-xx-xx', name: 'phone' }),
           React.createElement('br', null),
-          React.createElement('textarea', { cols: '25', rows: '4', placeholder: '\u043A\u043E\u043C\u043C\u0435\u043D\u0442', name: 'comment' }),
+          '\u041A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u043A \u0437\u0430\u043A\u0430\u0437\u0443:',
           React.createElement('br', null),
-          React.createElement('input', { type: 'hidden', name: 'productsList', value: "Список товаров: " + JSON.stringify(cart) }),
+          React.createElement('textarea', { cols: '25', rows: '4', placeholder: '\u041A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u043A \u0437\u0430\u043A\u0430\u0437\u0443', name: 'comment' }),
+          React.createElement('br', null),
+          React.createElement('input', { type: 'hidden', name: 'productsList', value: JSON.stringify(cart) }),
+          React.createElement('input', { type: 'hidden', name: 'totalPrice', value: this.props.summ }),
           React.createElement(
             'button',
             { type: 'button', onClick: this.sendMail, className: 'oInputs buttons', disabled: this.props.cartTotalItems == 0 },
@@ -34486,7 +34511,7 @@ var Cart = React.createClass({
 
 module.exports = Cart;
 
-},{"./Product/Popup.jsx":228,"jquery":2,"react":216}],220:[function(require,module,exports){
+},{"./Product/Popup.jsx":229,"jquery":2,"react":216}],220:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -34572,7 +34597,10 @@ var Menu = React.createClass({
       React.createElement(MenuItem, { isMarked: this.isMarked('cart'), text: '\u041A\u043E\u0440\u0437\u0438\u043D\u0430', action: function action() {
           return _this.props.setNavigation('cart');
         } }),
-      React.createElement(MenuItem, { text: '\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B', action: function action() {} })
+      React.createElement(MenuItem, { text: '\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B', action: function action() {} }),
+      React.createElement(MenuItem, { isMarked: this.isMarked('lastOrder'), text: '\u041F\u043E\u0441\u043B\u0435\u0434\u043D\u0438\u0439 \u0437\u0430\u043A\u0430\u0437', action: function action() {
+          return _this.props.setNavigation('lastOrder');
+        } })
     );
   }
 });
@@ -34604,6 +34632,128 @@ var MenuItem = React.createClass({
 module.exports = MenuItem;
 
 },{"react":216}],225:[function(require,module,exports){
+'use strict';
+
+//var ProductsDB = require('../../public/data/ProductsDB.jsx');
+var Popup = require('./Product/Popup.jsx');
+
+var React = require('react');
+
+var LastOrder = React.createClass({
+  displayName: 'LastOrder',
+
+  searchProduct: function searchProduct(id) {
+    for (var i = 0; i < this.props.DB.length; i++) {
+      if (this.props.DB[i].id == id) {
+        return this.props.DB[i];
+        break;
+      }
+    }
+    return null;
+  },
+  componentDidMount: function componentDidMount() {
+    if (this.props.lastOrder.length == 0) {
+      this.props.setCustomHeader("Заказы отсутствуют!");
+    };
+  },
+  render: function render() {
+    var self = this;
+    var lastOrder = this.props.lastOrder;
+
+    var lastOrderRows = lastOrder.map(function (elem) {
+      var Product = self.searchProduct(elem.id);
+      return React.createElement(
+        'tr',
+        { key: elem.id },
+        React.createElement(
+          'td',
+          null,
+          React.createElement('img', { className: 'cart_img', src: Product.photoPath + Product.imageFiles[0], onClick: function onClick() {
+              return self.refs[elem.id].showPopup();
+            } })
+        ),
+        React.createElement(
+          'td',
+          null,
+          Product.caption
+        ),
+        React.createElement(
+          'td',
+          null,
+          Product.price + " руб."
+        ),
+        React.createElement(
+          'td',
+          null,
+          elem.count,
+          React.createElement(Popup, { ref: elem.id, addToCart: self.props.addToCart, id: elem.id, flag: '1' })
+        )
+      );
+    });
+    console.log("self.props.lastOrder: ");
+    console.log(self.props.lastOrder);
+    return React.createElement(
+      'div',
+      { className: 'cartPage' },
+      React.createElement(
+        'div',
+        { className: 'cartContent' },
+        this.props.lastOrder.length > 0 && React.createElement(
+          'div',
+          null,
+          React.createElement(
+            'table',
+            { className: 'cartTable' },
+            React.createElement(
+              'thead',
+              null,
+              React.createElement(
+                'tr',
+                null,
+                React.createElement('th', { width: '20%' }),
+                React.createElement(
+                  'th',
+                  { width: '40%' },
+                  '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435'
+                ),
+                React.createElement(
+                  'th',
+                  { width: '15%' },
+                  '\u0426\u0435\u043D\u0430'
+                ),
+                React.createElement(
+                  'th',
+                  { width: '10%' },
+                  '\u041A\u043E\u043B-\u0432\u043E'
+                )
+              )
+            ),
+            React.createElement(
+              'tbody',
+              null,
+              lastOrderRows
+            )
+          ),
+          React.createElement('br', null),
+          React.createElement(
+            'span',
+            { className: 'totalCart' },
+            ' \u0421\u0443\u043C\u043C\u0430: 50 \u0440\u0443\u0431.'
+          )
+        ),
+        this.props.lastOrder.length == 0 && React.createElement(
+          'div',
+          null,
+          '\u0412\u043E\u0437\u043C\u043E\u0436\u043D\u043E \u0432\u044B \u0435\u0449\u0451 \u043D\u0438\u0447\u0435\u0433\u043E \u0443 \u043D\u0430\u0441 \u043D\u0435 \u0437\u0430\u043A\u0430\u0437\u044B\u0432\u0430\u043B\u0438!'
+        )
+      )
+    );
+  }
+});
+
+module.exports = LastOrder;
+
+},{"./Product/Popup.jsx":229,"react":216}],226:[function(require,module,exports){
 'use strict';
 
 var _reactSkylight = require('react-skylight');
@@ -34688,7 +34838,7 @@ var BottomPanel = React.createClass({
 
 module.exports = BottomPanel;
 
-},{"./Popup.jsx":228,"react":216,"react-medium-image-zoom":156,"react-skylight":157,"react-slick":164}],226:[function(require,module,exports){
+},{"./Popup.jsx":229,"react":216,"react-medium-image-zoom":156,"react-skylight":157,"react-slick":164}],227:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -34706,7 +34856,7 @@ var Header = React.createClass({
 
 module.exports = Header;
 
-},{"react":216}],227:[function(require,module,exports){
+},{"react":216}],228:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -34778,7 +34928,7 @@ var Picture = _react2.default.createClass({
 
 module.exports = Picture;
 
-},{"react":216,"react-slick":164}],228:[function(require,module,exports){
+},{"react":216,"react-slick":164}],229:[function(require,module,exports){
 'use strict';
 
 var _reactSkylight = require('react-skylight');
@@ -34921,7 +35071,7 @@ var Popup = React.createClass({
 
 module.exports = Popup;
 
-},{"../../../public/data/ProductsDB.jsx":217,"react":216,"react-medium-image-zoom":156,"react-skylight":157,"react-slick":164}],229:[function(require,module,exports){
+},{"../../../public/data/ProductsDB.jsx":217,"react":216,"react-medium-image-zoom":156,"react-skylight":157,"react-slick":164}],230:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -34945,7 +35095,7 @@ var Product = React.createClass({
 
 module.exports = Product;
 
-},{"./BottomPanel.jsx":225,"./Header.jsx":226,"./Picture.jsx":227,"react":216}],230:[function(require,module,exports){
+},{"./BottomPanel.jsx":226,"./Header.jsx":227,"./Picture.jsx":228,"react":216}],231:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -35011,7 +35161,7 @@ var TopBar = React.createClass({
 
 module.exports = TopBar;
 
-},{"react":216}],231:[function(require,module,exports){
+},{"react":216}],232:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -35022,6 +35172,7 @@ var HeaderContainer = require('./components/HeaderContainer/HeaderContainer.jsx'
 var Product = require('./components/Product/Product.jsx');
 var Footer = require('./components/Footer.jsx');
 var Cart = require('./components/Cart.jsx');
+var LastOrder = require('./components/LastOrder.jsx');
 var ProductsDB = require('../public/data/ProductsDB.jsx');
 
 /*var Slider = require('react-slick');*/
@@ -35044,39 +35195,61 @@ var Main = React.createClass({
 
   getInitialState: function getInitialState() {
     //localStorage["mirt.cart"] = [];
-    var val = localStorage["mirt.cart"] ? JSON.parse(localStorage["mirt.cart"]) : [];
+    var cart = localStorage["mirt.cart"] ? JSON.parse(localStorage["mirt.cart"]) : [];
+    var lastOrder = localStorage["mirt.lastOrder"] ? JSON.parse(localStorage["mirt.lastOrder"]) : [];
     //var val = [];
     return {
-      cart: val,
+      cart: cart,
+      lastOrder: lastOrder,
       cartStyle: "cartStyleUsual",
       cartBgStyle: "red",
       navigator: {
         main: 1,
-        cart: 0
-      }
+        cart: 0,
+        lastOrder: 0
+      },
+      customHeader: ""
     };
   },
+  updateLastOrder: function updateLastOrder(cart) {
+    localStorage["mirt.lastOrder"] = JSON.stringify(cart);
+    this.setState({
+      lastOrder: cart
+    });
+  },
+  setCustomHeader: function setCustomHeader(header) {
+    this.setState({ customHeader: header });
+  },
   setNavigation: function setNavigation(location) {
+    this.setState({ customHeader: "" });
     //alert('CLICK!');
     switch (location) {
       case 'main':
         this.setState({ navigator: {
             main: 1,
-            cart: 0
+            cart: 0,
+            lastOrder: 0
           } });
-        //alert('MAIN');
         break;
       case 'cart':
         this.setState({ navigator: {
             main: 0,
-            cart: 1
+            cart: 1,
+            lastOrder: 0
           } });
-        //alert('CART');
+        break;
+      case 'lastOrder':
+        this.setState({ navigator: {
+            main: 0,
+            cart: 0,
+            lastOrder: 1
+          } });
         break;
       default:
         this.setState({ navigator: {
             main: 1,
-            cart: 0
+            cart: 0,
+            lastOrder: 0
           } });
     }
   },
@@ -35216,12 +35389,13 @@ var Main = React.createClass({
         { className: 'site_container' },
         React.createElement(HeaderContainer, { setNavigation: this.setNavigation, navigator: this.state.navigator }),
         React.createElement('div', { className: 'clear' }),
-        React.createElement(Caption, { navigator: this.state.navigator }),
+        React.createElement(Caption, { navigator: this.state.navigator, customHeader: this.state.customHeader }),
         React.createElement(
           'div',
           { className: 'content_container' },
           this.state.navigator.main ? productsList : null,
-          this.state.navigator.cart ? React.createElement(Cart, { delFromCart: this.delFromCart, summ: this.cartTotalPrice(), changeCart: this.changeCart, cartTotalItems: this.cartTotalItems(), addToCart: this.addToCart, cart: this.state.cart, DB: ProductsDB, onReset: this.resetCart }) : null
+          this.state.navigator.cart ? React.createElement(Cart, { updateLastOrder: this.updateLastOrder, setCustomHeader: this.setCustomHeader, delFromCart: this.delFromCart, summ: this.cartTotalPrice(), changeCart: this.changeCart, cartTotalItems: this.cartTotalItems(), addToCart: this.addToCart, cart: this.state.cart, DB: ProductsDB, onReset: this.resetCart }) : null,
+          this.state.navigator.lastOrder ? React.createElement(LastOrder, { addToCart: this.addToCart, setCustomHeader: this.setCustomHeader, lastOrder: this.state.lastOrder, DB: ProductsDB }) : null
         )
       ),
       React.createElement('div', { className: 'clear' }),
@@ -35236,4 +35410,4 @@ var Main = React.createClass({
 
 ReactDOM.render(React.createElement(Main, null), document.getElementById('mirt'));
 
-},{"../public/data/ProductsDB.jsx":217,"./components/Caption.jsx":218,"./components/Cart.jsx":219,"./components/Footer.jsx":220,"./components/HeaderContainer/HeaderContainer.jsx":221,"./components/Product/Product.jsx":229,"./components/TopBar.jsx":230,"react":216,"react-dom":3}]},{},[231]);
+},{"../public/data/ProductsDB.jsx":217,"./components/Caption.jsx":218,"./components/Cart.jsx":219,"./components/Footer.jsx":220,"./components/HeaderContainer/HeaderContainer.jsx":221,"./components/LastOrder.jsx":225,"./components/Product/Product.jsx":230,"./components/TopBar.jsx":231,"react":216,"react-dom":3}]},{},[232]);

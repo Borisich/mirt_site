@@ -10,6 +10,11 @@ import jQuery from 'jquery';
 //********************************КОНЕЦ ДИЧИ*************************************************************
 
 var Cart = React.createClass({
+  getInitialState: function(){
+    return {
+      orderJustDone: false
+    }
+  },
   searchProduct: function(id){
     for (var i=0; i<this.props.DB.length; i++){
       if (this.props.DB[i].id == id) {
@@ -35,7 +40,10 @@ var Cart = React.createClass({
       dataType: "html", //формат данных
       data: jQuery("#orderForm").serialize(),  // Сеарилизуем объект
       success: function(response) { //Данные отправлены успешно
-      	self.props.onReset();
+        self.setState({orderJustDone: true});
+        self.props.updateLastOrder(self.props.cart);
+        self.props.onReset();
+        self.props.setCustomHeader("Спасибо за заказ!");
   	  },
     	error: function(response) { // Данные не отправлены
     		alert('ERR');
@@ -102,19 +110,29 @@ var Cart = React.createClass({
             <span className="totalCart"> Сумма: {this.props.summ} руб.</span>
           </div>
         }
-        {this.props.cartTotalItems == 0 &&
+        {((this.props.cartTotalItems == 0) && (!this.state.orderJustDone)) &&
           <div>
             Ваша корзина пуста!
+          </div>
+        }
+        {((this.props.cartTotalItems == 0) && (this.state.orderJustDone)) &&
+          <div>
+            Мы свяжемся в Вами в ближайшее время. Информация о вашем последнем заказе доступна в меню.
           </div>
         }
         </div>
         <div className="orderForm">
           <form id="orderForm" action="" method="post">
-            <input className="oInputs" type="text" placeholder="ваше имя" name="name"/><br/>
-            <input className="oInputs" type="email" placeholder="почта" name="email"/><br/>
-            <input className="oInputs" type="tel" placeholder="телефон" name="phone"/><br/>
-            <textarea cols='25' rows='4' placeholder="коммент" name="comment"/><br/>
-            <input type="hidden" name="productsList" value={"Список товаров: "+JSON.stringify(cart)}/>
+            Ваше имя:
+            <input className="oInputs" type="text" placeholder="Ваше имя" name="name"/><br/>
+            E-mail:
+            <input className="oInputs" type="email" placeholder="ivan.ivanov@gmail.com" name="email"/><br/>
+            Контактный телефон:
+            <input className="oInputs" type="tel" placeholder="+7 xxx-xxx-xx-xx" name="phone"/><br/>
+            Комментарий к заказу:<br/>
+            <textarea cols='25' rows='4' placeholder="Комментарий к заказу" name="comment"/><br/>
+            <input type="hidden" name="productsList" value={JSON.stringify(cart)}/>
+            <input type="hidden" name="totalPrice" value={this.props.summ}/>
             <button type="button" onClick={this.sendMail} className="oInputs buttons" disabled={(this.props.cartTotalItems == 0)}>Отправить заказ</button>
           </form>
         </div>

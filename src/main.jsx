@@ -6,6 +6,7 @@ var HeaderContainer = require ('./components/HeaderContainer/HeaderContainer.jsx
 var Product = require ('./components/Product/Product.jsx');
 var Footer = require ('./components/Footer.jsx');
 var Cart = require ('./components/Cart.jsx');
+var LastOrder = require ('./components/LastOrder.jsx');
 var ProductsDB = require('../public/data/ProductsDB.jsx');
 
 
@@ -30,39 +31,61 @@ var ProductsDB = require('../public/data/ProductsDB.jsx');
 var Main = React.createClass({
   getInitialState: function(){
     //localStorage["mirt.cart"] = [];
-    var val = localStorage["mirt.cart"] ? JSON.parse(localStorage["mirt.cart"]) : []
+    var cart = localStorage["mirt.cart"] ? JSON.parse(localStorage["mirt.cart"]) : []
+    var lastOrder = localStorage["mirt.lastOrder"] ? JSON.parse(localStorage["mirt.lastOrder"]) : []
     //var val = [];
     return {
-      cart: val,
+      cart: cart,
+      lastOrder: lastOrder,
       cartStyle: "cartStyleUsual",
       cartBgStyle: "red",
       navigator: {
         main: 1,
-        cart: 0
-      }
+        cart: 0,
+        lastOrder: 0
+      },
+      customHeader: ""
     }
   },
+  updateLastOrder: function(cart){
+    localStorage["mirt.lastOrder"] = JSON.stringify(cart);
+    this.setState({
+      lastOrder: cart,
+    });
+  },
+  setCustomHeader: function(header){
+    this.setState({customHeader: header})
+  },
   setNavigation: function(location){
+    this.setState({customHeader: ""})
     //alert('CLICK!');
     switch (location) {
       case 'main':
         this.setState({navigator:{
           main: 1,
-          cart: 0
+          cart: 0,
+          lastOrder: 0
         }});
-        //alert('MAIN');
         break;
       case 'cart':
         this.setState({navigator:{
           main: 0,
-          cart: 1
+          cart: 1,
+          lastOrder: 0
         }});
-        //alert('CART');
+        break;
+      case 'lastOrder':
+        this.setState({navigator:{
+          main: 0,
+          cart: 0,
+          lastOrder: 1
+        }});
         break;
       default:
         this.setState({navigator:{
           main: 1,
-          cart: 0
+          cart: 0,
+          lastOrder: 0
         }});
     }
   },
@@ -204,10 +227,11 @@ var Main = React.createClass({
           <div className="site_container">
             <HeaderContainer setNavigation={this.setNavigation} navigator={this.state.navigator}/>
             <div className="clear"></div>
-            <Caption navigator={this.state.navigator}/>
+            <Caption navigator={this.state.navigator} customHeader={this.state.customHeader}/>
             <div className="content_container">
               {this.state.navigator.main ? productsList : null}
-              {this.state.navigator.cart ? (<Cart delFromCart={this.delFromCart} summ={this.cartTotalPrice()} changeCart={this.changeCart} cartTotalItems={this.cartTotalItems()} addToCart={this.addToCart} cart={this.state.cart} DB={ProductsDB} onReset={this.resetCart}/>) : null}
+              {this.state.navigator.cart ? (<Cart updateLastOrder={this.updateLastOrder} setCustomHeader={this.setCustomHeader} delFromCart={this.delFromCart} summ={this.cartTotalPrice()} changeCart={this.changeCart} cartTotalItems={this.cartTotalItems()} addToCart={this.addToCart} cart={this.state.cart} DB={ProductsDB} onReset={this.resetCart}/>) : null}
+              {this.state.navigator.lastOrder ? (<LastOrder addToCart={this.addToCart} setCustomHeader={this.setCustomHeader} lastOrder={this.state.lastOrder} DB={ProductsDB}/>) : null}
             </div>
           </div>
           <div className="clear"></div>

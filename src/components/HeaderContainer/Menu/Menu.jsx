@@ -16,6 +16,7 @@ var Menu = React.createClass({
         <MenuItem text="О компании" action={() => {}} />
         <MenuItem isMarked={this.isMarked('cart')} text="Корзина" action={() => this.props.setNavigation('cart')} />
         <MenuItem text="Контакты" action={() => {}} />
+        <MenuItem isMarked={this.isMarked('lastOrder')} text="Последний заказ" action={() => this.props.setNavigation('lastOrder')} />
       </div>
     )
   }
