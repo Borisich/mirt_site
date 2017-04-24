@@ -13,9 +13,9 @@ var Menu = React.createClass({
     return(
       <div className="menu">
         <MenuItem isMarked={this.isMarked('main')} text="Главная" action={() => this.props.setNavigation('main')} />
-        <MenuItem text="О компании" action={() => {}} />
+        <MenuItem isMarked={this.isMarked('about')} text="О компании" action={() => this.props.setNavigation('about')} />
         <MenuItem isMarked={this.isMarked('cart')} text="Корзина" action={() => this.props.setNavigation('cart')} />
-        <MenuItem text="Контакты" action={() => {}} />
+        <MenuItem isMarked={this.isMarked('contacts')} text="Оплата и доставка" action={() => this.props.setNavigation('contacts')} />
         <MenuItem isMarked={this.isMarked('lastOrder')} text="Последний заказ" action={() => this.props.setNavigation('lastOrder')} />
       </div>
     )

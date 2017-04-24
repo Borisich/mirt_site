@@ -3,7 +3,7 @@ var Footer = React.createClass({
   render: function(){
     return(
       <div className="footer">
-        Mirt 2016-2017
+        Mirt 2015-2017
       </div>
     )
   }

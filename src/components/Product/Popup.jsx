@@ -53,7 +53,7 @@ var Popup = React.createClass({
 
     };
     var myBigGreenDialog = {
-      backgroundColor: '#00897B',
+      backgroundColor: '#FFF8DC',//	'#577AA3',
       color: '#ffffff',
       width: '80%',
       height: '700px',
@@ -91,7 +91,7 @@ var Popup = React.createClass({
         <Slider {...settings}>
           {imageList}
         </Slider>
-        <h2>{this.props.caption}</h2>
+        <h2>{product.caption}</h2>
         <div className="description">
           {product.description}
         </div>

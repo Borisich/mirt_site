@@ -50,6 +50,15 @@ html {
 	text-decoration: underline;
 }
 
+.cartLink {
+	cursor: pointer;
+	text-decoration: none;
+	font-size: 12pt;
+}
+.cartLink:hover {
+	text-decoration: underline;
+}
+
 .cartStyleUsual {
 	transition-property: background-color;
   transition-duration: 3s;
@@ -127,7 +136,7 @@ html {
 .clear{
 	clear: both;
 }
-.caption{
+.caption h1{
 	/*border: 1px solid green;*/
 	margin-top: 50px;
 	height: 50px;
@@ -136,11 +145,13 @@ html {
 	font-size: 38px;
 	color: #2d5c88;
 	font-family: Philosopher;
+	font-weight: normal;
 }
 .content_container{
 	overflow: auto;
 	/*border: 1px solid blue;*/
 	width: 90%;
+	min-height: 500px;
 	margin: 0 auto;
 	margin-top: 50px;
 }
@@ -338,5 +349,16 @@ textarea {
 	width: 30%;
 	vertical-align: top;
 	float: right;
+}
 
+.about {
+	text-align: left;
+	font-size: 16pt;
+	font-family: Philosopher;
+}
+
+.contacts {
+	text-align: left;
+	font-size: 16pt;
+	font-family: Philosopher;
 }

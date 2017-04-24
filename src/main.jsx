@@ -7,6 +7,8 @@ var Product = require ('./components/Product/Product.jsx');
 var Footer = require ('./components/Footer.jsx');
 var Cart = require ('./components/Cart.jsx');
 var LastOrder = require ('./components/LastOrder.jsx');
+var About = require ('./components/About.jsx');
+var Contacts = require ('./components/Contacts.jsx');
 var ProductsDB = require('../public/data/ProductsDB.jsx');
 
 
@@ -42,7 +44,9 @@ var Main = React.createClass({
       navigator: {
         main: 1,
         cart: 0,
-        lastOrder: 0
+        lastOrder: 0,
+        about: 0,
+        contacts: 0
       },
       customHeader: ""
     }
@@ -58,34 +62,59 @@ var Main = React.createClass({
   },
   setNavigation: function(location){
     this.setState({customHeader: ""})
-    //alert('CLICK!');
     switch (location) {
       case 'main':
         this.setState({navigator:{
           main: 1,
           cart: 0,
-          lastOrder: 0
+          lastOrder: 0,
+          about: 0,
+          contacts: 0
         }});
         break;
       case 'cart':
         this.setState({navigator:{
           main: 0,
           cart: 1,
-          lastOrder: 0
+          lastOrder: 0,
+          about: 0,
+          contacts: 0
         }});
         break;
       case 'lastOrder':
         this.setState({navigator:{
           main: 0,
           cart: 0,
-          lastOrder: 1
+          lastOrder: 1,
+          about: 0,
+          contacts: 0
+        }});
+        break;
+      case 'about':
+        this.setState({navigator:{
+          main: 0,
+          cart: 0,
+          lastOrder: 0,
+          about: 1,
+          contacts: 0
+        }});
+        break;
+      case 'contacts':
+        this.setState({navigator:{
+          main: 0,
+          cart: 0,
+          lastOrder: 0,
+          about: 0,
+          contacts: 1
         }});
         break;
       default:
         this.setState({navigator:{
           main: 1,
           cart: 0,
-          lastOrder: 0
+          lastOrder: 0,
+          about: 0,
+          contacts: 0
         }});
     }
   },
@@ -180,6 +209,17 @@ var Main = React.createClass({
     }
     return totalPrice;
   },
+  lastOrderTotalPrice: function(){
+    var totalPrice = 0;
+    for(var i=0; i<this.state.lastOrder.length; i++){
+      for(var j=0; j<ProductsDB.length; j++){
+        if (this.state.lastOrder[i].id == ProductsDB[j].id){
+          totalPrice += ProductsDB[j].price*this.state.lastOrder[i].count;
+        }
+      }
+    }
+    return totalPrice;
+  },
   render: function() {
     var self = this;
     var productsList = ProductsDB.map(function(product){
@@ -222,7 +262,7 @@ var Main = React.createClass({
     return (
         <div>
           <div className={cN} style={{backgroundColor: this.state.cartBgStyle}}>
-            <TopBar cartTotalItems={this.cartTotalItems()} cartTotalPrice={this.cartTotalPrice()} onReset={this.resetCart} />
+            <TopBar setNavigation={this.setNavigation} cartTotalItems={this.cartTotalItems()} cartTotalPrice={this.cartTotalPrice()} onReset={this.resetCart} />
           </div>
           <div className="site_container">
             <HeaderContainer setNavigation={this.setNavigation} navigator={this.state.navigator}/>
@@ -231,7 +271,9 @@ var Main = React.createClass({
             <div className="content_container">
               {this.state.navigator.main ? productsList : null}
               {this.state.navigator.cart ? (<Cart updateLastOrder={this.updateLastOrder} setCustomHeader={this.setCustomHeader} delFromCart={this.delFromCart} summ={this.cartTotalPrice()} changeCart={this.changeCart} cartTotalItems={this.cartTotalItems()} addToCart={this.addToCart} cart={this.state.cart} DB={ProductsDB} onReset={this.resetCart}/>) : null}
-              {this.state.navigator.lastOrder ? (<LastOrder addToCart={this.addToCart} setCustomHeader={this.setCustomHeader} lastOrder={this.state.lastOrder} DB={ProductsDB}/>) : null}
+              {this.state.navigator.lastOrder ? (<LastOrder addToCart={this.addToCart} setCustomHeader={this.setCustomHeader} lastOrder={this.state.lastOrder} summ={this.lastOrderTotalPrice()} DB={ProductsDB}/>) : null}
+              {this.state.navigator.about ? <About /> : null}
+              {this.state.navigator.contacts ? <Contacts /> : null}
             </div>
           </div>
           <div className="clear"></div>

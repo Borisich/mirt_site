@@ -34279,6 +34279,50 @@ module.exports = ProductsDB;
 "use strict";
 
 var React = require('react');
+
+var About = React.createClass({
+        displayName: "About",
+
+
+        render: function render() {
+                return React.createElement(
+                        "div",
+                        { className: "about" },
+                        React.createElement(
+                                "p",
+                                null,
+                                "\u041C\u043E\u043B\u043E\u0434\u0430\u044F \u043A\u0440\u0435\u0430\u0442\u0438\u0432\u043D\u0430\u044F \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u044F \u041C\u0438\u0440\u0442 \u0437\u0430\u0434\u0443\u043C\u0430\u043D\u0430 \u0438 \u0441\u043E\u0437\u0434\u0430\u043D\u0430 \u0432 \u0438\u044E\u043B\u0435 2015."
+                        ),
+                        React.createElement(
+                                "p",
+                                null,
+                                "\u041F\u043E\u044F\u0432\u0438\u043B\u0430\u0441\u044C \u043E\u043D\u0430,\u0440\u0430\u0437\u0443\u043C\u0435\u0435\u0442\u0441\u044F, \u043D\u0435 \u0441\u043B\u0443\u0447\u0430\u0439\u043D\u043E. \u0418\u043C\u0435\u043D\u043D\u043E  \u0432 \u044D\u0442\u043E \u0432\u0440\u0435\u043C\u044F \u043F\u0440\u043E\u0438\u0437\u043E\u0448\u043B\u043E \u0434\u043E\u043B\u0433\u043E\u0436\u0434\u0430\u043D\u043D\u043E\u0435 \u0441\u0447\u0430\u0441\u0442\u043B\u0438\u0432\u043E\u0435 \u0441\u043E\u0431\u044B\u0442\u0438\u0435 \u0432 \u0436\u0438\u0437\u043D\u0438 \u0435\u0435 \u0441\u043E\u0437\u0434\u0430\u0442\u0435\u043B\u0435\u0439 \u2013 \u0441\u0447\u0430\u0441\u0442\u043B\u0438\u0432\u044B\u0439 \u0441\u0432\u0430\u0434\u0435\u0431\u043D\u044B\u0439 \u0434\u0435\u043D\u044C!"
+                        ),
+                        React.createElement(
+                                "p",
+                                null,
+                                "\u0427\u0442\u043E \u0436\u0435 \u0442\u0430\u043A\u043E\u0435 \u043C\u0438\u0440\u0442?"
+                        ),
+                        React.createElement(
+                                "p",
+                                null,
+                                "\u042D\u0442\u043E \u0432\u0435\u0447\u043D\u043E\u0437\u0435\u043B\u0435\u043D\u043E\u0435 \u0446\u0432\u0435\u0442\u0443\u0449\u0435\u0435 \u044E\u0436\u043D\u043E\u0435 \u0434\u0435\u0440\u0435\u0432\u043E. \u041C\u0438\u0440\u0442\u043E\u043C \u043F\u0440\u0435\u0436\u0434\u0435 \u043D\u0430\u0437\u044B\u0432\u0430\u043B\u0438 \u0442\u0430\u043A\u0436\u0435 \u0432\u0435\u043D\u043E\u043A \u0438\u0437 \u0446\u0432\u0435\u0442\u0443\u0449\u0438\u0445 \u043F\u043E\u0431\u0435\u0433\u043E\u0432 \u0442\u0430\u043A\u043E\u0433\u043E \u0434\u0435\u0440\u0435\u0432\u0430 \u0438\u043B\u0438 \u0435\u0433\u043E \u0432\u0435\u0442\u0432\u044C \u2013 \u0441\u0438\u043C\u0432\u043E\u043B \u0442\u0438\u0448\u0438\u043D\u044B, \u043C\u0438\u0440\u0430 \u0438 \u043D\u0430\u0441\u043B\u0430\u0436\u0434\u0435\u043D\u0438\u044F. \u041C\u0438\u0440\u0442\u043E\u0432\u044B\u0439 \u0432\u0435\u043D\u043E\u043A \u0441 \u0440\u043E\u0437\u0430\u043C\u0438 \u0432 \u0434\u0440\u0435\u0432\u043D\u043E\u0441\u0442\u0438 \u0431\u044B\u043B \u043B\u044E\u0431\u0438\u043C\u044B\u043C \u0441\u0432\u0430\u0434\u0435\u0431\u043D\u044B\u043C \u0443\u043A\u0440\u0430\u0448\u0435\u043D\u0438\u0435\u043C. \u0412 \u044D\u043F\u043E\u0445\u0443 \u0420\u0435\u043D\u0435\u0441\u0441\u0430\u043D\u0441\u0430 \u0432\u0435\u0447\u043D\u043E\u0437\u0435\u043B\u0451\u043D\u044B\u0439 \u043C\u0438\u0440\u0442 \u0441\u0442\u0430\u043B \u0441\u0438\u043C\u0432\u043E\u043B\u0438\u0437\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432\u0435\u0447\u043D\u0443\u044E \u043B\u044E\u0431\u043E\u0432\u044C, \u0432 \u043E\u0441\u043E\u0431\u0435\u043D\u043D\u043E\u0441\u0442\u0438 \u2013 \u0441\u0443\u043F\u0440\u0443\u0436\u0435\u0441\u043A\u0443\u044E \u0432\u0435\u0440\u043D\u043E\u0441\u0442\u044C. \u041F\u043E \u043F\u0440\u0435\u0434\u0430\u043D\u0438\u044E, \u0432\u0435\u043D\u043A\u043E\u043C \u0438\u0437 \u043C\u0438\u0440\u0442\u0430 \u0431\u044B\u043B\u0430 \u0443\u0432\u0435\u043D\u0447\u0430\u043D\u0430 \u0410\u0444\u0440\u043E\u0434\u0438\u0442\u0430 \u0432\u043E \u0432\u0440\u0435\u043C\u044F \u0437\u043D\u0430\u043C\u0435\u043D\u0438\u0442\u043E\u0433\u043E \u0441\u043F\u043E\u0440\u0430, \u0431\u043B\u0430\u0433\u043E\u0434\u0430\u0440\u044F \u0447\u0435\u043C\u0443 \u041F\u0430\u0440\u0438\u0441 \u0438 \u043E\u0442\u0434\u0430\u043B \u0435\u0439 \u0441\u0432\u043E\u0451 \u044F\u0431\u043B\u043E\u043A\u043E. \u0421 \u0442\u0435\u0445 \u043F\u043E\u0440 \u043C\u0438\u0440\u0442 \u0441\u0442\u0430\u043B \u043B\u044E\u0431\u0438\u043C\u044B\u043C \u0446\u0432\u0435\u0442\u043A\u043E\u043C \u0431\u043E\u0433\u0438\u043D\u0438 \u043B\u044E\u0431\u0432\u0438 \u0438 \u043A\u0440\u0430\u0441\u043E\u0442\u044B, \u0438\u043D\u043E\u0433\u0434\u0430 \u043E\u043D\u0430 \u0434\u0430\u0436\u0435 \u043D\u0430\u0437\u044B\u0432\u0430\u043B\u0430 \u0441\u0435\u0431\u044F \u041C\u0438\u0440\u0442\u0435\u0435\u0439. \u0412\u043E\u043A\u0440\u0443\u0433 \u0445\u0440\u0430\u043C\u043E\u0432 \u0410\u0444\u0440\u043E\u0434\u0438\u0442\u044B \u0432\u044B\u0441\u0430\u0436\u0438\u0432\u0430\u043B\u0438 \u043C\u043D\u043E\u0436\u0435\u0441\u0442\u0432\u043E \u043C\u0438\u0440\u0442\u043E\u0432\u044B\u0445 \u043A\u0443\u0441\u0442\u043E\u0432, \u0430 \u0432\u043E \u0432\u0440\u0435\u043C\u044F \u0435\u0436\u0435\u0433\u043E\u0434\u043D\u044B\u0445 \u043F\u0440\u0430\u0437\u0434\u043D\u0435\u0441\u0442\u0432 \u0432 \u0447\u0435\u0441\u0442\u044C \u044D\u0442\u043E\u0439 \u0431\u043E\u0433\u0438\u043D\u0438 \u0432\u0441\u0435 \u0443\u043A\u0440\u0430\u0448\u0430\u043B\u0438\u0441\u044C \u043C\u0438\u0440\u0442\u043E\u0432\u044B\u043C\u0438 \u0432\u0435\u043D\u043A\u0430\u043C\u0438."
+                        ),
+                        React.createElement(
+                                "p",
+                                null,
+                                "\u041D\u0430\u0448\u0430 \u043C\u0438\u0441\u0441\u0438\u044F: \u0443\u043A\u0440\u0430\u0441\u0438\u0442\u044C \u043C\u0438\u0440! \u0418 \u043F\u0443\u0441\u0442\u044C \u0446\u0432\u0435\u0442\u043D\u044B\u0435 \u043B\u0435\u0433\u043A\u0438\u0435 \u0432\u0435\u0442\u0432\u0438-\u043B\u0435\u043D\u0442\u044B \u0438 \u0446\u0432\u0435\u0442\u044B \u043D\u0430\u0448\u0438\u0445 \u0443\u043A\u0440\u0430\u0448\u0435\u043D\u0438\u0439 \u043F\u043E\u043C\u043E\u0433\u0443\u0442 \u0412\u0430\u043C \u0441\u043E\u0437\u0434\u0430\u0432\u0430\u0442\u044C \u0430\u0442\u043C\u043E\u0441\u0444\u0435\u0440\u0443 \u043F\u0440\u0430\u0437\u0434\u043D\u0438\u043A\u0430!"
+                        )
+                );
+        }
+});
+
+module.exports = About;
+
+},{"react":216}],219:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
 var Caption = React.createClass({
   displayName: "Caption",
 
@@ -34295,19 +34339,31 @@ var Caption = React.createClass({
     if (navigator.lastOrder) {
       return "Ваш последний заказ: ";
     };
+    if (navigator.about) {
+      return "О компании: ";
+    };
+    if (navigator.contacts) {
+      return "Оплата и доставка: ";
+    };
   },
   render: function render() {
     return React.createElement(
       "div",
       { className: "caption" },
-      this.getCaption(this.props.navigator, this.props.customHeader)
+      React.createElement(
+        "h1",
+        null,
+        " ",
+        this.getCaption(this.props.navigator, this.props.customHeader),
+        " "
+      )
     );
   }
 });
 
 module.exports = Caption;
 
-},{"react":216}],219:[function(require,module,exports){
+},{"react":216}],220:[function(require,module,exports){
 'use strict';
 
 var _jquery = require('jquery');
@@ -34511,7 +34567,27 @@ var Cart = React.createClass({
 
 module.exports = Cart;
 
-},{"./Product/Popup.jsx":229,"jquery":2,"react":216}],220:[function(require,module,exports){
+},{"./Product/Popup.jsx":231,"jquery":2,"react":216}],221:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+
+var Contacts = React.createClass({
+  displayName: "Contacts",
+
+
+  render: function render() {
+    return React.createElement(
+      "div",
+      { className: "contacts" },
+      "\u0414\u043E\u0441\u0442\u0430\u0432\u043A\u0430 \u043E\u0436\u0438\u0434\u0430\u0435\u0442\u0441\u044F, \u043E\u043F\u043B\u0430\u0442\u0430 \u043F\u0440\u0438\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u0435\u0442\u0441\u044F!"
+    );
+  }
+});
+
+module.exports = Contacts;
+
+},{"react":216}],222:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -34522,14 +34598,14 @@ var Footer = React.createClass({
     return React.createElement(
       "div",
       { className: "footer" },
-      "Mirt 2016-2017"
+      "Mirt 2015-2017"
     );
   }
 });
 
 module.exports = Footer;
 
-},{"react":216}],221:[function(require,module,exports){
+},{"react":216}],223:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -34551,7 +34627,7 @@ var HeaderContainer = React.createClass({
 
 module.exports = HeaderContainer;
 
-},{"./Logo.jsx":222,"./Menu/Menu.jsx":223,"react":216}],222:[function(require,module,exports){
+},{"./Logo.jsx":224,"./Menu/Menu.jsx":225,"react":216}],224:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -34569,7 +34645,7 @@ var Logo = React.createClass({
 
 module.exports = Logo;
 
-},{"react":216}],223:[function(require,module,exports){
+},{"react":216}],225:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -34593,11 +34669,15 @@ var Menu = React.createClass({
       React.createElement(MenuItem, { isMarked: this.isMarked('main'), text: '\u0413\u043B\u0430\u0432\u043D\u0430\u044F', action: function action() {
           return _this.props.setNavigation('main');
         } }),
-      React.createElement(MenuItem, { text: '\u041E \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438', action: function action() {} }),
+      React.createElement(MenuItem, { isMarked: this.isMarked('about'), text: '\u041E \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438', action: function action() {
+          return _this.props.setNavigation('about');
+        } }),
       React.createElement(MenuItem, { isMarked: this.isMarked('cart'), text: '\u041A\u043E\u0440\u0437\u0438\u043D\u0430', action: function action() {
           return _this.props.setNavigation('cart');
         } }),
-      React.createElement(MenuItem, { text: '\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B', action: function action() {} }),
+      React.createElement(MenuItem, { isMarked: this.isMarked('contacts'), text: '\u041E\u043F\u043B\u0430\u0442\u0430 \u0438 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0430', action: function action() {
+          return _this.props.setNavigation('contacts');
+        } }),
       React.createElement(MenuItem, { isMarked: this.isMarked('lastOrder'), text: '\u041F\u043E\u0441\u043B\u0435\u0434\u043D\u0438\u0439 \u0437\u0430\u043A\u0430\u0437', action: function action() {
           return _this.props.setNavigation('lastOrder');
         } })
@@ -34607,7 +34687,7 @@ var Menu = React.createClass({
 
 module.exports = Menu;
 
-},{"./MenuItem.jsx":224,"react":216}],224:[function(require,module,exports){
+},{"./MenuItem.jsx":226,"react":216}],226:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -34631,10 +34711,9 @@ var MenuItem = React.createClass({
 
 module.exports = MenuItem;
 
-},{"react":216}],225:[function(require,module,exports){
+},{"react":216}],227:[function(require,module,exports){
 'use strict';
 
-//var ProductsDB = require('../../public/data/ProductsDB.jsx');
 var Popup = require('./Product/Popup.jsx');
 
 var React = require('react');
@@ -34738,12 +34817,14 @@ var LastOrder = React.createClass({
           React.createElement(
             'span',
             { className: 'totalCart' },
-            ' \u0421\u0443\u043C\u043C\u0430: 50 \u0440\u0443\u0431.'
+            ' \u0421\u0443\u043C\u043C\u0430: ',
+            this.props.summ,
+            ' \u0440\u0443\u0431.'
           )
         ),
         this.props.lastOrder.length == 0 && React.createElement(
           'div',
-          null,
+          { className: 'about' },
           '\u0412\u043E\u0437\u043C\u043E\u0436\u043D\u043E \u0432\u044B \u0435\u0449\u0451 \u043D\u0438\u0447\u0435\u0433\u043E \u0443 \u043D\u0430\u0441 \u043D\u0435 \u0437\u0430\u043A\u0430\u0437\u044B\u0432\u0430\u043B\u0438!'
         )
       )
@@ -34753,7 +34834,7 @@ var LastOrder = React.createClass({
 
 module.exports = LastOrder;
 
-},{"./Product/Popup.jsx":229,"react":216}],226:[function(require,module,exports){
+},{"./Product/Popup.jsx":231,"react":216}],228:[function(require,module,exports){
 'use strict';
 
 var _reactSkylight = require('react-skylight');
@@ -34838,7 +34919,7 @@ var BottomPanel = React.createClass({
 
 module.exports = BottomPanel;
 
-},{"./Popup.jsx":229,"react":216,"react-medium-image-zoom":156,"react-skylight":157,"react-slick":164}],227:[function(require,module,exports){
+},{"./Popup.jsx":231,"react":216,"react-medium-image-zoom":156,"react-skylight":157,"react-slick":164}],229:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -34856,7 +34937,7 @@ var Header = React.createClass({
 
 module.exports = Header;
 
-},{"react":216}],228:[function(require,module,exports){
+},{"react":216}],230:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -34928,7 +35009,7 @@ var Picture = _react2.default.createClass({
 
 module.exports = Picture;
 
-},{"react":216,"react-slick":164}],229:[function(require,module,exports){
+},{"react":216,"react-slick":164}],231:[function(require,module,exports){
 'use strict';
 
 var _reactSkylight = require('react-skylight');
@@ -34995,7 +35076,7 @@ var Popup = React.createClass({
 
     };
     var myBigGreenDialog = {
-      backgroundColor: '#00897B',
+      backgroundColor: '#FFF8DC', //	'#577AA3',
       color: '#ffffff',
       width: '80%',
       height: '700px',
@@ -35046,7 +35127,7 @@ var Popup = React.createClass({
       React.createElement(
         'h2',
         null,
-        this.props.caption
+        product.caption
       ),
       React.createElement(
         'div',
@@ -35071,7 +35152,7 @@ var Popup = React.createClass({
 
 module.exports = Popup;
 
-},{"../../../public/data/ProductsDB.jsx":217,"react":216,"react-medium-image-zoom":156,"react-skylight":157,"react-slick":164}],230:[function(require,module,exports){
+},{"../../../public/data/ProductsDB.jsx":217,"react":216,"react-medium-image-zoom":156,"react-skylight":157,"react-slick":164}],232:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -35095,7 +35176,7 @@ var Product = React.createClass({
 
 module.exports = Product;
 
-},{"./BottomPanel.jsx":226,"./Header.jsx":227,"./Picture.jsx":228,"react":216}],231:[function(require,module,exports){
+},{"./BottomPanel.jsx":228,"./Header.jsx":229,"./Picture.jsx":230,"react":216}],233:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -35103,6 +35184,8 @@ var TopBar = React.createClass({
   displayName: "TopBar",
 
   render: function render() {
+    var _this = this;
+
     var self = this;
     var tovarWord = function tovarWord(number) {
       if (number > 10 && number < 20) {
@@ -35135,7 +35218,15 @@ var TopBar = React.createClass({
       info = React.createElement(
         "div",
         { className: "cart" },
-        "\u0412\u0430\u0448\u0430 \u043A\u043E\u0440\u0437\u0438\u043D\u0430 - ",
+        "\u0412\u0430\u0448\u0430 ",
+        React.createElement(
+          "span",
+          { className: "cartLink", onClick: function onClick() {
+              return _this.props.setNavigation('cart');
+            } },
+          "\u043A\u043E\u0440\u0437\u0438\u043D\u0430"
+        ),
+        " - ",
         this.props.cartTotalItems,
         " ",
         tovarWord(this.props.cartTotalItems),
@@ -35161,7 +35252,7 @@ var TopBar = React.createClass({
 
 module.exports = TopBar;
 
-},{"react":216}],232:[function(require,module,exports){
+},{"react":216}],234:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -35173,6 +35264,8 @@ var Product = require('./components/Product/Product.jsx');
 var Footer = require('./components/Footer.jsx');
 var Cart = require('./components/Cart.jsx');
 var LastOrder = require('./components/LastOrder.jsx');
+var About = require('./components/About.jsx');
+var Contacts = require('./components/Contacts.jsx');
 var ProductsDB = require('../public/data/ProductsDB.jsx');
 
 /*var Slider = require('react-slick');*/
@@ -35206,7 +35299,9 @@ var Main = React.createClass({
       navigator: {
         main: 1,
         cart: 0,
-        lastOrder: 0
+        lastOrder: 0,
+        about: 0,
+        contacts: 0
       },
       customHeader: ""
     };
@@ -35222,34 +35317,59 @@ var Main = React.createClass({
   },
   setNavigation: function setNavigation(location) {
     this.setState({ customHeader: "" });
-    //alert('CLICK!');
     switch (location) {
       case 'main':
         this.setState({ navigator: {
             main: 1,
             cart: 0,
-            lastOrder: 0
+            lastOrder: 0,
+            about: 0,
+            contacts: 0
           } });
         break;
       case 'cart':
         this.setState({ navigator: {
             main: 0,
             cart: 1,
-            lastOrder: 0
+            lastOrder: 0,
+            about: 0,
+            contacts: 0
           } });
         break;
       case 'lastOrder':
         this.setState({ navigator: {
             main: 0,
             cart: 0,
-            lastOrder: 1
+            lastOrder: 1,
+            about: 0,
+            contacts: 0
+          } });
+        break;
+      case 'about':
+        this.setState({ navigator: {
+            main: 0,
+            cart: 0,
+            lastOrder: 0,
+            about: 1,
+            contacts: 0
+          } });
+        break;
+      case 'contacts':
+        this.setState({ navigator: {
+            main: 0,
+            cart: 0,
+            lastOrder: 0,
+            about: 0,
+            contacts: 1
           } });
         break;
       default:
         this.setState({ navigator: {
             main: 1,
             cart: 0,
-            lastOrder: 0
+            lastOrder: 0,
+            about: 0,
+            contacts: 0
           } });
     }
   },
@@ -35342,6 +35462,17 @@ var Main = React.createClass({
     }
     return totalPrice;
   },
+  lastOrderTotalPrice: function lastOrderTotalPrice() {
+    var totalPrice = 0;
+    for (var i = 0; i < this.state.lastOrder.length; i++) {
+      for (var j = 0; j < ProductsDB.length; j++) {
+        if (this.state.lastOrder[i].id == ProductsDB[j].id) {
+          totalPrice += ProductsDB[j].price * this.state.lastOrder[i].count;
+        }
+      }
+    }
+    return totalPrice;
+  },
   render: function render() {
     var self = this;
     var productsList = ProductsDB.map(function (product) {
@@ -35382,7 +35513,7 @@ var Main = React.createClass({
       React.createElement(
         'div',
         { className: cN, style: { backgroundColor: this.state.cartBgStyle } },
-        React.createElement(TopBar, { cartTotalItems: this.cartTotalItems(), cartTotalPrice: this.cartTotalPrice(), onReset: this.resetCart })
+        React.createElement(TopBar, { setNavigation: this.setNavigation, cartTotalItems: this.cartTotalItems(), cartTotalPrice: this.cartTotalPrice(), onReset: this.resetCart })
       ),
       React.createElement(
         'div',
@@ -35395,7 +35526,9 @@ var Main = React.createClass({
           { className: 'content_container' },
           this.state.navigator.main ? productsList : null,
           this.state.navigator.cart ? React.createElement(Cart, { updateLastOrder: this.updateLastOrder, setCustomHeader: this.setCustomHeader, delFromCart: this.delFromCart, summ: this.cartTotalPrice(), changeCart: this.changeCart, cartTotalItems: this.cartTotalItems(), addToCart: this.addToCart, cart: this.state.cart, DB: ProductsDB, onReset: this.resetCart }) : null,
-          this.state.navigator.lastOrder ? React.createElement(LastOrder, { addToCart: this.addToCart, setCustomHeader: this.setCustomHeader, lastOrder: this.state.lastOrder, DB: ProductsDB }) : null
+          this.state.navigator.lastOrder ? React.createElement(LastOrder, { addToCart: this.addToCart, setCustomHeader: this.setCustomHeader, lastOrder: this.state.lastOrder, summ: this.lastOrderTotalPrice(), DB: ProductsDB }) : null,
+          this.state.navigator.about ? React.createElement(About, null) : null,
+          this.state.navigator.contacts ? React.createElement(Contacts, null) : null
         )
       ),
       React.createElement('div', { className: 'clear' }),
@@ -35410,4 +35543,4 @@ var Main = React.createClass({
 
 ReactDOM.render(React.createElement(Main, null), document.getElementById('mirt'));
 
-},{"../public/data/ProductsDB.jsx":217,"./components/Caption.jsx":218,"./components/Cart.jsx":219,"./components/Footer.jsx":220,"./components/HeaderContainer/HeaderContainer.jsx":221,"./components/LastOrder.jsx":225,"./components/Product/Product.jsx":230,"./components/TopBar.jsx":231,"react":216,"react-dom":3}]},{},[232]);
+},{"../public/data/ProductsDB.jsx":217,"./components/About.jsx":218,"./components/Caption.jsx":219,"./components/Cart.jsx":220,"./components/Contacts.jsx":221,"./components/Footer.jsx":222,"./components/HeaderContainer/HeaderContainer.jsx":223,"./components/LastOrder.jsx":227,"./components/Product/Product.jsx":232,"./components/TopBar.jsx":233,"react":216,"react-dom":3}]},{},[234]);

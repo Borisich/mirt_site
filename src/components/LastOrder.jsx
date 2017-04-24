@@ -1,4 +1,4 @@
-//var ProductsDB = require('../../public/data/ProductsDB.jsx');
+
 var Popup = require('./Product/Popup.jsx');
 
 var React = require('react');
@@ -74,11 +74,11 @@ var LastOrder = React.createClass({
               </tbody>
             </table>
             <br/>
-            <span className="totalCart"> Сумма: 50 руб.</span>
+            <span className="totalCart"> Сумма: {this.props.summ} руб.</span>
           </div>
         }
         {(this.props.lastOrder.length == 0) &&
-          <div>
+          <div className="about">
             Возможно вы ещё ничего у нас не заказывали!
           </div>
         }
