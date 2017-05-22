@@ -10,9 +10,11 @@ var Caption = React.createClass({
   },
   render: function(){
     return(
-      <div className="caption">
+      <div className="row">
+        <div className="caption col-md-4">
 					<h1> {this.getCaption(this.props.navigator, this.props.customHeader)} </h1>
-			</div>
+			  </div>
+      </div>
     )
   }
 });

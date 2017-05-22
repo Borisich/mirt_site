@@ -34349,13 +34349,17 @@ var Caption = React.createClass({
   render: function render() {
     return React.createElement(
       "div",
-      { className: "caption" },
+      { className: "row" },
       React.createElement(
-        "h1",
-        null,
-        " ",
-        this.getCaption(this.props.navigator, this.props.customHeader),
-        " "
+        "div",
+        { className: "caption col-md-4" },
+        React.createElement(
+          "h1",
+          null,
+          " ",
+          this.getCaption(this.props.navigator, this.props.customHeader),
+          " "
+        )
       )
     );
   }
@@ -34475,7 +34479,7 @@ var Cart = React.createClass({
       { className: 'cartPage' },
       React.createElement(
         'div',
-        { className: 'cartContent' },
+        { className: 'cartContent col-md-8' },
         this.props.cartTotalItems > 0 && React.createElement(
           'div',
           null,
@@ -34535,7 +34539,7 @@ var Cart = React.createClass({
       ),
       React.createElement(
         'div',
-        { className: 'orderForm' },
+        { className: 'orderForm col-md-3 col-md-offset-1' },
         React.createElement(
           'form',
           { id: 'orderForm', action: '', method: 'post' },
@@ -34618,7 +34622,7 @@ var HeaderContainer = React.createClass({
   render: function render() {
     return React.createElement(
       'div',
-      { className: 'header_container' },
+      { className: 'row' },
       React.createElement(Logo, null),
       React.createElement(Menu, { setNavigation: this.props.setNavigation, navigator: this.props.navigator })
     );
@@ -34637,7 +34641,7 @@ var Logo = React.createClass({
   render: function render() {
     return React.createElement(
       "div",
-      { className: "logo" },
+      { className: "logo col-md-4" },
       React.createElement("img", { src: "images/logo.png" })
     );
   }
@@ -34665,7 +34669,7 @@ var Menu = React.createClass({
 
     return React.createElement(
       'div',
-      { className: 'menu' },
+      { className: 'col-md-8' },
       React.createElement(MenuItem, { isMarked: this.isMarked('main'), text: '\u0413\u043B\u0430\u0432\u043D\u0430\u044F', action: function action() {
           return _this.props.setNavigation('main');
         } }),
@@ -35166,7 +35170,7 @@ var Product = React.createClass({
   render: function render() {
     return React.createElement(
       'div',
-      { className: 'product' },
+      { className: 'product col-md-6 col-lg-4' },
       React.createElement(Picture, { imageUrls: this.props.imageUrls }),
       React.createElement(Header, { caption: this.props.caption }),
       React.createElement(BottomPanel, { id: this.props.id, price: this.props.price, caption: this.props.caption, addToCart: this.props.addToCart })
@@ -35217,7 +35221,7 @@ var TopBar = React.createClass({
     if (this.props.cartTotalItems != 0) {
       info = React.createElement(
         "div",
-        { className: "cart" },
+        { className: "col-md-5 col-md-offset-2" },
         "\u0412\u0430\u0448\u0430 ",
         React.createElement(
           "span",
@@ -35242,11 +35246,19 @@ var TopBar = React.createClass({
     } else {
       info = React.createElement(
         "div",
-        { className: "cart" },
+        { className: "col-md-5 col-md-offset-2" },
         "\u0412\u0430\u0448\u0430 \u043A\u043E\u0440\u0437\u0438\u043D\u0430 \u043F\u0443\u0441\u0442\u0430"
       );
     }
-    return info;
+    return React.createElement(
+      "div",
+      { className: "col-md-12 cart" },
+      React.createElement(
+        "div",
+        { className: "row" },
+        info
+      )
+    );
   }
 });
 
@@ -35481,49 +35493,22 @@ var Main = React.createClass({
         }), price: product.price, addToCart: self.addToCart });
     });
     var cN = "topbar " + this.state.cartStyle;
-    var CTopBar = React.createElement(
-      'div',
-      { className: cN, style: { backgroundColor: this.state.cartBgStyle } },
-      React.createElement(TopBar, { cartTotalItems: this.cartTotalItems(), cartTotalPrice: this.cartTotalPrice(), onReset: this.resetCart })
-    );
-    var CSiteContainer = React.createElement('div', { className: 'site_container' });
-    var CHeaderContainer = React.createElement(HeaderContainer, null);
-    var Clear = React.createElement('div', { className: 'clear' });
-    var CCaption = React.createElement(Caption, null);
-    var CContentContainer = React.createElement(
-      'div',
-      { className: 'content_container' },
-      productsList
-    );
-    var CFooter = React.createElement(
-      'div',
-      { className: 'footbar' },
-      React.createElement(Footer, null)
-    );
-    var CMain = React.createElement(
-      'div',
-      null,
-      CTopBar,
-      CSiteContainer,
-      CHeaderContainer
-    );
     return React.createElement(
       'div',
       null,
       React.createElement(
         'div',
-        { className: cN, style: { backgroundColor: this.state.cartBgStyle } },
+        { className: cN + " row", style: { backgroundColor: this.state.cartBgStyle } },
         React.createElement(TopBar, { setNavigation: this.setNavigation, cartTotalItems: this.cartTotalItems(), cartTotalPrice: this.cartTotalPrice(), onReset: this.resetCart })
       ),
       React.createElement(
         'div',
         { className: 'site_container' },
         React.createElement(HeaderContainer, { setNavigation: this.setNavigation, navigator: this.state.navigator }),
-        React.createElement('div', { className: 'clear' }),
         React.createElement(Caption, { navigator: this.state.navigator, customHeader: this.state.customHeader }),
         React.createElement(
           'div',
-          { className: 'content_container' },
+          { className: 'content_container row' },
           this.state.navigator.main ? productsList : null,
           this.state.navigator.cart ? React.createElement(Cart, { updateLastOrder: this.updateLastOrder, setCustomHeader: this.setCustomHeader, delFromCart: this.delFromCart, summ: this.cartTotalPrice(), changeCart: this.changeCart, cartTotalItems: this.cartTotalItems(), addToCart: this.addToCart, cart: this.state.cart, DB: ProductsDB, onReset: this.resetCart }) : null,
           this.state.navigator.lastOrder ? React.createElement(LastOrder, { addToCart: this.addToCart, setCustomHeader: this.setCustomHeader, lastOrder: this.state.lastOrder, summ: this.lastOrderTotalPrice(), DB: ProductsDB }) : null,

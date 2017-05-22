@@ -11,7 +11,7 @@ var Menu = React.createClass({
   },
   render: function(){
     return(
-      <div className="menu">
+      <div className="col-md-8">
         <MenuItem isMarked={this.isMarked('main')} text="Главная" action={() => this.props.setNavigation('main')} />
         <MenuItem isMarked={this.isMarked('about')} text="О компании" action={() => this.props.setNavigation('about')} />
         <MenuItem isMarked={this.isMarked('cart')} text="Корзина" action={() => this.props.setNavigation('cart')} />

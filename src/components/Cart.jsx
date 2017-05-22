@@ -79,7 +79,7 @@ var Cart = React.createClass({
     });
     return(
       <div className="cartPage">
-        <div className="cartContent">
+        <div className="cartContent col-md-8">
           {this.props.cartTotalItems > 0 &&
             <div>
             <table className="cartTable">
@@ -121,7 +121,7 @@ var Cart = React.createClass({
           </div>
         }
         </div>
-        <div className="orderForm">
+        <div className="orderForm col-md-3 col-md-offset-1">
           <form id="orderForm" action="" method="post">
             Ваше имя:
             <input className="oInputs" type="text" placeholder="Ваше имя" name="name"/><br/>

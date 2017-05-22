@@ -8,7 +8,7 @@ var Picture = require('./Picture.jsx');
 var Product = React.createClass({
   render: function () {
     return (
-      <div className="product">
+      <div className="product col-md-6 col-lg-4">
 				<Picture imageUrls={this.props.imageUrls}/>
         <Header caption={this.props.caption}/>
         <BottomPanel id={this.props.id} price={this.props.price} caption={this.props.caption} addToCart={this.props.addToCart}/>

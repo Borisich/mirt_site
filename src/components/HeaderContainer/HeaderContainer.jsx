@@ -6,7 +6,7 @@ var Menu = require('./Menu/Menu.jsx');
 var HeaderContainer = React.createClass({
   render: function () {
     return (
-      <div className="header_container">
+      <div className="row">
         <Logo/>
         <Menu setNavigation={this.props.setNavigation} navigator={this.props.navigator}/>
       </div>

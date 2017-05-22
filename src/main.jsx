@@ -226,49 +226,15 @@ var Main = React.createClass({
       return <Product key={product.id} id={product.id} caption={product.caption} imageUrls={product.imageFiles.map(function(file){return (product.photoPath+file)})} price={product.price} addToCart={self.addToCart} />
     });
     var cN = "topbar "+this.state.cartStyle;
-    var CTopBar = (
-      <div className={cN} style={{backgroundColor: this.state.cartBgStyle}}>
-        <TopBar cartTotalItems={this.cartTotalItems()} cartTotalPrice={this.cartTotalPrice()} onReset={this.resetCart} />
-      </div>
-    );
-    var CSiteContainer = (
-      <div className="site_container"></div>
-    );
-    var CHeaderContainer = (
-      <HeaderContainer />
-
-    );
-    var Clear = <div className="clear"></div>;
-    var CCaption = (
-      <Caption />
-    );
-    var CContentContainer = (
-      <div className="content_container">
-        {productsList}
-      </div>
-    );
-    var CFooter = (
-      <div className="footbar">
-        <Footer />
-      </div>
-    );
-    var CMain = (
-      <div>
-        {CTopBar}
-        {CSiteContainer}
-        {CHeaderContainer}
-      </div>
-    )
     return (
         <div>
-          <div className={cN} style={{backgroundColor: this.state.cartBgStyle}}>
+          <div className={cN + " row"} style={{backgroundColor: this.state.cartBgStyle}}>
             <TopBar setNavigation={this.setNavigation} cartTotalItems={this.cartTotalItems()} cartTotalPrice={this.cartTotalPrice()} onReset={this.resetCart} />
           </div>
           <div className="site_container">
             <HeaderContainer setNavigation={this.setNavigation} navigator={this.state.navigator}/>
-            <div className="clear"></div>
             <Caption navigator={this.state.navigator} customHeader={this.state.customHeader}/>
-            <div className="content_container">
+            <div className="content_container row">
               {this.state.navigator.main ? productsList : null}
               {this.state.navigator.cart ? (<Cart updateLastOrder={this.updateLastOrder} setCustomHeader={this.setCustomHeader} delFromCart={this.delFromCart} summ={this.cartTotalPrice()} changeCart={this.changeCart} cartTotalItems={this.cartTotalItems()} addToCart={this.addToCart} cart={this.state.cart} DB={ProductsDB} onReset={this.resetCart}/>) : null}
               {this.state.navigator.lastOrder ? (<LastOrder addToCart={this.addToCart} setCustomHeader={this.setCustomHeader} lastOrder={this.state.lastOrder} summ={this.lastOrderTotalPrice()} DB={ProductsDB}/>) : null}
