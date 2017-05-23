@@ -160,6 +160,7 @@ html {
 	/*width: 402px !important;
 	height: 440px;*/
 }
+
 .product_thumb {
 	margin-top: 15px;
 	/*border: 1px solid blue;*/
@@ -180,7 +181,7 @@ ul.slick-dots {
 .prevbtn {
 	position: absolute;
 	float: left;
-	margin-top: 305px;
+	margin-top: 230px;
 	margin-left: 5px;
 }
 .product_header {
@@ -193,38 +194,14 @@ ul.slick-dots {
 	overflow: hidden;
 }
 
-.product_order {
-	overflow: auto;
-	/*border: 1px solid red;*/
-	margin: 10px auto 0px;
-	/*height: 38px;*/
-}
+
 .product_price {
-	/*border: 1px solid yellow;*/
-	width: 30%;
-	display: inline-block;
 	font-size: 17pt;
 	font-family: Philosopher;
-	text-align: center;
-	overflow: hidden;
 }
-.in_cart_button_container {
-	/*border: 1px solid cyan;*/
-	width: 40%;
-	display: inline-block;
-	/*font-size: 17pt;*/
-	font-family: Philosopher;
-	overflow: hidden;
-	/*text-align: center;*/
-}
-.quick_view_button_container {
-	/*border: 1px solid cyan;*/
-	width: 30%;
-	display: inline-block;
-	/*font-size: 17pt;*/
-	font-family: Philosopher;
-	overflow: hidden;
-	/*text-align: center;*/
+.slider {
+	width: 98%;
+	margin: auto;
 }
 
 .buttons {
@@ -284,9 +261,7 @@ h1 {
 	color: red;
 }
 
-.cartPage {
-	/*border: 1px solid black;*/
-}
+
 .cart{
 	/*border: 1px solid white;*/
 	/*height: 20px;*/
@@ -308,12 +283,18 @@ h1 {
 	/*display: inline-block;
 	width: 60%;
 	vertical-align: top;*/
+	margin-bottom: 40px;
+}
+tr.spacing > td
+{
+  padding-bottom: 0.5em;
+	padding-top: 0.5em;
 }
 
 .cartTable {
 	border-bottom: 2px solid gray;
 	width: 100%;
-	border-spacing: 0px;
+
 }
 .cartTable th {
 	text-align: left;

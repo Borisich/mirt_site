@@ -22,7 +22,7 @@ var NextButton = React.createClass({
 var Picture = React.createClass({
   render: function(){
     var imageList = this.props.imageUrls.map(function(url){
-      return <div key={url}><img src={url} height="300" width="402"/></div>
+      return <div key={url} ><img src={url} height="225" width="338"/></div>
     });
     var settings = {
       dots: true,
@@ -30,7 +30,7 @@ var Picture = React.createClass({
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
-      adaptiveHeight: true,
+      /*adaptiveHeight: true,*/
       arrows: true,
       prevArrow: <PrevButton/>,
       nextArrow: <NextButton/>,

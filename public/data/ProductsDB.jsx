@@ -7,7 +7,7 @@ var ProductsDB = [
       "BBBBBBBB"+
       "CCCCCCCCCC"+
       "DDDDDDDDDD",
-    photoPath: "data/white1/img/",
+    photoPath: "data/testimg/",
     imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"],
     price: 500
   },
@@ -19,7 +19,7 @@ var ProductsDB = [
       "BBBBBBBB"+
       "CCCCCCCCCC"+
       "DDDDDDDDDD",
-    photoPath: "data/red1/img/",
+    photoPath: "data/testimg/",
     imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
     price: 600
   },
@@ -31,7 +31,7 @@ var ProductsDB = [
       "BBBBBBBB"+
       "CCCCCCCCCC"+
       "DDDDDDDDDD",
-    photoPath: "data/red1/img/",
+    photoPath: "data/testimg/",
     imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
     price: 2000
   },
@@ -43,7 +43,7 @@ var ProductsDB = [
       "BBBBBBBB"+
       "CCCCCCCCCC"+
       "DDDDDDDDDD",
-    photoPath: "data/red1/img/",
+    photoPath: "data/testimg/",
     imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
     price: 700
   },
@@ -55,7 +55,7 @@ var ProductsDB = [
       "BBBBBBBB"+
       "CCCCCCCCCC"+
       "DDDDDDDDDD",
-    photoPath: "data/red1/img/",
+    photoPath: "data/testimg/",
     imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
     price: 800
   },
@@ -67,7 +67,7 @@ var ProductsDB = [
       "BBBBBBBB"+
       "CCCCCCCCCC"+
       "DDDDDDDDDD",
-    photoPath: "data/red1/img/",
+    photoPath: "data/testimg/",
     imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
     price: 3000
   },

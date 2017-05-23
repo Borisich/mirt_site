@@ -34233,42 +34233,42 @@ var ProductsDB = [{
   id: 1,
   caption: "Белая штука",
   description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия" + "AAAAAAAAAAAAAAA" + "BBBBBBBB" + "CCCCCCCCCC" + "DDDDDDDDDD",
-  photoPath: "data/white1/img/",
+  photoPath: "data/testimg/",
   imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"],
   price: 500
 }, {
   id: 2,
   caption: "Красная штука",
   description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия" + "AAAAAAAAAAAAAAA" + "BBBBBBBB" + "CCCCCCCCCC" + "DDDDDDDDDD",
-  photoPath: "data/red1/img/",
+  photoPath: "data/testimg/",
   imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
   price: 600
 }, {
   id: 3,
   caption: "Красная штука",
   description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия" + "AAAAAAAAAAAAAAA" + "BBBBBBBB" + "CCCCCCCCCC" + "DDDDDDDDDD",
-  photoPath: "data/red1/img/",
+  photoPath: "data/testimg/",
   imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
   price: 2000
 }, {
   id: 4,
   caption: "Красная штука",
   description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия" + "AAAAAAAAAAAAAAA" + "BBBBBBBB" + "CCCCCCCCCC" + "DDDDDDDDDD",
-  photoPath: "data/red1/img/",
+  photoPath: "data/testimg/",
   imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
   price: 700
 }, {
   id: 5,
   caption: "Красная штука",
   description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия" + "AAAAAAAAAAAAAAA" + "BBBBBBBB" + "CCCCCCCCCC" + "DDDDDDDDDD",
-  photoPath: "data/red1/img/",
+  photoPath: "data/testimg/",
   imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
   price: 800
 }, {
   id: 6,
   caption: "Красная штука",
   description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия" + "AAAAAAAAAAAAAAA" + "BBBBBBBB" + "CCCCCCCCCC" + "DDDDDDDDDD",
-  photoPath: "data/red1/img/",
+  photoPath: "data/testimg/",
   imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
   price: 3000
 }];
@@ -34437,10 +34437,10 @@ var Cart = React.createClass({
       var Product = self.searchProduct(cartElem.id);
       return React.createElement(
         'tr',
-        { key: cartElem.id },
+        { className: 'spacing', key: cartElem.id },
         React.createElement(
           'td',
-          null,
+          { className: 'hidden-xs' },
           React.createElement('img', { className: 'cart_img', src: Product.photoPath + Product.imageFiles[0], onClick: function onClick() {
               return self.refs[cartElem.id].showPopup();
             } })
@@ -34476,7 +34476,7 @@ var Cart = React.createClass({
     });
     return React.createElement(
       'div',
-      { className: 'cartPage' },
+      null,
       React.createElement(
         'div',
         { className: 'cartContent col-md-8' },
@@ -34492,7 +34492,7 @@ var Cart = React.createClass({
               React.createElement(
                 'tr',
                 null,
-                React.createElement('th', { width: '20%' }),
+                React.createElement('th', { className: 'hidden-xs', width: '20%' }),
                 React.createElement(
                   'th',
                   { width: '40%' },
@@ -34528,7 +34528,7 @@ var Cart = React.createClass({
         ),
         this.props.cartTotalItems == 0 && !this.state.orderJustDone && React.createElement(
           'div',
-          null,
+          { className: 'about' },
           '\u0412\u0430\u0448\u0430 \u043A\u043E\u0440\u0437\u0438\u043D\u0430 \u043F\u0443\u0441\u0442\u0430!'
         ),
         this.props.cartTotalItems == 0 && this.state.orderJustDone && React.createElement(
@@ -34540,6 +34540,11 @@ var Cart = React.createClass({
       React.createElement(
         'div',
         { className: 'orderForm col-md-3 col-md-offset-1' },
+        React.createElement(
+          'h3',
+          null,
+          '\u0424\u043E\u0440\u043C\u0430 \u0437\u0430\u043A\u0430\u0437\u0430: '
+        ),
         React.createElement(
           'form',
           { id: 'orderForm', action: '', method: 'post' },
@@ -34883,7 +34888,7 @@ var BottomPanel = React.createClass({
       render: function render() {
         return React.createElement(
           'div',
-          { className: 'in_cart_button_container' },
+          { className: 'col-xs-6' },
           React.createElement('input', { className: 'num_input', value: this.props.value, autoComplete: 'off', type: 'number', name: 'quantity', min: '1', max: '5', onChange: this.props.onChange }),
           React.createElement('div', { className: 'mid' }),
           React.createElement(
@@ -34897,17 +34902,17 @@ var BottomPanel = React.createClass({
 
     return React.createElement(
       'div',
-      { className: 'product_order' },
+      { className: 'row' },
       React.createElement(
         'div',
-        { className: 'product_price' },
+        { className: 'col-xs-3 product_price' },
         this.props.price,
-        ' \u0440\u0443\u0431.'
+        '\u0440.'
       ),
       React.createElement(OrderPanel, { value: this.state.value, onChange: this.onChange, onSubmit: this.onSubmit }),
       React.createElement(
         'div',
-        { className: 'quick_view_button_container' },
+        { className: 'col-xs-3' },
         React.createElement(
           'button',
           { className: 'buttons', onClick: function onClick() {
@@ -34979,7 +34984,7 @@ var Picture = _react2.default.createClass({
       return _react2.default.createElement(
         'div',
         { key: url },
-        _react2.default.createElement('img', { src: url, height: '300', width: '402' })
+        _react2.default.createElement('img', { src: url, height: '225', width: '338' })
       );
     });
     var settings = {
@@ -34988,7 +34993,7 @@ var Picture = _react2.default.createClass({
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
-      adaptiveHeight: true,
+      /*adaptiveHeight: true,*/
       arrows: true,
       prevArrow: _react2.default.createElement(PrevButton, null),
       nextArrow: _react2.default.createElement(NextButton, null),
@@ -35080,12 +35085,14 @@ var Popup = React.createClass({
 
     };
     var myBigGreenDialog = {
-      backgroundColor: '#FFF8DC', //	'#577AA3',
+      backgroundColor: '#577AA3', //	'#577AA3',#FFF8DC
       color: '#ffffff',
-      width: '80%',
-      height: '700px',
+      width: '90%',
+      height: '90%',
       marginTop: '-20%',
-      marginLeft: '-40%'
+      marginLeft: '-45%',
+      overflowY: 'auto',
+      overflowX: 'auto'
     };
     var product = this.searchProduct(this.props.id);
     var imageList = product.imageFiles.map(function (url) {
@@ -35108,7 +35115,7 @@ var Popup = React.createClass({
       render: function render() {
         return React.createElement(
           'div',
-          { className: 'in_cart_button_container' },
+          { className: 'col-md-4' },
           React.createElement('input', { className: 'num_input', value: this.props.value, autoComplete: 'off', type: 'number', name: 'quantity', min: '1', max: '5', onChange: this.props.onChange }),
           React.createElement('div', { className: 'mid' }),
           React.createElement(
@@ -35124,9 +35131,13 @@ var Popup = React.createClass({
       _reactSkylight2.default,
       { dialogStyles: myBigGreenDialog, hideOnOverlayClicked: true, ref: 'simpleDialog', title: '' },
       React.createElement(
-        Slider,
-        settings,
-        imageList
+        'div',
+        { className: 'hidden-sm hidden-xs hidden-md slider' },
+        React.createElement(
+          Slider,
+          settings,
+          imageList
+        )
       ),
       React.createElement(
         'h2',
@@ -35141,12 +35152,12 @@ var Popup = React.createClass({
       React.createElement('br', null),
       React.createElement(
         'div',
-        { className: 'order_panel' },
+        null,
         React.createElement(
           'div',
-          { className: 'product_price' },
+          { className: 'col-md-2 product_price' },
           product.price,
-          ' \u0440\u0443\u0431.'
+          ' \u0440.'
         ),
         React.createElement(OrderPanelPopup, { value: this.state.value, onChange: this.onChange, onSubmit: this.onSubmit })
       )

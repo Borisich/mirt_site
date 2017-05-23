@@ -53,12 +53,14 @@ var Popup = React.createClass({
 
     };
     var myBigGreenDialog = {
-      backgroundColor: '#FFF8DC',//	'#577AA3',
+      backgroundColor: '#577AA3',//	'#577AA3',#FFF8DC
       color: '#ffffff',
-      width: '80%',
-      height: '700px',
+      width: '90%',
+      height: '90%',
       marginTop: '-20%',
-      marginLeft: '-40%',
+      marginLeft: '-45%',
+      overflowY: 'auto',
+      overflowX: 'auto',
     };
     var product=this.searchProduct(this.props.id);
     var imageList = product.imageFiles.map(function(url){
@@ -77,7 +79,7 @@ var Popup = React.createClass({
     var OrderPanelPopup = React.createClass({
       render: function(){
         return (
-          <div className="in_cart_button_container">
+          <div className="col-md-4">
             <input className="num_input" value={this.props.value} autoComplete="off" type="number" name="quantity" min="1" max="5" onChange={this.props.onChange}/>
             <div className="mid"></div>
   					<button className="buttons" onClick={this.props.onSubmit}>В корзину</button>
@@ -88,17 +90,19 @@ var Popup = React.createClass({
 
     return(
       <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref="simpleDialog" title="">
-        <Slider {...settings}>
-          {imageList}
-        </Slider>
+        <div className="hidden-sm hidden-xs hidden-md slider">
+          <Slider {...settings}>
+            {imageList}
+          </Slider>
+        </div>
         <h2>{product.caption}</h2>
         <div className="description">
           {product.description}
         </div>
         <br/>
-        <div className="order_panel">
-          <div className="product_price">
-  					{product.price} руб.
+        <div>
+          <div className="col-md-2 product_price">
+  					{product.price} р.
   				</div>
           <OrderPanelPopup value={this.state.value} onChange={this.onChange} onSubmit={this.onSubmit}/>
         </div>

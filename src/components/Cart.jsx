@@ -57,8 +57,8 @@ var Cart = React.createClass({
     var cartRows = cart.map(function(cartElem){
       var Product=self.searchProduct(cartElem.id);
       return (
-        <tr key={cartElem.id}>
-          <td>
+        <tr className="spacing" key={cartElem.id}>
+          <td className="hidden-xs">
             <img className="cart_img" src={Product.photoPath+Product.imageFiles[0]} onClick={() => self.refs[cartElem.id].showPopup()}/>
           </td>
           <td>
@@ -78,14 +78,14 @@ var Cart = React.createClass({
       )
     });
     return(
-      <div className="cartPage">
+      <div>
         <div className="cartContent col-md-8">
           {this.props.cartTotalItems > 0 &&
             <div>
             <table className="cartTable">
               <thead>
                 <tr>
-                  <th width="20%">
+                  <th className="hidden-xs" width="20%">
 
                   </th>
                   <th width="40%">
@@ -111,7 +111,7 @@ var Cart = React.createClass({
           </div>
         }
         {((this.props.cartTotalItems == 0) && (!this.state.orderJustDone)) &&
-          <div>
+          <div className="about">
             Ваша корзина пуста!
           </div>
         }
@@ -122,6 +122,7 @@ var Cart = React.createClass({
         }
         </div>
         <div className="orderForm col-md-3 col-md-offset-1">
+          <h3>Форма заказа: </h3>
           <form id="orderForm" action="" method="post">
             Ваше имя:
             <input className="oInputs" type="text" placeholder="Ваше имя" name="name"/><br/>
