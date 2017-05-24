@@ -29,7 +29,7 @@ var LastOrder = React.createClass({
       var Product=self.searchProduct(elem.id);
       return (
         <tr key={elem.id}>
-          <td>
+          <td className="hidden-xs">
             <img className="cart_img" src={Product.photoPath+Product.imageFiles[0]} onClick={() => self.refs[elem.id].showPopup()}/>
           </td>
           <td>

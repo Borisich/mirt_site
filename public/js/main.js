@@ -34751,7 +34751,7 @@ var LastOrder = React.createClass({
         { key: elem.id },
         React.createElement(
           'td',
-          null,
+          { className: 'hidden-xs' },
           React.createElement('img', { className: 'cart_img', src: Product.photoPath + Product.imageFiles[0], onClick: function onClick() {
               return self.refs[elem.id].showPopup();
             } })
