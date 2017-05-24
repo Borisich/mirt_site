@@ -7,7 +7,7 @@ var ProductsDB = [
       "BBBBBBBB"+
       "CCCCCCCCCC"+
       "DDDDDDDDDD",
-    photoPath: "data/testimg/",
+    photoPath: "data/white1/img/",
     imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"],
     price: 500
   },
@@ -19,55 +19,55 @@ var ProductsDB = [
       "BBBBBBBB"+
       "CCCCCCCCCC"+
       "DDDDDDDDDD",
-    photoPath: "data/testimg/",
+    photoPath: "data/red1/img/",
     imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
     price: 600
   },
   {
     id: 3,
-    caption: "Красная штука",
+    caption: "Синяя штука",
     description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия"+
       "AAAAAAAAAAAAAAA"+
       "BBBBBBBB"+
       "CCCCCCCCCC"+
       "DDDDDDDDDD",
-    photoPath: "data/testimg/",
+    photoPath: "data/red1/img/",
     imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
     price: 2000
   },
   {
     id: 4,
-    caption: "Красная штука",
+    caption: "Зеленая штука",
     description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия"+
       "AAAAAAAAAAAAAAA"+
       "BBBBBBBB"+
       "CCCCCCCCCC"+
       "DDDDDDDDDD",
-    photoPath: "data/testimg/",
+    photoPath: "data/red1/img/",
     imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
     price: 700
   },
   {
     id: 5,
-    caption: "Красная штука",
+    caption: "Желтая штука",
     description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия"+
       "AAAAAAAAAAAAAAA"+
       "BBBBBBBB"+
       "CCCCCCCCCC"+
       "DDDDDDDDDD",
-    photoPath: "data/testimg/",
+    photoPath: "data/red1/img/",
     imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
     price: 800
   },
   {
     id: 6,
-    caption: "Красная штука",
+    caption: "Серая штука",
     description: "Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия Подробное описание изделия"+
       "AAAAAAAAAAAAAAA"+
       "BBBBBBBB"+
       "CCCCCCCCCC"+
       "DDDDDDDDDD",
-    photoPath: "data/testimg/",
+    photoPath: "data/red1/img/",
     imageFiles: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
     price: 3000
   },
