@@ -242,8 +242,7 @@ var Main = React.createClass({
               {this.state.navigator.contacts ? <Contacts /> : null}
             </div>
           </div>
-          <div className="clear"></div>
-          <div className="footbar">
+          <div className="footbar row">
             <Footer />
           </div>
         </div>

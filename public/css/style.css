@@ -31,6 +31,9 @@ html {
 	/*background-color: black;*/
 
 }
+.topInfo {
+	margin-left: 5px;
+}
 .topbar {
 	/*border: 1px solid red;*/
 	/*background-color: red;*/
@@ -42,8 +45,9 @@ html {
 	z-index: 10;
 }
 .resetLink {
+	margin-left: 20px;
 	cursor: pointer;
-	text-decoration: none;
+	text-decoration: underline;
 	font-size: 10pt;
 }
 .resetLink:hover {
@@ -52,8 +56,7 @@ html {
 
 .cartLink {
 	cursor: pointer;
-	text-decoration: none;
-	font-size: 12pt;
+	text-decoration: underline;
 }
 .cartLink:hover {
 	text-decoration: underline;
@@ -205,13 +208,17 @@ ul.slick-dots {
 }
 
 .buttons {
-	background-color: #4CAF50; /* Green */
+	background-color: #009900; /* Green */
   border: none;
   color: white;
   padding: 5px 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
+}
+
+.imageButton:hover {
+	cursor: pointer;
 }
 .buttons:disabled {
 	background-color: #b3ffcb; /* Green */
@@ -244,16 +251,13 @@ ul.slick-dots {
 }
 
 .footbar {
-
 	background-color: gray;
 	margin-top: 20px;
 }
 .footer{
 	height: 70px;
 	line-height: 70px;
-	width: 80%;
 	margin: 0 auto;
-	/*min-width: 1300px;*/
 	color: white;
 	text-align: center;
 }
@@ -285,6 +289,7 @@ h1 {
 	vertical-align: top;*/
 	margin-bottom: 40px;
 }
+
 tr.spacing > td
 {
   padding-bottom: 0.5em;
@@ -298,13 +303,13 @@ tr.spacing > td
 }
 .cartTable th {
 	text-align: left;
-	font-size: 17pt;
+	font-size: 15pt;
 	font-family: Philosopher;
 	border-bottom: 2px solid gray;
 }
 .cartTable td {
 	text-align: left;
-	font-size: 17pt;
+	font-size: 15pt;
 	font-family: Philosopher;
 	border-bottom: 1px solid gray;
 }
@@ -339,4 +344,11 @@ textarea {
 	text-align: left;
 	font-size: 16pt;
 	font-family: Philosopher;
+}
+.slick-prev:before {
+	color: red!important;
+}
+
+.slick-next:before {
+ 	color: red!important;
 }

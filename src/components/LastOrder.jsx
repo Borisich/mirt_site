@@ -48,23 +48,23 @@ var LastOrder = React.createClass({
     console.log("self.props.lastOrder: ");
     console.log(self.props.lastOrder);
     return(
-      <div className="cartPage">
-        <div className="cartContent">
+      <div>
+        <div className="cartContent col-md-8">
           {this.props.lastOrder.length > 0 &&
             <div>
             <table className="cartTable">
               <thead>
                 <tr>
-                  <th width="20%">
+                  <th className="hidden-xs" width="20%">
 
                   </th>
                   <th width="40%">
                     Название
                   </th>
-                  <th width="15%">
+                  <th width="25%">
                     Цена
                   </th>
-                  <th width="10%">
+                  <th width="30%">
                     Кол-во
                   </th>
                 </tr>

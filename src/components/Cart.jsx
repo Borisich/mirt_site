@@ -71,7 +71,8 @@ var Cart = React.createClass({
             <input className="num_input" value={cartElem.count} autoComplete="off" type="number" name="quantity" data-pid={cartElem.id} onChange={self.onChange}/>
           </td>
           <td>
-            <button className="buttons" onClick={() => self.props.delFromCart(cartElem.id)}>Удалить</button>
+            <img className="imageButton" src="images/remove2.png" height="30px" onClick={() => self.props.delFromCart(cartElem.id)}/>
+            {/*<button className="buttons" onClick={() => self.props.delFromCart(cartElem.id)}>Удалить</button>*/}
             <Popup ref={cartElem.id} addToCart={self.props.addToCart} id={cartElem.id} flag='1'/>
           </td>
         </tr>
@@ -91,10 +92,10 @@ var Cart = React.createClass({
                   <th width="40%">
                     Название
                   </th>
-                  <th width="15%">
+                  <th width="25%">
                     Цена
                   </th>
-                  <th width="10%">
+                  <th width="30%">
                     Кол-во
                   </th>
                   <th>

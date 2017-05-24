@@ -26,7 +26,7 @@ var BottomPanel = React.createClass({
     var OrderPanel = React.createClass({
       render: function(){
         return (
-          <div className="col-xs-6">
+          <div className="col-xs-7">
             <input className="num_input" value={this.props.value} autoComplete="off" type="number" name="quantity" min="1" max="5" onChange={this.props.onChange}/>
             <div className="mid"></div>
   					<button className="buttons" onClick={this.props.onSubmit}>В корзину</button>
@@ -41,8 +41,9 @@ var BottomPanel = React.createClass({
 					{this.props.price}р.
 				</div>
         <OrderPanel value={this.state.value} onChange={this.onChange} onSubmit={this.onSubmit}/>
-				<div className="col-xs-3">
-          <button className="buttons" onClick={() => this.refs.pop.showPopup()}>Просмотр</button>
+				<div className="col-xs-2">
+          <img className="imageButton" src="images/quickview2.png" height="30px" onClick={() => this.refs.pop.showPopup()}/>
+          {/*<button className="buttons" onClick={() => this.refs.pop.showPopup()}>Просмотр</button>*/}
           <Popup ref="pop" addToCart={this.props.addToCart} id={this.props.id} flag='1'/>
 				</div>
 	  </div>

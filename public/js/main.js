@@ -34287,7 +34287,7 @@ var About = React.createClass({
         render: function render() {
                 return React.createElement(
                         "div",
-                        { className: "about" },
+                        { className: "col-md-12 about" },
                         React.createElement(
                                 "p",
                                 null,
@@ -34463,13 +34463,9 @@ var Cart = React.createClass({
         React.createElement(
           'td',
           null,
-          React.createElement(
-            'button',
-            { className: 'buttons', onClick: function onClick() {
-                return self.props.delFromCart(cartElem.id);
-              } },
-            '\u0423\u0434\u0430\u043B\u0438\u0442\u044C'
-          ),
+          React.createElement('img', { className: 'imageButton', src: 'images/remove2.png', height: '30px', onClick: function onClick() {
+              return self.props.delFromCart(cartElem.id);
+            } }),
           React.createElement(Popup, { ref: cartElem.id, addToCart: self.props.addToCart, id: cartElem.id, flag: '1' })
         )
       );
@@ -34500,12 +34496,12 @@ var Cart = React.createClass({
                 ),
                 React.createElement(
                   'th',
-                  { width: '15%' },
+                  { width: '25%' },
                   '\u0426\u0435\u043D\u0430'
                 ),
                 React.createElement(
                   'th',
-                  { width: '10%' },
+                  { width: '30%' },
                   '\u041A\u043E\u043B-\u0432\u043E'
                 ),
                 React.createElement('th', null)
@@ -34588,8 +34584,8 @@ var Contacts = React.createClass({
   render: function render() {
     return React.createElement(
       "div",
-      { className: "contacts" },
-      "\u0414\u043E\u0441\u0442\u0430\u0432\u043A\u0430 \u043E\u0436\u0438\u0434\u0430\u0435\u0442\u0441\u044F, \u043E\u043F\u043B\u0430\u0442\u0430 \u043F\u0440\u0438\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u0435\u0442\u0441\u044F!"
+      { className: "col-md-12 contacts" },
+      "\u0414\u043E\u0441\u0442\u0430\u0432\u043A\u0430 \u043F\u043E\u0434\u0440\u0430\u0437\u0443\u043C\u0435\u0432\u0430\u0435\u0442\u0441\u044F, \u043E\u043F\u043B\u0430\u0442\u0430 \u043F\u0440\u0438\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u0435\u0442\u0441\u044F!"
     );
   }
 });
@@ -34606,7 +34602,7 @@ var Footer = React.createClass({
   render: function render() {
     return React.createElement(
       "div",
-      { className: "footer" },
+      { className: "footer col-md-12" },
       "Mirt 2015-2017"
     );
   }
@@ -34782,10 +34778,10 @@ var LastOrder = React.createClass({
     console.log(self.props.lastOrder);
     return React.createElement(
       'div',
-      { className: 'cartPage' },
+      null,
       React.createElement(
         'div',
-        { className: 'cartContent' },
+        { className: 'cartContent col-md-8' },
         this.props.lastOrder.length > 0 && React.createElement(
           'div',
           null,
@@ -34798,7 +34794,7 @@ var LastOrder = React.createClass({
               React.createElement(
                 'tr',
                 null,
-                React.createElement('th', { width: '20%' }),
+                React.createElement('th', { className: 'hidden-xs', width: '20%' }),
                 React.createElement(
                   'th',
                   { width: '40%' },
@@ -34806,12 +34802,12 @@ var LastOrder = React.createClass({
                 ),
                 React.createElement(
                   'th',
-                  { width: '15%' },
+                  { width: '25%' },
                   '\u0426\u0435\u043D\u0430'
                 ),
                 React.createElement(
                   'th',
-                  { width: '10%' },
+                  { width: '30%' },
                   '\u041A\u043E\u043B-\u0432\u043E'
                 )
               )
@@ -34888,7 +34884,7 @@ var BottomPanel = React.createClass({
       render: function render() {
         return React.createElement(
           'div',
-          { className: 'col-xs-6' },
+          { className: 'col-xs-7' },
           React.createElement('input', { className: 'num_input', value: this.props.value, autoComplete: 'off', type: 'number', name: 'quantity', min: '1', max: '5', onChange: this.props.onChange }),
           React.createElement('div', { className: 'mid' }),
           React.createElement(
@@ -34912,14 +34908,10 @@ var BottomPanel = React.createClass({
       React.createElement(OrderPanel, { value: this.state.value, onChange: this.onChange, onSubmit: this.onSubmit }),
       React.createElement(
         'div',
-        { className: 'col-xs-3' },
-        React.createElement(
-          'button',
-          { className: 'buttons', onClick: function onClick() {
-              return _this.refs.pop.showPopup();
-            } },
-          '\u041F\u0440\u043E\u0441\u043C\u043E\u0442\u0440'
-        ),
+        { className: 'col-xs-2' },
+        React.createElement('img', { className: 'imageButton', src: 'images/quickview2.png', height: '30px', onClick: function onClick() {
+            return _this.refs.pop.showPopup();
+          } }),
         React.createElement(Popup, { ref: 'pop', addToCart: this.props.addToCart, id: this.props.id, flag: '1' })
       )
     );
@@ -34983,8 +34975,8 @@ var Picture = _react2.default.createClass({
     var imageList = this.props.imageUrls.map(function (url) {
       return _react2.default.createElement(
         'div',
-        { key: url },
-        _react2.default.createElement('img', { src: url, height: '225', width: '338' })
+        { style: { height: "225px" }, key: url },
+        _react2.default.createElement('img', { src: url, width: '100%' })
       );
     });
     var settings = {
@@ -35085,12 +35077,14 @@ var Popup = React.createClass({
 
     };
     var myBigGreenDialog = {
-      backgroundColor: '#577AA3', //	'#577AA3',#FFF8DC
-      color: '#ffffff',
+      backgroundColor: '#FFF8DC', //	'#577AA3',#FFF8DC
+      color: '#000000',
       width: '90%',
       height: '90%',
-      marginTop: '-20%',
-      marginLeft: '-45%',
+      marginTop: '0%',
+      marginLeft: '0%',
+      top: '5%',
+      left: '5%',
       overflowY: 'auto',
       overflowX: 'auto'
     };
@@ -35115,9 +35109,8 @@ var Popup = React.createClass({
       render: function render() {
         return React.createElement(
           'div',
-          { className: 'col-md-4' },
+          { className: 'col-xs-8 col-sm-4 col-md-3' },
           React.createElement('input', { className: 'num_input', value: this.props.value, autoComplete: 'off', type: 'number', name: 'quantity', min: '1', max: '5', onChange: this.props.onChange }),
-          React.createElement('div', { className: 'mid' }),
           React.createElement(
             'button',
             { className: 'buttons', onClick: this.props.onSubmit },
@@ -35155,7 +35148,7 @@ var Popup = React.createClass({
         null,
         React.createElement(
           'div',
-          { className: 'col-md-2 product_price' },
+          { className: 'col-xs-4 col-sm-2 col-md-2 product_price' },
           product.price,
           ' \u0440.'
         ),
@@ -35232,7 +35225,7 @@ var TopBar = React.createClass({
     if (this.props.cartTotalItems != 0) {
       info = React.createElement(
         "div",
-        { className: "col-md-5 col-md-offset-2" },
+        { className: "topInfo col-md-6 col-md-offset-2" },
         "\u0412\u0430\u0448\u0430 ",
         React.createElement(
           "span",
@@ -35247,17 +35240,17 @@ var TopBar = React.createClass({
         tovarWord(this.props.cartTotalItems),
         " \u043D\u0430 \u0441\u0443\u043C\u043C\u0443 ",
         this.props.cartTotalPrice,
-        " \u0440\u0443\u0431. \xA0 \xA0 \xA0  ",
+        " \u0440\u0443\u0431.",
         React.createElement(
           "span",
-          { className: "resetLink", onClick: this.props.onReset },
+          { className: "resetLink hidden-sm hidden-xs", onClick: this.props.onReset },
           "\u041E\u0447\u0438\u0441\u0442\u0438\u0442\u044C"
         )
       );
     } else {
       info = React.createElement(
         "div",
-        { className: "col-md-5 col-md-offset-2" },
+        { className: "topInfo col-md-6 col-md-offset-2" },
         "\u0412\u0430\u0448\u0430 \u043A\u043E\u0440\u0437\u0438\u043D\u0430 \u043F\u0443\u0441\u0442\u0430"
       );
     }
@@ -35527,10 +35520,9 @@ var Main = React.createClass({
           this.state.navigator.contacts ? React.createElement(Contacts, null) : null
         )
       ),
-      React.createElement('div', { className: 'clear' }),
       React.createElement(
         'div',
-        { className: 'footbar' },
+        { className: 'footbar row' },
         React.createElement(Footer, null)
       )
     );

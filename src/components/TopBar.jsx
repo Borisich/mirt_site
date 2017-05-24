@@ -31,13 +31,13 @@ var TopBar = React.createClass({
     var info = "";
     if (this.props.cartTotalItems != 0){
       info =
-        <div className="col-md-5 col-md-offset-2">
-            Ваша <span className="cartLink" onClick={() => this.props.setNavigation('cart')}>корзина</span> - {this.props.cartTotalItems} {tovarWord(this.props.cartTotalItems)} на сумму {this.props.cartTotalPrice} руб. &nbsp; &nbsp; &nbsp;  <span className="resetLink" onClick={this.props.onReset}>Очистить</span>
+        <div className="topInfo col-md-6 col-md-offset-2">
+            Ваша <span className="cartLink" onClick={() => this.props.setNavigation('cart')}>корзина</span> - {this.props.cartTotalItems} {tovarWord(this.props.cartTotalItems)} на сумму {this.props.cartTotalPrice} руб.<span className="resetLink hidden-sm hidden-xs" onClick={this.props.onReset}>Очистить</span>
         </div>
     }
     else {
       info =
-        <div className="col-md-5 col-md-offset-2">
+        <div className="topInfo col-md-6 col-md-offset-2">
             Ваша корзина пуста
         </div>
     }

@@ -53,12 +53,14 @@ var Popup = React.createClass({
 
     };
     var myBigGreenDialog = {
-      backgroundColor: '#577AA3',//	'#577AA3',#FFF8DC
-      color: '#ffffff',
+      backgroundColor: '#FFF8DC',//	'#577AA3',#FFF8DC
+      color: '#000000',
       width: '90%',
       height: '90%',
-      marginTop: '-20%',
-      marginLeft: '-45%',
+      marginTop: '0%',
+      marginLeft: '0%',
+      top: '5%',
+      left: '5%',
       overflowY: 'auto',
       overflowX: 'auto',
     };
@@ -79,10 +81,9 @@ var Popup = React.createClass({
     var OrderPanelPopup = React.createClass({
       render: function(){
         return (
-          <div className="col-md-4">
+          <div className="col-xs-8 col-sm-4 col-md-3">
             <input className="num_input" value={this.props.value} autoComplete="off" type="number" name="quantity" min="1" max="5" onChange={this.props.onChange}/>
-            <div className="mid"></div>
-  					<button className="buttons" onClick={this.props.onSubmit}>В корзину</button>
+      			<button className="buttons" onClick={this.props.onSubmit}>В корзину</button>
   				</div>
         )
       }
@@ -101,7 +102,7 @@ var Popup = React.createClass({
         </div>
         <br/>
         <div>
-          <div className="col-md-2 product_price">
+          <div className="col-xs-4 col-sm-2 col-md-2 product_price">
   					{product.price} р.
   				</div>
           <OrderPanelPopup value={this.state.value} onChange={this.onChange} onSubmit={this.onSubmit}/>
